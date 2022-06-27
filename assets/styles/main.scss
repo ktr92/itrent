@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button {
+  @apply bg-elm py-3 px-6 rounded-lg font-semibold leading-6 text-center text-lg text-white focus:outline-none cursor-pointer;
+  &-lg {
+    @apply bg-elm py-4 px-6 rounded-lg font-semibold leading-7 text-xl text-white focus:outline-none;
+  }
+  &-sm {
+    @apply bg-elm py-2.5 px-6 rounded-lg leading-snug text-base text-white focus:outline-none;
+  }
+  &-xs {
+    @apply bg-elm py-2 px-4 rounded-lg leading-5 text-sm text-white focus:outline-none;
+  }
+  &-disabled {
+    @apply pointer-events-none opacity-20;
+  }
+}
+
+.nav-button {
+  @apply inline-block border-t-3 border-transparent p-2 leading-normal text-2sm text-black text-opacity-45 hover:text-opacity-85;
+  &.nuxt-link-exact-active {
+    @apply font-medium border-elm text-black text-opacity-85;
+  }
+}
+
+.mx-input {
+  border: none !important;
+  border-radius: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  font-size: 0.9375rem !important;
+  color: #000 !important;
+}
+
+.mx-input::placeholder {
+  opacity: 0.7 !important;
+  color: rgba(0, 0, 0, 0.45) !important;
+  }
+
+.mx-datepicker {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.mx-btn:hover {
+  border-color: #1f867e !important;
+  color: #1f867e !important;
+}
+
+.mx-calendar-content .cell.active {
+  background-color: #1f867e !important;
+  color: #fff !important;
+}
+
+.mx-calendar-content .cell.active:hover {
+  background-color: #a5cecb !important;
+  color: #fff !important;
+}
+
+.mx-table-date .today {
+  color: #1f867e !important;
+  font-weight: 700 !important;
+}
+
+.mx-calendar-content .cell:hover {
+  background-color: #e8f2f2 !important;
+}
+
+.mx-icon-calendar {
+  display: none !important;
+}
+
+.mx-icon-calendar, .mx-icon-clear {
+  display: none !important;
+}
+
+.mx-input-wrapper {
+  border: none !important;
+  border-radius: none !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.change-name-date input[type='date']::-webkit-inner-spin-button,
+.change-name-date input[type='date']::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+
+
+.fill-hover {
+  fill: #888 !important;
+}
+
+.fill-hover:hover {
+  fill: #000 !important;
+}
+
+.black-hover:hover {
+  color: #000 !important;
+}
