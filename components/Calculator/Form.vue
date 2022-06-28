@@ -31,14 +31,13 @@
             />
           </ValidationProvider>
         </div> -->
-        <div v-for="dynamicOption in dynamicOptions" :key="dynamicOption.alias">
+        <div v-for="dynamicOption in sortedDynamicOptions" :key="dynamicOption.alias">
           <div class="grid grid-cols-2 gap-4 py-4 border-b">
             <ValidationProvider
               v-slot="{ errors }"
               :rules="dynamicOption.rules"
-              class="col-span-2"
               :name="dynamicOption.name"
-              :class="{ 'col-span-1': dynamicOption.smallSize }"
+              :class="{ 'col-span-1': dynamicOption.smallSize, 'col-span-2': !dynamicOption.smallSize}"
             >
               <component
                 :is="dynamicOption.type"
@@ -75,11 +74,17 @@ export default {
     }
   },
   fetch () {
+    // получаем параметры для Основных свойств
     this.dynamicOptions.push(this.$store.getters['calculator/getDynamicOptions'])
+    // формируем массив опций с параметрами и значениями
     this.dynamicOptions[0].items = this.$store.getters['calculator/getRealEstateRegions']
   },
   computed: {
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDynamicOptions'])
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDynamicOptions']),
+    sortedDynamicOptions () {
+      // сортируем массив опций по полю sort
+      return this.dynamicOptions.slice().sort((a, b) => a.sort - b.sort)
+    }
   }
 }
 </script>

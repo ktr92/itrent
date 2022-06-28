@@ -1,14 +1,13 @@
 export default () => ({
   dynamicOptions:
     {
-      alias: 'locations',
-      name: 'Регион недвижимости',
-      rules: 'required',
-      smallSize: false,
-      default: false,
-      limit: 5,
-      sort: 0,
-      type: 'FeSelect'
+      alias: 'locations', // alias (id)
+      name: 'Регион недвижимости', // отображаемое имя
+      rules: 'required', // правило валидации
+      default: false, // значение по умолчанию
+      limit: 5, // лимит (для селекта)
+      sort: 0, // порядок сортировки
+      type: 'FeSelect' // тип компонента
     },
   locationOptions: [
     {
