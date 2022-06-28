@@ -10,9 +10,9 @@
         Вводите параметры расчета и делитесь предложениям с клиентом.
       </div>
     </div>
-    <div>
+    <div v-if="dynamicOptions && dynamicOptions.length">
       <ValidationObserver ref="form">
-        <div class="grid grid-cols-2 gap-4 py-4 border-b">
+        <!-- <div class="grid grid-cols-2 gap-4 py-4 border-b">
           <ValidationProvider
             v-slot="{ errors }"
             rules="required"
@@ -30,6 +30,29 @@
               class="calculator__select-region"
             />
           </ValidationProvider>
+        </div> -->
+        <div v-for="dynamicOption in dynamicOptions" :key="dynamicOption.alias">
+          <div class="grid grid-cols-2 gap-4 py-4 border-b">
+            <ValidationProvider
+              v-slot="{ errors }"
+              :rules="dynamicOption.rules"
+              class="col-span-2"
+              :name="dynamicOption.name"
+              :class="{ 'col-span-1': dynamicOption.smallSize }"
+            >
+              <component
+                :is="dynamicOption.type"
+                v-if="showLocation"
+                v-model="location"
+                :options="dynamicOption.items"
+                :errors="errors.concat(apiErrors.location)"
+                :placeholder="dynamicOption.name"
+                :default="dynamicOption.default"
+                :limit="dynamicOption.limit"
+                class="calculator__select-region"
+              />
+            </ValidationProvider>
+          </div>
         </div>
       </ValidationObserver>
     </div>
@@ -47,11 +70,16 @@ export default {
     return {
       location: null,
       showLocation: 1,
-      apiErrors: {}
+      apiErrors: {},
+      dynamicOptions: []
     }
   },
+  fetch () {
+    this.dynamicOptions.push(this.$store.getters['calculator/getDynamicOptions'])
+    this.dynamicOptions[0].items = this.$store.getters['calculator/getRealEstateRegions']
+  },
   computed: {
-    ...mapGetters('calculator', ['getRealEstateRegions'])
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDynamicOptions'])
   }
 }
 </script>

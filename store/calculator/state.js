@@ -1,4 +1,15 @@
 export default () => ({
+  dynamicOptions:
+    {
+      alias: 'locations',
+      name: 'Регион недвижимости',
+      rules: 'required',
+      smallSize: false,
+      default: false,
+      limit: 5,
+      sort: 0,
+      type: 'FeSelect'
+    },
   locationOptions: [
     {
       title: 'Набережные Челны',
