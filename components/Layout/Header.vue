@@ -24,7 +24,7 @@
           </li>
           <li class="inline-block mr-4">
             <nuxt-link
-              to="/"
+              to="#"
               class="
                 flex
                 items-center

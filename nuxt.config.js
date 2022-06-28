@@ -21,6 +21,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/directive.click-outside.js', ssr: false },
+    { src: '~/plugins/vee-validate', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -30,7 +32,9 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/svg-sprite'
+
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -44,5 +48,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['vee-validate/dist/rules']
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <div class="container pt-8 pb-28">
+  <div>
     <div class="border-b">
-      <FilterForm />
+      <Calculator />
     </div>
 
     <div class="pt-2 mb-16" />

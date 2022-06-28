@@ -6,10 +6,11 @@
 </template>
 
 <script>
+
 export default {
-  data () {
-    return {
-      authUser: {
+  computed: {
+    authUser () {
+      return {
         fullName: 'user'
       }
     }
