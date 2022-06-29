@@ -24,9 +24,6 @@ export default {
     }
   },
   computed: {
-    message () {
-      return this.$store.getters.message
-    },
     typeError () {
       return this.datamessage.type === 'error'
     },
@@ -36,18 +33,13 @@ export default {
     typeWarning () {
       return this.datamessage.type === 'warning'
     }
-  },
-  watch: {
-    message (value) {
-      this.datamessage = { ...value }
-    }
   }
 }
 </script>
 
 <style scoped>
   .appmessage {
-    @apply my-2 absolute bottom-2 mx-2 left-0 right-0 bg-red-100 rounded-lg z-50 border-2 border-red-500 text-red-600
+    @apply my-2  bottom-2 mx-2 left-0 right-0 bg-red-100 rounded-lg z-50 border-2 border-red-500 text-red-600
   }
 
   .appmessage_error {

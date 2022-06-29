@@ -2,7 +2,6 @@
   <div>
     <LayoutHeader :user="authUser" />
     <Nuxt />
-    <LayoutAlert />
   </div>
 </template>
 

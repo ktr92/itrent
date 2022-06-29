@@ -1,4 +1,5 @@
 export default () => ({
+  resultList: [],
   dynamicOptions:
     {
       alias: 'locations', // alias (id)

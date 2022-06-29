@@ -53,6 +53,9 @@
             </ValidationProvider>
           </div>
         </div>
+        <div v-if="dynamicReady">
+          Динамические свойства
+        </div>
       </ValidationObserver>
     </div>
   </div>
@@ -67,6 +70,7 @@ export default {
   },
   data () {
     return {
+      dynamicReady: false,
       location: null,
       showLocation: 1,
       apiErrors: {},

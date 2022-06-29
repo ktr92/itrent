@@ -12,11 +12,25 @@
         Введите информацию по помещениям, и мы покажем вам доступные предложения.
       </div>
     </div>
+    <div v-if="cardsready">
+      <div>
+        <CalculatorCard />
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
+  data () {
+    return {
+      cardsready: false
+    }
+  },
+  computed: {
+    ...mapGetters(['message'])
+  }
 }
 </script>
 

@@ -20,5 +20,7 @@ export default {
         return ('' + a.name).localeCompare(b.name)
       })
   },
-  getDynamicOptions: state => state.dynamicOptions
+  getDynamicOptions: state => state.dynamicOptions,
+  getResultList: state => state.resultList
+
 }
