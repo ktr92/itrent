@@ -12,9 +12,12 @@
         Введите информацию по помещениям, и мы покажем вам доступные предложения.
       </div>
     </div>
-    <div v-if="cardsready">
-      <div>
-        <CalculatorCard />
+    <div v-if="cardsReady">
+      <div v-if="cardsResult.length">
+        <ResultCard />
+      </div>
+      <div v-else>
+        По вашим параметрам ничего не найдено.
       </div>
     </div>
   </div>
@@ -25,7 +28,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      cardsready: false
+      cardsReady: false,
+      cardsResult: []
     }
   },
   computed: {

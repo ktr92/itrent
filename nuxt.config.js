@@ -12,7 +12,6 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -25,6 +24,16 @@ export default {
     { src: '~/plugins/vee-validate', ssr: false }
   ],
 
+  svgSprite: {
+    input: '~/assets/images/icons/'
+  },
+  googleFonts: {
+    display: 'swap',
+    families: {
+      'Open+Sans': true
+    }
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -33,15 +42,27 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/svg-sprite'
-
+    '@nuxtjs/svg-sprite',
+    '@nuxtjs/google-fonts'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'rent-products-api.ipotech.su',
+        clientId: '1',
+        clientSecret: 'LJJClsj1gVgnfoe5nz2pU2Lg93Uh4V85J5X9Rl95',
+        audience: 'https://rent-products-api.ipotech.su'
+      }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

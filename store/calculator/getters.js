@@ -21,6 +21,7 @@ export default {
       })
   },
   getDynamicOptions: state => state.dynamicOptions,
+  getObjectAreaOffers: state => state.objectAreaOffers,
   getResultList: state => state.resultList
 
 }

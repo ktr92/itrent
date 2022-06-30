@@ -1,5 +1,27 @@
 export default () => ({
   resultList: [],
+  objectAreaOffers: [
+    {
+      label: '30 кв.м',
+      value: 30
+    },
+    {
+      label: '50 кв.м',
+      value: 50
+    },
+    {
+      label: '70 кв.м',
+      value: 70
+    },
+    {
+      label: '90 кв.м',
+      value: 90
+    },
+    {
+      label: '110 кв.м',
+      value: 110
+    }
+  ],
   dynamicOptions:
     {
       alias: 'locations', // alias (id)
