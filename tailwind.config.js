@@ -51,6 +51,9 @@ module.exports = {
       },
       borderWidth: {
         3: '3px'
+      },
+      boxShadow: {
+        '3xl': '0px 2px 3px rgba(0, 0, 0, 0.12), 0px 3px 11px 1px rgba(0, 0, 0, 0.08)'
       }
     }
   },
