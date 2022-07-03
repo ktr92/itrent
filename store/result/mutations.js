@@ -1,6 +1,6 @@
 export default {
   setResultList ({ state }, payload) {
-    state.dynamicOptions = payload
+    state.resultList = payload
   },
   selectProduct (state, payload) {
     const selected = state.selectedProducts

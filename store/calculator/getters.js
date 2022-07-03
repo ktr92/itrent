@@ -20,8 +20,8 @@ export default {
         return ('' + a.name).localeCompare(b.name)
       })
   },
-  getDynamicOptions: state => state.dynamicOptions,
-  getObjectAreaOffers: state => state.objectAreaOffers,
-  getResultList: state => state.resultList
+  getForm: state => state.form,
+  getDefaultOptions: state => state.defaultOptions,
+  getObjectAreaOffers: state => state.objectAreaOffers
 
 }

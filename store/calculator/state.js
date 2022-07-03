@@ -1,5 +1,10 @@
 export default () => ({
   resultList: [],
+  form: {
+    location: {
+
+    }
+  },
   objectAreaOffers: [
     {
       label: '30 кв.м',
@@ -22,7 +27,7 @@ export default () => ({
       value: 110
     }
   ],
-  dynamicOptions:
+  defaultOptions:
     {
       alias: 'locations', // alias (id)
       name: 'Регион недвижимости', // отображаемое имя

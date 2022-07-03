@@ -10,7 +10,7 @@
         Вводите параметры расчета и делитесь предложениям с клиентом.
       </div>
     </div>
-    <div v-if="dynamicOptions && dynamicOptions.length">
+    <div v-if="defaultOptions && defaultOptions.length">
       <ValidationObserver ref="form">
         <!-- <div class="grid grid-cols-2 gap-4 py-4 border-b">
           <ValidationProvider
@@ -31,30 +31,32 @@
             />
           </ValidationProvider>
         </div> -->
-        <div v-for="dynamicOption in sortedDynamicOptions" :key="dynamicOption.alias">
+        <div v-for="defaultOption in sortedDefaultOptions" :key="defaultOption.alias">
           <div class="grid grid-cols-2 gap-4 py-4 border-b">
             <ValidationProvider
               v-slot="{ errors }"
-              :rules="dynamicOption.rules"
-              :name="dynamicOption.name"
-              :class="{ 'col-span-1': dynamicOption.smallSize, 'col-span-2': !dynamicOption.smallSize}"
+              :rules="defaultOption.rules"
+              :name="defaultOption.name"
+              :class="{ 'col-span-1': defaultOption.smallSize, 'col-span-2': !defaultOption.smallSize}"
             >
               <component
-                :is="dynamicOption.type"
+                :is="defaultOption.type"
                 v-if="showLocation"
                 v-model="location"
-                :options="dynamicOption.items"
+                :options="defaultOption.items"
                 :errors="errors.concat(apiErrors.location)"
-                :placeholder="dynamicOption.name"
-                :default="dynamicOption.default"
-                :limit="dynamicOption.limit"
+                :placeholder="defaultOption.name"
+                :default="defaultOption.default"
+                :limit="defaultOption.limit"
                 class="calculator__select-region"
+                @change="handleLocationChange"
               />
             </ValidationProvider>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4 py-4 border-b">
           <ValidationProvider
+            v-slot="{ errors }"
             rules="required"
             class="col-span-2"
             name="Площадь помещения"
@@ -67,9 +69,11 @@
               :max="maxObjectArea"
               :step="1"
               :offers="getObjectAreaOffers"
+              :errors="errors.concat(apiErrors.objectArea)"
               placeholder="Квадратные метры"
               caption="кв.м"
               :readonly="!allowToChange"
+              @input="onInput"
             />
           </ValidationProvider>
           <div class="col-span-2 flex items-center">
@@ -89,16 +93,12 @@
             </ValidationProvider>
           </div>
         </div>
-
-        <div v-if="dynamicReady">
-          Динамические свойства
-        </div>
       </ValidationObserver>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 export default {
   components: {
@@ -118,32 +118,57 @@ export default {
   data () {
     return {
       timeout: null,
-      dynamicReady: false,
-      location: null,
+      defaultReady: false,
       objectArea: 0,
-      showLocation: 1,
+      showLocation: true,
       apiErrors: {},
-      dynamicOptions: [],
+      defaultOptions: [],
       minObjectArea: 1,
       maxObjectArea: 999999999,
-      salaryProject: false
+      salaryProject: false,
+      previousLocation: null
     }
   },
   fetch () {
-    // получаем параметры для Основных свойств
-    this.dynamicOptions.push(this.$store.getters['calculator/getDynamicOptions'])
-    // формируем массив опций с параметрами и значениями
-    this.dynamicOptions[0].items = this.$store.getters['calculator/getRealEstateRegions']
+    // получаем параметры для свойств по умолчанию
+    this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
+    // формируем массив значений свойств по умолчанию, объединенных с параметрами
+    this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
   },
   computed: {
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDynamicOptions', 'getObjectAreaOffers']),
-    sortedDynamicOptions () {
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getObjectAreaOffers']),
+    sortedDefaultOptions () {
       // сортируем массив опций по полю sort
-      return this.dynamicOptions.slice().sort((a, b) => a.sort - b.sort)
+      return this.defaultOptions.slice().sort((a, b) => a.sort - b.sort)
+    },
+    location: {
+      get () {
+        return this.$store.state.calculator.form.location
+          ? this.$store.state.calculator.form.location.val
+          : {}
+      },
+      set (value) {
+        if (!this.allowToChange) {
+          return
+        }
+        const currentLocation = this.getRealEstateRegions.find(
+          item => item.val === (value || this.previousLocation)
+        )
+        this.$store.commit('calculator/updateLocation', currentLocation)
+        if (!value) {
+          this.showLocation = false
+          this.$nextTick(() => {
+            this.showLocation = true
+          })
+        }
+        this.previousLocation = value || this.previousLocation
+      }
     }
   },
   methods: {
+    ...mapActions('result', ['getResultList']),
     onInput () {
+      // submit формы через 0.5с после ввода
       if (this.timeout) {
         clearTimeout(this.timeout)
       }
@@ -151,7 +176,24 @@ export default {
       this.timeout = setTimeout(() => {
         this.submit()
       }, 500)
+    },
+    submit () {
+      if (this.$refs.form != null) {
+        this.$refs.form.validate().then((success) => {
+          if (success) {
+            this.getResultList()
+              .then(() => {})
+              .catch((e) => {
+                this.apiErrors = e
+              })
+          }
+        })
+      }
+    },
+    handleLocationChange (value) {
+      this.submit()
     }
+
   }
 }
 </script>
