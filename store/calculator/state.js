@@ -1,9 +1,14 @@
 export default () => ({
   resultList: [],
   form: {
+    dynamic: {},
     location: {
-
-    }
+      name: 'Казань',
+      val: 'KAZAN'
+    },
+    objectFloor: false,
+    objectRoofH: 1,
+    objectArea: 1
   },
   objectAreaOffers: [
     {
@@ -25,6 +30,101 @@ export default () => ({
     {
       label: '110 кв.м',
       value: 110
+    }
+  ],
+  objectRoofHOffers: [
+    {
+      label: '250 см',
+      value: 250
+    },
+    {
+      label: '300 см',
+      value: 300
+    },
+    {
+      label: '400 см',
+      value: 400
+    },
+    {
+      label: '500 см',
+      value: 500
+    }
+  ],
+  dynamicMerged: [],
+  dynamicOptions: [
+    {
+      alias: 's'
+    },
+    {
+      alias: 'h'
+    }
+  ],
+  dynamicOptionsParams: [
+    {
+      id: 's',
+      name: 'Площадь помещения',
+      rules: 'required',
+      max: 999999999,
+      min: 1,
+      initial: 30,
+      sort: 3,
+      step: 1,
+      units: 'Квадратные метры',
+      caption: 'кв.м',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '30 кв.м',
+          value: 30
+        },
+        {
+          label: '50 кв.м',
+          value: 50
+        },
+        {
+          label: '70 кв.м',
+          value: 70
+        },
+        {
+          label: '90 кв.м',
+          value: 90
+        },
+        {
+          label: '110 кв.м',
+          value: 110
+        }
+      ]
+    },
+    {
+      id: 'h',
+      name: 'Высота потолков',
+      rules: 'required',
+      max: 999999999,
+      min: 1,
+      initial: 200,
+      sort: 2,
+      step: 1,
+      units: 'Сантиметры',
+      caption: 'см',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '250 см',
+          value: 250
+        },
+        {
+          label: '300 см',
+          value: 300
+        },
+        {
+          label: '400 см',
+          value: 400
+        },
+        {
+          label: '500 см',
+          value: 500
+        }
+      ]
     }
   ],
   defaultOptions:

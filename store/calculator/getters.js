@@ -22,6 +22,9 @@ export default {
   },
   getForm: state => state.form,
   getDefaultOptions: state => state.defaultOptions,
-  getObjectAreaOffers: state => state.objectAreaOffers
+  getDynamicOptions: state => state.dynamicOptions,
+  getDynamicMerged: state => state.dynamicMerged,
+  getObjectAreaOffers: state => state.objectAreaOffers,
+  getObjectRoofHOffers: state => state.objectRoofHOffers
 
 }
