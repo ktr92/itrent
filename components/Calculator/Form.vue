@@ -55,7 +55,10 @@
           </div>
         </div>
         <div v-for="(dynamicOption) in sortedDynamicOptions" :key="dynamicOption.alias">
-          <div class="grid grid-cols-2 gap-4 py-4 border-b">
+          <div
+            v-if="dynamicOption.type === 'FeRangeInput'"
+            class="grid grid-cols-2 gap-4 py-4 border-b"
+          >
             <ValidationProvider
               v-slot="{ errors }"
               :rules="dynamicOption.rules"
@@ -78,23 +81,26 @@
               />
             </ValidationProvider>
           </div>
-        </div>
-
-        <div class="col-span-2 flex items-center">
-          <div
-            class="
+          <div v-if="dynamicOption.type === 'FeSwitch'" class="col-span-2 flex items-center gap-4 py-4 border-b">
+            <div
+              class="
               flex
               items-center
               leading-normal
               text-2sm text-black text-opacity-85
               mr-auto
             "
-          >
-            Наличие перепадов пола свыше 30см
+            >
+              {{ dynamicOption.name }}
+            </div>
+            <ValidationProvider>
+              <component
+                :is="dynamicOption.type"
+                v-model="dynamicModel[dynamicOption.alias]"
+                :readonly="!allowToChange"
+              />
+            </ValidationProvider>
           </div>
-          <ValidationProvider>
-            <FeSwitch v-model="objectFloor" :readonly="!allowToChange" />
-          </ValidationProvider>
         </div>
       </ValidationObserver>
     </div>
@@ -116,6 +122,7 @@
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { orderBy } from 'lodash'
 export default {
   components: {
     ValidationObserver,
@@ -139,14 +146,12 @@ export default {
       apiErrors: {},
       defaultOptions: [],
       dynamicOptions: [],
-      minObjectArea: 1,
-      maxObjectArea: 999999999,
-      minObjectRoofH: 1,
-      maxObjectRoofH: 999999999,
       previousLocation: null
     }
   },
   fetch () {
+    this.defaultOptions = []
+    this.dynamicOptions = []
     // получаем параметры для свойств по умолчанию
     this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
     // формируем массив значений свойств по умолчанию, объединенных с параметрами
@@ -156,19 +161,19 @@ export default {
     // инициализация начальных данных формы динамических свойств
     this.$store.commit('calculator/setDynamicForm')
     // получаем параметры для динамических свойств
-    this.dynamicOptions.push(this.$store.getters['calculator/getDynamicMerged'])
+    this.dynamicOptions = [...this.$store.getters['calculator/getDynamicMerged']]
   },
 
   computed: {
     ...mapState('result', ['productsIsReady']),
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getObjectAreaOffers', 'getObjectRoofHOffers']),
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getObjectAreaOffers', 'getObjectRoofHOffers', 'getForm']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
-      return this.defaultOptions.slice().sort((a, b) => a.sort - b.sort)
+      return orderBy(this.defaultOptions, 'sort')
     },
     sortedDynamicOptions () {
       // сортируем массив опций по полю sort
-      return this.dynamicOptions.slice().sort((a, b) => a.sort - b.sort)[0]
+      return orderBy(this.dynamicOptions, 'sort')
     },
     location: {
       get () {
@@ -204,39 +209,11 @@ export default {
         this.$store.commit('calculator/updateObjectFloor', value)
       }
     },
-    objectRoofH: {
-      get () {
-        return this.$store.state.calculator.form.objectRoofH
-      },
-      set (value) {
-        if (!this.allowToChange) {
-          return
-        }
-        this.$store.commit('calculator/updateObjectRoofH', value)
-      }
-    },
-    objectArea: {
-      get () {
-        return this.$store.state.calculator.form.objectArea
-      },
-      set (value) {
-        if (!this.allowToChange) {
-          return
-        }
-        this.$store.commit('calculator/updateObjectArea', value)
-      }
-    },
     dynamicModel () {
-      return this.$store.state.calculator.form.dynamic
+      return this.$store.getters['calculator/getFormDynamic']
     }
   },
   watch: {
-    dynamicModel: {
-      deep: true,
-      handler (val, oldVal) {
-        this.$store.commit('calculator/updateDynamic', { ...val })
-      }
-    },
     location: {
       immediate: true,
       handler (val, oldVal) {
@@ -258,24 +235,23 @@ export default {
   methods: {
     ...mapActions('result', ['getResultList']),
     onInput () {
-      // submit формы через 0.5с после ввода
+      this.submit()
+    },
+    submit () {
       if (this.timeout) {
         clearTimeout(this.timeout)
       }
-
-      this.timeout = setTimeout(() => {
-        this.submit()
-      }, 500)
-    },
-    submit () {
       if (this.$refs.form != null) {
         this.$refs.form.validate().then((success) => {
           if (success) {
-            this.getResultList()
-              .then(() => {})
-              .catch((e) => {
-                this.apiErrors = e
-              })
+            this.$store.commit('calculator/updateDynamic', this.$store.getters['calculator/getFormDynamic'])
+            this.timeout = setTimeout(() => {
+              this.getResultList()
+                .then(() => {})
+                .catch((e) => {
+                  this.apiErrors = e
+                })
+            }, 500)
           }
         })
       }

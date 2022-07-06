@@ -3,7 +3,8 @@ export default {
     const {
       location
     } = rootGetters['calculator/getForm']
-    console.log(location.val)
+    const dynamic = rootGetters['calculator/getFormDynamic']
+    console.log({ ...location }, { ...dynamic })
 
     /*  try {
       await this.$axios.$get('apimethod', { ...payload }).then((response) => {
