@@ -9,33 +9,71 @@ export default () => ({
     objectFloor: false
   },
   dynamicMerged: [],
-  dynamicOptions: [
-    {
-      alias: 'private'
-    },
-    {
-      alias: 's'
-    },
-    {
-      alias: 'h'
-    }
-  ],
+  dynamicOptions: [],
   dynamicOptionsParams: [
     {
-      id: 'private',
+      alias: 'population',
+      name: 'Населенность',
+      type: 'FeSelect',
+      sort: 2,
+      smallSize: true,
+      limit: 3,
+      initial: 'SREDNENASELENNYI'
+    },
+    {
+      alias: 'place',
+      name: 'Расположение',
+      type: 'FeSelect',
+      sort: 3,
+      smallSize: true,
+      limit: 3,
+      initial: '14'
+    },
+    {
+      alias: 'quantity_of_parking',
+      name: 'Количество парковочных мест',
+      max: 999999999,
+      min: 1,
+      initial: 50,
+      sort: 45,
+      step: 1,
+      units: 'Парковочные места',
+      caption: 'шт',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '5 шт',
+          value: 5
+        },
+        {
+          label: '15 шт',
+          value: 15
+        },
+        {
+          label: '25 шт',
+          value: 25
+        },
+        {
+          label: '30 шт',
+          value: 30
+        }
+      ]
+    },
+    {
+      alias: 'private',
       name: 'Закрытая территория',
       type: 'FeSwitch',
       initial: false,
-      sort: 4
+      sort: 15
     },
     {
-      id: 's',
+      alias: 's',
       name: 'Площадь помещения',
       rules: 'required',
       max: 999999999,
       min: 1,
-      initial: 30,
-      sort: 2,
+      initial: 400,
+      sort: 5,
       step: 1,
       units: 'Квадратные метры',
       caption: 'кв.м',
@@ -64,13 +102,13 @@ export default () => ({
       ]
     },
     {
-      id: 'h',
+      alias: 'h',
       name: 'Высота потолков',
       rules: 'required',
       max: 999999999,
       min: 1,
-      initial: 200,
-      sort: 3,
+      initial: 300,
+      sort: 10,
       step: 1,
       units: 'Сантиметры',
       caption: 'см',

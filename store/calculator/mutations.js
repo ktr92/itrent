@@ -22,21 +22,24 @@ export default {
   mergeOptions (state, payload) {
     state.defaultOptions.items = payload
   },
+  updateState (state, [field, value]) {
+    /*  state[field] = value */
+    state.dynamicMerged.filter(item => item.alias === field)[0].items = value
+  },
   mergeDynamicOptions (state) {
     state.dynamicMerged = []
     for (let i = 0; i < state.dynamicOptions.length; i++) {
       state.dynamicMerged.push({
-        ...state.dynamicOptions[i],
-        ...(state.dynamicOptionsParams.find(item => item.id === state.dynamicOptions[i].alias))
+        ...(state.dynamicOptionsParams.find(item => item.alias === state.dynamicOptions[i]))
       })
     }
   },
   setDynamicForm (state) {
-    for (let i = 0; i < state.dynamicOptions.length; i++) {
+    for (let i = 0; i < state.dynamicMerged.length; i++) {
       Vue.set(
         state.formDynamic,
-        state.dynamicOptions[i].alias,
-        state.dynamicOptionsParams.filter(item => item.id === state.dynamicOptions[i].alias)[0].initial)
+        state.dynamicMerged[i].alias,
+        state.dynamicOptionsParams.filter(item => item.alias === state.dynamicMerged[i].alias)[0].initial)
     }
   }
 }

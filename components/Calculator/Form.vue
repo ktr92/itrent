@@ -10,29 +10,11 @@
         Вводите параметры расчета и делитесь предложениям с клиентом.
       </div>
     </div>
-    <div v-if="defaultOptions && defaultOptions.length">
-      <ValidationObserver ref="form">
-        <!-- <div class="grid grid-cols-2 gap-4 py-4 border-b">
-          <ValidationProvider
-            v-slot="{ errors }"
-            rules="required"
-            class="col-span-2"
-            name="Регион недвижимости"
-          >
-            <FeSelect
-              v-if="showLocation"
-              v-model="location"
-              :options="getRealEstateRegions"
-              :errors="errors.concat(apiErrors.location)"
-              placeholder="Регион недвижимости"
-              :default="false"
-              :limit="5"
-              class="calculator__select-region"
-            />
-          </ValidationProvider>
-        </div> -->
+
+    <ValidationObserver ref="form">
+      <template v-if="defaultOptions && defaultOptions.length">
         <div v-for="defaultOption in sortedDefaultOptions" :key="defaultOption.alias">
-          <div class="grid grid-cols-2 gap-4 py-4 border-b">
+          <div class="grid grid-cols-2 gap-4 py-4">
             <ValidationProvider
               v-slot="{ errors }"
               :rules="defaultOption.rules"
@@ -54,69 +36,84 @@
             </ValidationProvider>
           </div>
         </div>
-        <div v-for="(dynamicOption) in sortedDynamicOptions" :key="dynamicOption.alias">
-          <div
-            v-if="dynamicOption.type === 'FeRangeInput'"
-            class="grid grid-cols-2 gap-4 py-4 border-b"
+      </template>
+
+      <div
+        v-if="sortedDynamicOptions && sortedDynamicOptions.length"
+        class="grid grid-cols-2 gap-4 pb-4 border-b"
+      >
+        <div
+          v-for="(dynamicOption) in sortedDynamicOptions"
+          :key="dynamicOption.alias"
+          :class="{ 'col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}"
+        >
+          <template
+            v-if="dynamicOption.type === 'FeSelect'"
           >
             <ValidationProvider
               v-slot="{ errors }"
               :rules="dynamicOption.rules"
               :name="dynamicOption.name"
-              :class="{ 'col-span-1': dynamicOption.smallSize, 'col-span-2': !dynamicOption.smallSize}"
             >
-              <component
-                :is="dynamicOption.type"
+              <FeSelect
+                v-model="dynamicModel[dynamicOption.alias]"
+                :options="dynamicOption.items"
+                :errors="errors.concat(apiErrors[dynamicOption.alias])"
+                :placeholder="dynamicOption.name"
+                :default="dynamicOption.default"
+                @change="handleLocationChange"
+              />
+            </ValidationProvider>
+          </template>
+          <template
+            v-if="dynamicOption.type === 'FeRangeInput'"
+          >
+            <ValidationProvider
+              v-slot="{ errors }"
+              :rules="dynamicOption.rules"
+              :name="dynamicOption.name"
+            >
+              <FeRangeInput
                 v-model="dynamicModel[dynamicOption.alias]"
                 :label="dynamicOption.name"
                 :min="dynamicOption.min"
                 :max="dynamicOption.max"
                 :step="1"
                 :offers="dynamicOption.offers"
-                :errors="errors.concat(apiErrors.objectArea)"
+                :errors="errors.concat(apiErrors[dynamicOption.alias])"
                 :placeholder="dynamicOption.name"
                 :caption="dynamicOption.caption"
                 :readonly="!allowToChange"
                 @input="onInput"
               />
             </ValidationProvider>
-          </div>
-          <div v-if="dynamicOption.type === 'FeSwitch'" class="col-span-2 flex items-center gap-4 py-4 border-b">
-            <div
-              class="
-              flex
-              items-center
-              leading-normal
-              text-2sm text-black text-opacity-85
-              mr-auto
-            "
-            >
-              {{ dynamicOption.name }}
-            </div>
+          </template>
+          <template v-if="dynamicOption.type === 'FeSwitch'">
             <ValidationProvider>
-              <component
-                :is="dynamicOption.type"
-                v-model="dynamicModel[dynamicOption.alias]"
-                :readonly="!allowToChange"
-              />
-            </ValidationProvider>
-          </div>
-        </div>
-      </ValidationObserver>
-    </div>
+              <div
+                class="w-full flex items-center leading-normal text-2sm text-black text-opacity-85 mr-auto justify-between"
+              >
+                {{ dynamicOption.name }}
 
-    <div v-if="defaultReady">
-      Динамические свойства
-    </div>
-    <div v-else>
-      <div
-        v-for="index in 5"
-        :key="index"
-        class="mt-2 last:mb-0 last:pb-0 last:border-b-0"
-      >
-        <CalculatorSkeleton class="animate-pulse" />
+                <FeSwitch
+                  v-model="dynamicModel[dynamicOption.alias]"
+                  :readonly="!allowToChange"
+                />
+              </div>
+            </ValidationProvider>
+          </template>
+        </div>
       </div>
-    </div>
+      <div v-else>
+        <div
+          v-for="index in 5"
+          :key="index"
+          class="mt-2 last:mb-0 last:pb-0 last:border-b-0"
+        >
+          <CalculatorSkeleton class="animate-pulse" />
+        </div>
+      </div>
+    </ValidationObserver>
   </div>
 </template>
 <script>
@@ -141,7 +138,6 @@ export default {
   data () {
     return {
       timeout: null,
-      defaultReady: false,
       showLocation: true,
       apiErrors: {},
       defaultOptions: [],
@@ -149,15 +145,18 @@ export default {
       previousLocation: null
     }
   },
-  fetch () {
+  async fetch () {
     this.defaultOptions = []
     this.dynamicOptions = []
     // получаем параметры для свойств по умолчанию
     this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
     // формируем массив значений свойств по умолчанию, объединенных с параметрами
     this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
+
+    // инициализация свойсв
+    await this.$store.dispatch('calculator/setFormOptions')
     // формируем массив динамических значений свойств, объединенных с параметрами
-    this.$store.commit('calculator/mergeDynamicOptions')
+    // this.$store.commit('calculator/mergeDynamicOptions')
     // инициализация начальных данных формы динамических свойств
     this.$store.commit('calculator/setDynamicForm')
     // получаем параметры для динамических свойств
@@ -166,7 +165,7 @@ export default {
 
   computed: {
     ...mapState('result', ['productsIsReady']),
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getObjectAreaOffers', 'getObjectRoofHOffers', 'getForm']),
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
       return orderBy(this.defaultOptions, 'sort')
@@ -198,17 +197,6 @@ export default {
         this.previousLocation = value || this.previousLocation
       }
     },
-    objectFloor: {
-      get () {
-        return this.$store.state.calculator.form.objectFloor
-      },
-      set (value) {
-        if (!this.allowToChange) {
-          return
-        }
-        this.$store.commit('calculator/updateObjectFloor', value)
-      }
-    },
     dynamicModel () {
       return this.$store.getters['calculator/getFormDynamic']
     }
@@ -224,7 +212,6 @@ export default {
     }
   },
   mounted () {
-    // await this.setFormOptions()
     // this.initEnrollment()
     if (!this.productsIsReady) { this.submit() }
 
