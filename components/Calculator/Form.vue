@@ -31,7 +31,7 @@
                 :default="defaultOption.default"
                 :limit="defaultOption.limit"
                 class="calculator__select-region"
-                @change="handleLocationChange"
+                @change="handleSelectChange"
               />
             </ValidationProvider>
           </div>
@@ -61,7 +61,7 @@
                 :errors="errors.concat(apiErrors[dynamicOption.alias])"
                 :placeholder="dynamicOption.name"
                 :default="dynamicOption.default"
-                @change="handleLocationChange"
+                @change="handleSelectChange"
               />
             </ValidationProvider>
           </template>
@@ -155,12 +155,14 @@ export default {
 
     // инициализация свойсв
     await this.$store.dispatch('calculator/setFormOptions')
+    // инициализация селектов
+    await this.$store.dispatch('calculator/setFormSelect')
     // формируем массив динамических значений свойств, объединенных с параметрами
     // this.$store.commit('calculator/mergeDynamicOptions')
     // инициализация начальных данных формы динамических свойств
     this.$store.commit('calculator/setDynamicForm')
     // получаем параметры для динамических свойств
-    this.dynamicOptions = [...this.$store.getters['calculator/getDynamicMerged']]
+    this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
   },
 
   computed: {
@@ -220,30 +222,31 @@ export default {
     })
   },
   methods: {
-    ...mapActions('result', ['getResultList']),
+    ...mapActions('result', ['getProducts']),
     onInput () {
-      this.submit()
-    },
-    submit () {
       if (this.timeout) {
         clearTimeout(this.timeout)
       }
+
+      this.timeout = setTimeout(() => {
+        this.submit()
+      }, 500)
+    },
+    submit () {
       if (this.$refs.form != null) {
         this.$refs.form.validate().then((success) => {
           if (success) {
             this.$store.commit('calculator/updateDynamic', this.$store.getters['calculator/getFormDynamic'])
-            this.timeout = setTimeout(() => {
-              this.getResultList()
-                .then(() => {})
-                .catch((e) => {
-                  this.apiErrors = e
-                })
-            }, 500)
+            this.getProducts()
+              .then(() => {})
+              .catch((e) => {
+                this.apiErrors = e
+              })
           }
         })
       }
     },
-    handleLocationChange (value) {
+    handleSelectChange (value) {
 
     }
 

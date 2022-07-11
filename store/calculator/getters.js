@@ -24,8 +24,9 @@ export default {
   getFormDynamic: state => ({ ...state.formDynamic }),
   getDefaultOptions: state => state.defaultOptions,
   getDynamicOptions: state => state.dynamicOptions,
-  getDynamicMerged: state => state.dynamicMerged,
+  getDynamicList: state => state.dynamicOptionsParams.map(item => item.alias),
+  getDynamicMerged: state => ([...state.dynamicMerged]),
   getObjectAreaOffers: state => state.objectAreaOffers,
-  getObjectRoofHOffers: state => state.objectRoofHOffers
-
+  getObjectRoofHOffers: state => state.objectRoofHOffers,
+  getSelectList: state => state.dynamicOptionsParams.filter(item => item.type === 'FeSelect')
 }

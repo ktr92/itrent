@@ -17,14 +17,14 @@ export default {
     state.form.objectArea = payload
   },
   updateDynamic (state, payload) {
-    state.formDynamic = { ...payload }
+    state.formDynamic = payload
   },
   mergeOptions (state, payload) {
     state.defaultOptions.items = payload
   },
   updateState (state, [field, value]) {
     /*  state[field] = value */
-    state.dynamicMerged.filter(item => item.alias === field)[0].items = value
+    state.dynamicMerged.filter(item => item.alias === field)[0].items = [...value]
   },
   mergeDynamicOptions (state) {
     state.dynamicMerged = []

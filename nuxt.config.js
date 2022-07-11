@@ -20,6 +20,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios',
     { src: '~/plugins/directive.click-outside.js', ssr: false },
     { src: '~/plugins/vee-validate', ssr: false }
   ],
@@ -43,32 +44,36 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg-sprite',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/typescript-build'
+
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/sentry',
+    'nuxt-lodash'
   ],
-
-  auth: {
-    strategies: {
-      auth0: {
-        domain: 'rent-products-api.ipotech.su',
-        clientId: '1',
-        clientSecret: 'LJJClsj1gVgnfoe5nz2pU2Lg93Uh4V85J5X9Rl95',
-        audience: 'https://rent-products-api.ipotech.su'
-      }
+  sentry: {
+    dsn: '',
+    config: {
     }
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3000',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vee-validate/dist/rules']
   }
+
 }
