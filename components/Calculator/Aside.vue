@@ -13,20 +13,20 @@
       </div>
     </div> -->
     <LazyLayoutAlert v-if="message" :entrymessage="message" />
-    <div v-if="getResultList">
-      <div v-if="getResultList.length">
+    <div v-if="getResultItems">
+      <div v-if="getResultItems.length">
         <div
-          v-for="(product, index) in getResultList"
+          v-for="(product, index) in getResultItems"
           :key="`${product.token}_${index}`"
           class="pb-2 mb-2 last:mb-0 last:pb-0 last:border-b-0"
         >
           <ResultCard
             :id="'proposal-item-'.concat(product.token)"
             :logo="product.logo ? product.logo : ''"
-            :title="product.title ? product.title : 'Неизвестный арендатор'"
-            :rate="product.rate"
+            :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
+            :rate="product.rate ? product.rate: []"
             :selected="isSealed(product)"
-            class="calculator-aside__proposal-item"
+            class="calculator-aside__proposal-item cursor-p"
             @click.native="handleSelectProduct($event, product)"
           />
         </div>
@@ -37,7 +37,7 @@
     </div>
     <div v-else>
       <div
-        v-for="index in 5"
+        v-for="index in 3"
         :key="index"
         class="pb-4 mb-4 last:mb-0 last:pb-0 last:border-b-0"
       >
@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     ...mapGetters(['message']),
-    ...mapGetters('result', ['getSelectedProducts', 'getResultList'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems'])
   },
   methods: {
     handleSelectProduct (e, product) {

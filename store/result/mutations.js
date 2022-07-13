@@ -1,6 +1,9 @@
 export default {
-  setResultList ({ state }, payload) {
-    state.resultList = payload
+  setResult (state, payload) {
+    state.result = payload
+  },
+  setReady (state, payload) {
+    state.productsIsReady = payload
   },
   selectProduct (state, payload) {
     const selected = state.selectedProducts

@@ -35,9 +35,14 @@
             program-card__rate
           "
         >
-          <div v-for="price in rate" :key="price" class="pb-2">
-            {{ price }}
-          </div>
+          <template v-if="rate.length">
+            <div v-for="price in rate" :key="price" class="pb-2">
+              {{ price }}
+            </div>
+          </template>
+          <template v-else>
+            не указана
+          </template>
         </div>
       </div>
     </div>

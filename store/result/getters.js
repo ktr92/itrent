@@ -1,4 +1,5 @@
 export default {
-  getResultList: state => state.resultList,
-  getSelectedProducts: state => state.selectedProducts
+  getReady: state => state.productsIsReady,
+  getResultItems: state => state.result.items || [],
+  getSelectedProducts: state => state.selectedProducts || []
 }

@@ -21,9 +21,6 @@
         class="col-span-5 pl-9"
       />
     </div>
-    <CalculatorFooter
-      class="fixed left-0 bottom-0"
-    />
   </div>
 </template>
 

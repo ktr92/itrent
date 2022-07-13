@@ -21,13 +21,31 @@ export default () => ({
       initial: 'SREDNENASELENNYI'
     },
     {
+      alias: 'car_traffic',
+      name: 'Автомобильный трафик',
+      type: 'FeSelect',
+      sort: 50,
+      smallSize: false,
+      limit: null,
+      initial: '0'
+    },
+    {
+      alias: 'pedestrian_traffic',
+      name: 'Пешеходный трафик',
+      type: 'FeSelect',
+      sort: 55,
+      smallSize: false,
+      limit: 3,
+      initial: '0'
+    },
+    {
       alias: 'place',
       name: 'Расположение',
       type: 'FeSelect',
       sort: 3,
       smallSize: true,
-      limit: 3,
-      initial: '14'
+      limit: null,
+      initial: '8'
     },
     {
       alias: 'quantity_of_parking',
@@ -107,7 +125,7 @@ export default () => ({
       rules: 'required',
       max: 999999999,
       min: 1,
-      initial: 300,
+      initial: 500,
       sort: 10,
       step: 1,
       units: 'Сантиметры',
