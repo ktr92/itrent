@@ -12,6 +12,159 @@ export default () => ({
   dynamicOptions: [],
   dynamicOptionsParams: [
     {
+      alias: 'level',
+      name: 'Этаж',
+      type: 'FeSelect',
+      sort: 12,
+      smallSize: true,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'heating_system',
+      name: 'Отопление',
+      type: 'FeSelect',
+      sort: 13,
+      smallSize: true,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'mdu_part',
+      name: 'Часть МКД',
+      type: 'FeSelect',
+      sort: 72,
+      smallSize: false,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'loading_area',
+      name: 'Зона разгрузки',
+      type: 'FeSelect',
+      sort: 58,
+      smallSize: false,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'entrance_near_mdu_entrance',
+      name: 'Вход в помещение расположен рядом со входом в подъезд жилого дома',
+      type: 'FeSelect',
+      sort: 79,
+      smallSize: false,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'floor_drop',
+      name: 'Наличие перепадов пола свыше 30см',
+      type: 'FeSelect',
+      sort: 42,
+      smallSize: false,
+      limit: 3,
+      initial: ''
+    },
+    {
+      alias: 'pwr',
+      name: 'Заведенная электрическая мощность',
+      max: 999999999,
+      min: 1,
+      initial: 20,
+      sort: 76,
+      step: 1,
+      units: 'Киловатты',
+      caption: 'кв',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '5 шт',
+          value: 5
+        },
+        {
+          label: '10 шт',
+          value: 10
+        },
+        {
+          label: '15 шт',
+          value: 15
+        },
+        {
+          label: '20 шт',
+          value: 20
+        }
+      ]
+    },
+    {
+      alias: 'number_of_entrances',
+      name: 'Количество входов (всего)',
+      max: 1000,
+      min: 1,
+      initial: 1,
+      sort: 76,
+      step: 1,
+      units: 'Входы',
+      caption: 'шт',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '1 шт',
+          value: 1
+        },
+        {
+          label: '4 шт',
+          value: 4
+        },
+        {
+          label: '8 шт',
+          value: 8
+        },
+        {
+          label: '12 шт',
+          value: 12
+        }
+      ]
+    },
+    {
+      alias: 'number_of_technical_entrances',
+      name: 'Количество технических входов',
+      max: 1000,
+      min: 0,
+      initial: 1,
+      sort: 77,
+      step: 1,
+      units: 'Входы',
+      caption: 'шт',
+      type: 'FeRangeInput',
+      offers: [
+        {
+          label: '1 шт',
+          value: 1
+        },
+        {
+          label: '4 шт',
+          value: 4
+        },
+        {
+          label: '8 шт',
+          value: 8
+        },
+        {
+          label: '12 шт',
+          value: 12
+        }
+      ]
+    },
+    {
+      alias: 'none_within_100_meters',
+      name: 'Нет в радиусе 100 метров',
+      type: 'FeSelect',
+      sort: 60,
+      smallSize: false,
+      limit: 3,
+      initial: ''
+    },
+    {
       alias: 'population',
       name: 'Населенность',
       type: 'FeSelect',
@@ -27,7 +180,7 @@ export default () => ({
       sort: 50,
       smallSize: false,
       limit: null,
-      initial: '0'
+      initial: ''
     },
     {
       alias: 'pedestrian_traffic',
@@ -36,7 +189,7 @@ export default () => ({
       sort: 55,
       smallSize: false,
       limit: 3,
-      initial: '0'
+      initial: ''
     },
     {
       alias: 'place',
@@ -45,7 +198,7 @@ export default () => ({
       sort: 3,
       smallSize: true,
       limit: null,
-      initial: '8'
+      initial: '11'
     },
     {
       alias: 'quantity_of_parking',
@@ -78,11 +231,13 @@ export default () => ({
       ]
     },
     {
-      alias: 'private',
+      alias: 'restricted_area',
       name: 'Закрытая территория',
-      type: 'FeSwitch',
-      initial: false,
-      sort: 15
+      type: 'FeSelect',
+      sort: 65,
+      smallSize: false,
+      limit: 3,
+      initial: ''
     },
     {
       alias: 's',

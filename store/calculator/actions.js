@@ -1,7 +1,7 @@
 import { intersection } from 'lodash'
 
 export default {
-  async getDynamicOptions ({ commit, dispatch }, payload) { // получаем динамические свойства
+  /*  async getDynamicOptions ({ commit, dispatch }, payload) { // получаем динамические свойства
     try {
       await this.$axios.$get('apimethod', { ...payload }).then((response) => {
         commit('setDynamicOptions', response.data.data)
@@ -9,7 +9,7 @@ export default {
     } catch (e) {
       dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
     }
-  },
+  }, */
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
       const options = await this.$axios.$get('https://rent-products-api.ipotech.su/api/v2/results/products/rent').then((response) => {
@@ -19,7 +19,7 @@ export default {
       })
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], options)
-
+      // сохраняем список динамических свойств
       commit('setDynamicOptions', [...dynamicList])
       commit('mergeDynamicOptions')
     } catch (e) {
@@ -28,12 +28,16 @@ export default {
   },
   async setFormSelect ({ commit, rootGetters }) {
     try {
-      const optionsByAlias = rootGetters['calculator/getSelectList']
+      // получаем список свойств типа Select
+      const optionsByAlias = rootGetters['calculator/getDynamicMerged'].filter(item => item.type === 'FeSelect')
+      // получаем список свойств для запроса
       const initials = rootGetters['calculator/getDynamicMerged']
+      // преобразуем свойства в формат "alias: начальное значение"
       const params = initials.reduce((obj, item) => {
         obj[item.alias] = item.initial
         return obj
       }, {})
+      // формируем объект параметров для запроса значений полей типа Select
       const fieldsQuery = Object.fromEntries(
         Object.entries(params).map(([k, v]) => [`${'fields[]'}${k}`, `${k}`])
       )
@@ -44,7 +48,7 @@ export default {
       }).then((response) => {
         return response
       })
-
+      // Заполняем Select - свойства списком значений
       const getSelectOptions = (alias) => {
         const fields = options.data.fields || []
         const field = fields.filter(i => i.alias === alias)[0]

@@ -151,6 +151,8 @@ export default {
           name: this.nameFromVal(this.options, newValue)
         }
         this.updateOption(option, true)
+      } else {
+        this.$nuxt.$emit('fieldChanged')
       }
     }
   },

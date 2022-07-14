@@ -1,9 +1,6 @@
 <template>
   <div>
     <div class="border-b">
-      <button @click="auth">
-        Auth
-      </button>
       <Calculator />
     </div>
 
@@ -15,10 +12,10 @@
 
 <script>
 export default {
+  mounted () {
+
+  },
   methods: {
-    auth () {
-      this.$auth.loginWith('auth0')
-    }
   }
 }
 </script>

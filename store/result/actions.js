@@ -1,6 +1,8 @@
 export default {
 
-  async getProducts ({ commit, dispatch, rootGetters }) { // получаем список Арендаторов
+  async getProducts ({ commit, dispatch, rootGetters }) {
+    commit('setReady', false)
+    // получаем список Арендаторов
     // const formDefault = rootGetters['calculator/getForm']
     const formDynamic = rootGetters['calculator/getFormDynamic']
     const fieldsQuery = Object.fromEntries(

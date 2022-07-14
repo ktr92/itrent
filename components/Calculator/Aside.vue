@@ -13,7 +13,7 @@
       </div>
     </div> -->
     <LazyLayoutAlert v-if="message" :entrymessage="message" />
-    <div v-if="getResultItems">
+    <div v-if="getReady">
       <div v-if="getResultItems.length">
         <div
           v-for="(product, index) in getResultItems"
@@ -37,7 +37,7 @@
     </div>
     <div v-else>
       <div
-        v-for="index in 3"
+        v-for="index in 5"
         :key="index"
         class="pb-4 mb-4 last:mb-0 last:pb-0 last:border-b-0"
       >
@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     ...mapGetters(['message']),
-    ...mapGetters('result', ['getSelectedProducts', 'getResultItems'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady'])
   },
   methods: {
     handleSelectProduct (e, product) {

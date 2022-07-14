@@ -38,70 +38,72 @@
         </div>
       </template>
 
-      <div
-        v-if="sortedDynamicOptions && sortedDynamicOptions.length"
-        class="grid grid-cols-2 gap-4 pb-4 border-b"
-      >
+      <div v-if="optionsReady">
         <div
-          v-for="(dynamicOption) in sortedDynamicOptions"
-          :key="dynamicOption.alias"
-          :class="{ 'col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}"
+          v-if="sortedDynamicOptions && sortedDynamicOptions.length"
+          class="grid grid-cols-2 gap-4 pb-4 border-b"
         >
-          <template
-            v-if="dynamicOption.type === 'FeSelect'"
+          <div
+            v-for="(dynamicOption) in sortedDynamicOptions"
+            :key="dynamicOption.alias"
+            :class="[{ 'col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}, {}]"
           >
-            <ValidationProvider
-              v-slot="{ errors }"
-              :rules="dynamicOption.rules"
-              :name="dynamicOption.name"
+            <template
+              v-if="dynamicOption.type === 'FeSelect'"
             >
-              <FeSelect
-                v-model="dynamicModel[dynamicOption.alias]"
-                :options="dynamicOption.items"
-                :errors="errors.concat(apiErrors[dynamicOption.alias])"
-                :placeholder="dynamicOption.name"
-                :default="dynamicOption.default"
-                @change="handleSelectChange"
-              />
-            </ValidationProvider>
-          </template>
-          <template
-            v-if="dynamicOption.type === 'FeRangeInput'"
-          >
-            <ValidationProvider
-              v-slot="{ errors }"
-              :rules="dynamicOption.rules"
-              :name="dynamicOption.name"
-            >
-              <FeRangeInput
-                v-model="dynamicModel[dynamicOption.alias]"
-                :label="dynamicOption.name"
-                :min="dynamicOption.min"
-                :max="dynamicOption.max"
-                :step="1"
-                :offers="dynamicOption.offers"
-                :errors="errors.concat(apiErrors[dynamicOption.alias])"
-                :placeholder="dynamicOption.name"
-                :caption="dynamicOption.caption"
-                :readonly="!allowToChange"
-                @input="onInput"
-              />
-            </ValidationProvider>
-          </template>
-          <template v-if="dynamicOption.type === 'FeSwitch'">
-            <ValidationProvider>
-              <div
-                class="w-full flex items-center leading-normal text-2sm text-black text-opacity-85 mr-auto justify-between"
+              <ValidationProvider
+                v-slot="{ errors }"
+                :rules="dynamicOption.rules"
+                :name="dynamicOption.name"
               >
-                {{ dynamicOption.name }}
-
-                <FeSwitch
+                <FeSelect
                   v-model="dynamicModel[dynamicOption.alias]"
-                  :readonly="!allowToChange"
+                  :options="dynamicOption.items"
+                  :errors="errors.concat(apiErrors[dynamicOption.alias])"
+                  :placeholder="dynamicOption.name"
+                  :default="dynamicOption.default"
+                  @change="handleSelectChange"
                 />
-              </div>
-            </ValidationProvider>
-          </template>
+              </ValidationProvider>
+            </template>
+            <template
+              v-if="dynamicOption.type === 'FeRangeInput'"
+            >
+              <ValidationProvider
+                v-slot="{ errors }"
+                :rules="dynamicOption.rules"
+                :name="dynamicOption.name"
+              >
+                <FeRangeInput
+                  v-model="dynamicModel[dynamicOption.alias]"
+                  :label="dynamicOption.name"
+                  :min="dynamicOption.min"
+                  :max="dynamicOption.max"
+                  :step="1"
+                  :offers="dynamicOption.offers"
+                  :errors="errors.concat(apiErrors[dynamicOption.alias])"
+                  :placeholder="dynamicOption.name"
+                  :caption="dynamicOption.caption"
+                  :readonly="!allowToChange"
+                  @input="onInput"
+                />
+              </ValidationProvider>
+            </template>
+            <template v-if="dynamicOption.type === 'FeSwitch'">
+              <ValidationProvider>
+                <div
+                  class="w-full flex items-center leading-normal text-2sm text-black text-opacity-85 mr-auto justify-between"
+                >
+                  {{ dynamicOption.name }}
+
+                  <FeSwitch
+                    v-model="dynamicModel[dynamicOption.alias]"
+                    :readonly="!allowToChange"
+                  />
+                </div>
+              </ValidationProvider>
+            </template>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -142,29 +144,10 @@ export default {
       apiErrors: {},
       defaultOptions: [],
       dynamicOptions: [],
-      previousLocation: null
+      previousLocation: null,
+      optionsReady: false
     }
   },
-  async fetch () {
-    this.defaultOptions = []
-    this.dynamicOptions = []
-    // получаем параметры для свойств по умолчанию
-    this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
-    // формируем массив значений свойств по умолчанию, объединенных с параметрами
-    this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
-
-    // инициализация свойсв
-    await this.$store.dispatch('calculator/setFormOptions')
-    // инициализация селектов
-    await this.$store.dispatch('calculator/setFormSelect')
-    // формируем массив динамических значений свойств, объединенных с параметрами
-    // this.$store.commit('calculator/mergeDynamicOptions')
-    // инициализация начальных данных формы динамических свойств
-    this.$store.commit('calculator/setDynamicForm')
-    // получаем параметры для динамических свойств
-    this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
-  },
-
   computed: {
     ...mapState('result', ['productsIsReady']),
     ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm']),
@@ -213,8 +196,8 @@ export default {
       }
     }
   },
-  mounted () {
-    // this.initEnrollment()
+  async mounted () {
+    await this.init()
     if (!this.productsIsReady) { this.submit() }
 
     this.$nuxt.$on('fieldChanged', () => {
@@ -231,6 +214,26 @@ export default {
       this.timeout = setTimeout(() => {
         this.submit()
       }, 500)
+    },
+    async init () {
+      this.defaultOptions = []
+      this.dynamicOptions = []
+      // получаем параметры для свойств по умолчанию
+      this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
+      // формируем массив значений свойств по умолчанию, объединенных с параметрами
+      this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
+
+      // инициализация свойсв
+      await this.$store.dispatch('calculator/setFormOptions')
+      // инициализация селектов
+      await this.$store.dispatch('calculator/setFormSelect')
+      // формируем массив динамических значений свойств, объединенных с параметрами
+      // this.$store.commit('calculator/mergeDynamicOptions')
+      // инициализация начальных данных формы динамических свойств
+      this.$store.commit('calculator/setDynamicForm')
+      // получаем параметры для динамических свойств
+      this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
+      this.dynamicOptions.length > 0 ? this.optionsReady = true : this.optionsReady = false
     },
     submit () {
       if (this.$refs.form != null) {

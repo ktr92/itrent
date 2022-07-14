@@ -1,9 +1,13 @@
 import Vue from 'vue'
 
 export default {
+  setOptionsReady (state, payload) {
+    state.optionsIsReady = payload
+  },
   setDynamicOptions (state, payload) {
     state.dynamicOptions = payload
   },
+
   updateLocation (state, payload) {
     state.form.location = payload
   },
