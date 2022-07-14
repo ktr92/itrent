@@ -12,8 +12,14 @@
         Введите информацию по помещениям, и мы покажем вам доступные предложения.
       </div>
     </div> -->
-    <LazyLayoutAlert v-if="message" :entrymessage="message" />
-    <div v-if="getReady">
+    <LazyFeAlert
+      v-if="message"
+      :type="message.type"
+      :title="message.title"
+      :description="message.description"
+    />
+    <!-- <LazyLayoutAlert v-if="message" :entrymessage="message" /> -->
+    <div v-if="getReady" class="mt-2">
       <div v-if="getResultItems.length">
         <div
           v-for="(product, index) in getResultItems"
@@ -62,8 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['message']),
-    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message'])
   },
   methods: {
     handleSelectProduct (e, product) {

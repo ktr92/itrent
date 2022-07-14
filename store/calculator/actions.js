@@ -1,6 +1,12 @@
 import { intersection } from 'lodash'
 
 export default {
+  setMessage ({ commit }, message) {
+    commit('setMessage', message)
+    /*  setTimeout(() => {
+        commit('clearMessage')
+      }, 5000) */
+  },
   /*  async getDynamicOptions ({ commit, dispatch }, payload) { // получаем динамические свойства
     try {
       await this.$axios.$get('apimethod', { ...payload }).then((response) => {
@@ -23,10 +29,10 @@ export default {
       commit('setDynamicOptions', [...dynamicList])
       commit('mergeDynamicOptions')
     } catch (e) {
-      dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
+      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
     }
   },
-  async setFormSelect ({ commit, rootGetters }) {
+  async setFormSelect ({ commit, dispatch, rootGetters }) {
     try {
       // получаем список свойств типа Select
       const optionsByAlias = rootGetters['calculator/getDynamicMerged'].filter(item => item.type === 'FeSelect')
@@ -68,8 +74,8 @@ export default {
           getSelectOptions(option.alias)
         ])
       })
-    } catch (error) {
-      this.$sentry.captureException(error)
+    } catch (e) {
+      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
     }
   }
 }

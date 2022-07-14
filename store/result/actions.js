@@ -1,5 +1,12 @@
 export default {
 
+  setMessage ({ commit }, message) {
+    commit('setMessage', message)
+    /*  setTimeout(() => {
+        commit('clearMessage')
+      }, 5000) */
+  },
+
   async getProducts ({ commit, dispatch, rootGetters }) {
     commit('setReady', false)
     // получаем список Арендаторов
@@ -22,7 +29,7 @@ export default {
         }
       })
     } catch (e) {
-      dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
+      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
     }
   }
 }

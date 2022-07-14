@@ -1,6 +1,12 @@
 import Vue from 'vue'
 
 export default {
+  setMessage (state, message) {
+    state.message = message
+  },
+  clearMessage (state) {
+    state.message = null
+  },
   setOptionsReady (state, payload) {
     state.optionsIsReady = payload
   },

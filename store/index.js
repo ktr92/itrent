@@ -4,12 +4,11 @@ export const state = () => ({
 })
 
 export const actions = {
-  // добавление сообщения об ошибке, и удаление через 5 сек
   setMessage ({ commit }, message) {
-    commit('setMessage', message)
+    /*  commit('setMessage', message)
     setTimeout(() => {
       commit('clearMessage')
-    }, 5000)
+    }, 5000) */
   }
 }
 

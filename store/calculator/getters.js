@@ -27,5 +27,6 @@ export default {
   getDynamicList: state => state.dynamicOptionsParams.map(item => item.alias),
   getDynamicMerged: state => ([...state.dynamicMerged]),
   getObjectAreaOffers: state => state.objectAreaOffers,
-  getObjectRoofHOffers: state => state.objectRoofHOffers
+  getObjectRoofHOffers: state => state.objectRoofHOffers,
+  message: state => state.message
 }

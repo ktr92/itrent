@@ -11,6 +11,14 @@
       </div>
     </div>
 
+    <LazyFeAlert
+      v-if="message"
+      class="mt-4"
+      :type="message.type"
+      :title="message.title"
+      :description="message.description"
+    />
+
     <ValidationObserver ref="form">
       <template v-if="defaultOptions && defaultOptions.length">
         <div v-for="defaultOption in sortedDefaultOptions" :key="defaultOption.alias">
@@ -150,7 +158,7 @@ export default {
   },
   computed: {
     ...mapState('result', ['productsIsReady']),
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm']),
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'message']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
       return orderBy(this.defaultOptions, 'sort')

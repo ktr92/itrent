@@ -1,4 +1,5 @@
 export default () => ({
+  message: null,
   resultList: [],
   formDynamic: {},
   form: {
