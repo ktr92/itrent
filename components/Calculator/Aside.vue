@@ -14,6 +14,7 @@
     </div> -->
     <LazyFeAlert
       v-if="message"
+      class="mt-2"
       :type="message.type"
       :title="message.title"
       :description="message.description"

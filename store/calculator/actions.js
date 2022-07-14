@@ -19,9 +19,15 @@ export default {
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
       const options = await this.$axios.$get('https://rent-products-api.ipotech.su/api/v2/results/products/rent').then((response) => {
-        // получаем массив из тех свойств, которые есть в продуктах
-        const aliases = [...new Set(response.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
-        return aliases
+        if (response.data) {
+          // получаем массив из тех свойств, которые есть в продуктах
+          const aliases = [...new Set(response.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
+          return aliases
+        } else {
+          dispatch('setMessage', { title: 'Ошибка:', description: 'Не удалось получить данные...', type: 'error' })
+        }
+      }).catch((err) => {
+        dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
       })
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], options)
@@ -52,7 +58,13 @@ export default {
           ...fieldsQuery
         }
       }).then((response) => {
-        return response
+        if (response.data) {
+          return response
+        } else {
+          dispatch('setMessage', { title: 'Ошибка:', description: 'Не удалось получить данные...', type: 'error' })
+        }
+      }).catch((err) => {
+        dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
       })
       // Заполняем Select - свойства списком значений
       const getSelectOptions = (alias) => {

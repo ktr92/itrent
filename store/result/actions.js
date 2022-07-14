@@ -26,7 +26,11 @@ export default {
           console.log({ ...response.data }.items)
           commit('setReady', true)
           commit('setResult', { ...response.data })
+        } else {
+          dispatch('setMessage', { title: 'Ошибка:', description: 'Не удалось получить данные...', type: 'error' })
         }
+      }).catch((err) => {
+        dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
       })
     } catch (e) {
       dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
