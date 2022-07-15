@@ -2,9 +2,9 @@
   <div>
     <div class="border-b pb-4">
       <h2
-        class="font-semibold leading-8 text-2xl text-black text-opacity-85 mb-1"
+        class="font-semibold leading-6 md:leading-8 text-xl md:text-2xl text-black text-opacity-85 mb-2 md:mb-1"
       >
-        Поиск помещения по введенным данным от арендодателей
+        Поиск арендаторов для сдачи недвижимости в аренду
       </h2>
       <div class="leading-normal text-2sm text-black text-opacity-45">
         Вводите параметры расчета и делитесь предложениям с клиентом.
@@ -27,7 +27,7 @@
               v-slot="{ errors }"
               :rules="defaultOption.rules"
               :name="defaultOption.name"
-              :class="{ 'col-span-1': defaultOption.smallSize, 'col-span-2': !defaultOption.smallSize}"
+              :class="{ 'col-span-2 md:col-span-1': defaultOption.smallSize, 'col-span-2': !defaultOption.smallSize}"
             >
               <component
                 :is="defaultOption.type"
@@ -54,7 +54,7 @@
           <div
             v-for="(dynamicOption) in sortedDynamicOptions"
             :key="dynamicOption.alias"
-            :class="[{ 'col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}, {}]"
+            :class="[{ 'col-span-2 md:col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}, {}]"
           >
             <template
               v-if="dynamicOption.type === 'FeSelect'"

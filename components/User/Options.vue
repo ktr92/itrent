@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="hide" class="relative">
+  <div v-click-outside="hide" class="absolute right-4 top-4 md:relative md:right-0 md:top-0">
     <button
       class="
         w-8

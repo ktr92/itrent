@@ -1,54 +1,58 @@
 <template>
   <div id="proposal-list">
-    <!--  <div class="border-b pb-4 mb-4">
-      <div class="flex items-center mb-1">
-        <h2
-          class="font-semibold leading-8 text-2xl text-black text-opacity-85"
-        >
-          Предложения
-        </h2>
-      </div>
-      <div class="leading-normal text-2sm text-black text-opacity-45 mb-4">
-        Введите информацию по помещениям, и мы покажем вам доступные предложения.
-      </div>
-    </div> -->
-    <LazyFeAlert
-      v-if="message"
-      class="mt-2"
-      :type="message.type"
-      :title="message.title"
-      :description="message.description"
-    />
-    <!-- <LazyLayoutAlert v-if="message" :entrymessage="message" /> -->
-    <div v-if="getReady" class="mt-2">
-      <div v-if="getResultItems.length">
-        <div
-          v-for="(product, index) in getResultItems"
-          :key="`${product.token}_${index}`"
-          class="pb-2 mb-2 last:mb-0 last:pb-0 last:border-b-0"
-        >
-          <ResultCard
-            :id="'proposal-item-'.concat(product.token)"
-            :logo="product.logo ? product.logo : ''"
-            :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
-            :rate="product.rate ? product.rate: []"
-            :selected="isSealed(product)"
-            class="calculator-aside__proposal-item cursor-p"
-            @click.native="handleSelectProduct($event, product)"
-          />
+    <div class="absolute top-0 w-full min-h-screen bg-white z-50 md:relative md:min-h-auto md: w-auto md:block" :class="[show ? 'block' : 'hidden']">
+      <div class="border-b p-4 mb-6 px-3.5 md:hidden">
+        <div class="flex items-center justify-between mb-1">
+          <h2
+            class="font-semibold leading-8 text-xl md:text-2xl text-black text-opacity-85"
+          >
+            Предложения
+          </h2>
+          <div class="mobile-aside md:hidden">
+            <svg-icon name="close-outline" class="w-6 h-6 fill-current opacity-40" @click="asideToggle" />
+          </div>
         </div>
       </div>
-      <div v-else>
-        По вашим параметрам ничего не найдено.
-      </div>
-    </div>
-    <div v-else>
-      <div
-        v-for="index in 5"
-        :key="index"
-        class="pb-4 mb-4 last:mb-0 last:pb-0 last:border-b-0"
-      >
-        <ResultCardSkeleton class="animate-pulse" />
+      <div class="px-3.5 md:px-0">
+        <LazyFeAlert
+          v-if="message"
+          class="mt-2"
+          :type="message.type"
+          :title="message.title"
+          :description="message.description"
+        />
+        <!-- <LazyLayoutAlert v-if="message" :entrymessage="message" /> -->
+        <div v-if="getReady" class="mt-2">
+          <div v-if="getResultItems.length">
+            <div
+              v-for="(product, index) in getResultItems"
+              :key="`${product.token}_${index}`"
+              class="pb-2 mb-2 last:mb-0 last:pb-0 last:border-b-0"
+            >
+              <ResultCard
+                :id="'proposal-item-'.concat(product.token)"
+                :logo="product.logo ? product.logo : ''"
+                :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
+                :rate="product.rate ? product.rate: []"
+                :selected="isSealed(product)"
+                class="calculator-aside__proposal-item cursor-p"
+                @click.native="handleSelectProduct($event, product)"
+              />
+            </div>
+          </div>
+          <div v-else>
+            По вашим параметрам ничего не найдено.
+          </div>
+        </div>
+        <div v-else>
+          <div
+            v-for="index in 5"
+            :key="index"
+            class="pb-4 mb-4 last:mb-0 last:pb-0 last:border-b-0"
+          >
+            <ResultCardSkeleton class="animate-pulse" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,15 +65,25 @@ export default {
     allowToChange: {
       type: Boolean,
       default: () => true
+    },
+    showAside: {
+      type: Boolean,
+      default: () => false
     }
   },
   data () {
     return {
-      cardsResult: []
+      cardsResult: [],
+      show: this.showAside
     }
   },
   computed: {
     ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message'])
+  },
+  watch: {
+    showAside (val) {
+      this.show = val
+    }
   },
   methods: {
     handleSelectProduct (e, product) {
@@ -81,6 +95,9 @@ export default {
     },
     isSealed (o) {
       return this.getSelectedProducts.includes(o)
+    },
+    asideToggle () {
+      this.$emit('asideToggle')
     }
   }
 }

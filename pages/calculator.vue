@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="border-b">
+    <div class="md:border-b">
       <Calculator />
     </div>
 
