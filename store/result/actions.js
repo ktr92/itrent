@@ -17,7 +17,7 @@ export default {
     )
 
     try {
-      await this.$axios.$get('https://rent-products-api.ipotech.su/api/v2/results/products/rent', {
+      await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery
         }

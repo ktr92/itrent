@@ -63,6 +63,10 @@ export default {
     }
   },
 
+  env: {
+    API_URL: process.env.API_URL || 'https://rent-products-api.ipotech.su'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.NODE_ENV ? process.env.BASEURL : 'http://localhost:3000',

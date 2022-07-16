@@ -18,7 +18,7 @@ export default {
   }, */
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
-      const options = await this.$axios.$get('https://rent-products-api.ipotech.su/api/v2/results/products/rent').then((response) => {
+      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`).then((response) => {
         if (response.data) {
           // получаем массив из тех свойств, которые есть в продуктах
           const aliases = [...new Set(response.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
@@ -53,7 +53,7 @@ export default {
       const fieldsQuery = Object.fromEntries(
         Object.entries(params).map(([k, v]) => [`${'fields[]'}${k}`, `${k}`])
       )
-      const options = await this.$axios.$get('https://rent-products-api.ipotech.su/api/v2/results/products/rent', {
+      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery
         }
