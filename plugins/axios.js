@@ -1,7 +1,9 @@
-export default function ({ $axios, app, store }) {
+export default function ({ $axios }) {
   $axios.onRequest((config) => {
-    if (store.state.authToken) {
-      config.headers.common.Authorization = store.state.authToken
+    if (config.url.includes(process.env.API_URL)) {
+      if (process.env.AUTH_TOKEN) {
+        config.headers.common.Authorization = process.env.AUTH_TOKEN
+      }
     }
   })
 }

@@ -7,6 +7,9 @@ export default {
   clearMessage (state) {
     state.message = null
   },
+  setOptionsJSON (state, payload) {
+    state.dynamicOptionsParams = payload
+  },
   setOptionsReady (state, payload) {
     state.optionsIsReady = payload
   },

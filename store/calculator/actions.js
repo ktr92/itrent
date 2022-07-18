@@ -16,6 +16,20 @@ export default {
       dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
     }
   }, */
+  async getOptionsJSON ({ commit, dispatch }) {
+    try {
+      const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      }).then((response) => {
+        return response
+      })
+      commit('setOptionsJSON', [...options.dynamicOptionsParams])
+    } catch (err) {
+      dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
+    }
+  },
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
       const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`).then((response) => {

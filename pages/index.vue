@@ -1,19 +1,13 @@
 <template>
-  <div>
-    <div class="md:border-b">
-      <Calculator />
-    </div>
-
-    <div class="pt-2 mb-16" />
-
-    <div class="flex justify-center" />
-  </div>
+  <div />
 </template>
 
 <script>
 export default {
   mounted () {
-
+    this.$router.push({
+      path: this.$config.homePage || '/calculator' || '/'
+    })
   },
   methods: {
   }

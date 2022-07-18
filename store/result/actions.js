@@ -23,7 +23,7 @@ export default {
         }
       }).then((response) => {
         if (response.data) {
-          console.log({ ...response.data }.items)
+          // console.log({ ...response.data }.items)
           commit('setReady', true)
           commit('setResult', { ...response.data })
         } else {

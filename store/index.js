@@ -1,6 +1,5 @@
 export const state = () => ({
-  message: null,
-  authToken: 'Bearer LJJClsj1gVgnfoe5nz2pU2Lg93Uh4V85J5X9Rl95'
+  message: null
 })
 
 export const actions = {

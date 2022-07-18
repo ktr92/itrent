@@ -62,9 +62,13 @@ export default {
     config: {
     }
   },
-
+  publicRuntimeConfig: {
+    homePage: process.env.HOME_PAGE
+  },
   env: {
-    API_URL: process.env.API_URL || 'https://rent-products-api.ipotech.su'
+    API_URL: process.env.API_URL,
+    AUTH_TOKEN: process.env.AUTH_TOKEN,
+    OPTIONS_JSON: process.env.OPTIONS_JSON
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
