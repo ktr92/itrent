@@ -21,6 +21,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios',
+    { src: '~/plugins/cypress', ssr: false },
     { src: '~/plugins/directive.click-outside.js', ssr: false },
     { src: '~/plugins/vee-validate', ssr: false }
   ],

@@ -1,5 +1,9 @@
 import { intersection } from 'lodash'
 
+const headers = {
+  'Content-Type': 'application/json;charset=UTF-8'
+}
+
 export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
@@ -19,9 +23,8 @@ export default {
   async getOptionsJSON ({ commit, dispatch }) {
     try {
       const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
+        mode: 'cors',
+        headers
       }).then((response) => {
         return response
       })
