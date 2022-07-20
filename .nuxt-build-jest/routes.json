@@ -1,0 +1,14 @@
+[
+  {
+    "name": "calculator",
+    "path": "/calculator",
+    "component": "D:\\\\projects\\\\rent.landlord.frontend\\\\pages\\\\calculator.vue",
+    "chunkName": "pages/calculator"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\projects\\\\rent.landlord.frontend\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]
