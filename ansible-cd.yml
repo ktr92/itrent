@@ -1,0 +1,40 @@
+---
+- hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Log into private registry and force re-authorization
+      docker_login:
+        registry: registry.gitlab.com
+        username: gitlab-ci-token
+        password: "{{ registry_password }}"
+        reauthorize: yes
+
+    - name: Pull latest project image
+      docker_image:
+        name: "{{ project_image }}"
+        pull: yes
+        force: yes
+
+    - name: Re-create a project containers
+      docker_container:
+        name: "{{ project_container }}-{{ item }}"
+        image: "{{ project_image }}"
+        keep_volumes: yes
+        recreate: yes
+        restart_policy: unless-stopped
+        state: started
+        ports:
+          - "127.0.0.1:8006:3000"
+        env:
+          API_URL: "{{ api_url }}"
+          OPTIONS_JSON: "{{ options_json }}"
+          AUTH_TOKEN: "{{ auth_token }}"
+          HOME_PAGE: "{{ home_page }}"
+        memory: 2024M
+        memory_swappiness: 1
+        log_driver: json-file
+        log_options:
+            max-size: 10m
+            max-file: 5
+
