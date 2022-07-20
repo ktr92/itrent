@@ -18,7 +18,7 @@
 
     - name: Re-create a project containers
       docker_container:
-        name: "{{ project_container }}-{{ item }}"
+        name: "{{ project_container }}"
         image: "{{ project_image }}"
         keep_volumes: yes
         recreate: yes
