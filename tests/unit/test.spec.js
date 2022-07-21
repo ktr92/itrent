@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import { intersection } from 'lodash'
 import calcMutations from '../../store/calculator/mutations'
 import calcGetters from '../../store/calculator/getters'
-
+import Fields from '../fixtures/fields.json'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
@@ -105,4 +105,28 @@ test('инициализация динамических свойств', () =>
   calcMutations.setDynamicOptions(state, [...dynamicList])
   calcMutations.mergeDynamicOptions(state)
   expect(calcGetters.getDynamicOptions(state)).toHaveLength(3)
+})
+
+test('инициализация селектбоксов', () => {
+  const options = ['level']
+  const fields = Fields
+  const obj = fields.filter(item => item.alias === options[0])
+  const val = obj[0].values[0].title
+  const state = {
+    dynamicMerged: [
+      {
+        alias: 'level',
+        name: 'Этаж',
+        type: 'FeSelect',
+        sort: 12,
+        smallSize: true,
+        limit: 3,
+        initial: '4'
+      }
+    ]
+  }
+  calcMutations.updateState(state, [options[0], obj])
+  expect(calcGetters.getDynamicMerged(state)[0]).toHaveProperty('items')
+  console.log(calcGetters.getDynamicMerged(state)[0].items[0].values)
+  expect(calcGetters.getDynamicMerged(state)[0].items[0].values.filter(i => i.title === val)).toHaveLength(1)
 })

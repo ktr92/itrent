@@ -65,6 +65,7 @@
                 :name="dynamicOption.name"
               >
                 <FeSelect
+                  :id="dynamicOption.alias"
                   v-model="dynamicModel[dynamicOption.alias]"
                   :options="dynamicOption.items"
                   :errors="errors.concat(apiErrors[dynamicOption.alias])"
@@ -83,6 +84,7 @@
                 :name="dynamicOption.name"
               >
                 <FeRangeInput
+                  :id="dynamicOption.alias"
                   v-model="dynamicModel[dynamicOption.alias]"
                   class="fe-rangeiput"
                   :label="dynamicOption.name"

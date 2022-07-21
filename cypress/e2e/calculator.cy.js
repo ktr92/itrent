@@ -1,8 +1,10 @@
+import Response from '../fixtures/response.json'
+
 describe('Calculator test', () => {
   beforeEach(() => {
   })
   /* RENT-1 */
-  it('Should open calculator page', () => {
+  /*  it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -77,5 +79,22 @@ describe('Calculator test', () => {
         .find('.fe-rangeiput')
         .should('have.length', rangeinput.length + 0) // плюс кол-во rengeinput свойств по умолчанию (не динамических)
     })
+  }) */
+
+  /* RENT-2 */
+  it('Should get select type option values', () => {
+    cy.visit('/calculator')
+    const testProp = 'population'
+    if (Response.data.items.find(item => item.properties.find(i => i.alias === testProp))) {
+      cy.get(`#${testProp}`)
+        .find('.fe-select__placeholder')
+        .should('be.visible')
+        .should('contain.text', 'Населенность')
+      cy.get(`#${testProp}`).click()
+      cy.get(`#${testProp}`).find('.fe-select-list__item-text')
+        .should('contain.text', 'средненаселенный')
+    } else {
+      cy.get(testProp).should('be.empty')
+    }
   })
 })

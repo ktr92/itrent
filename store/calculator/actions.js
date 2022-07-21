@@ -103,6 +103,7 @@ export default {
       }
 
       optionsByAlias.forEach((option) => {
+        console.log(getSelectOptions(option.alias))
         commit('updateState', [
           option.alias,
           getSelectOptions(option.alias)
