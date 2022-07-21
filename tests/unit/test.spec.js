@@ -2,6 +2,7 @@
 import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import calcMutations from '../../store/calculator/mutations'
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
