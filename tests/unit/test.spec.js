@@ -1,14 +1,15 @@
 
 import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import { intersection } from 'lodash'
 import calcMutations from '../../store/calculator/mutations'
+import calcGetters from '../../store/calculator/getters'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
 test('инициализация значений свойств по умолчанию', () => {
   const state = {
-    dynamicOptionsParams: [],
     defaultOptions: {
       alias: 'locations', // alias (id)
       name: 'Регион недвижимости', // отображаемое имя
@@ -29,4 +30,79 @@ test('инициализация значений свойств по умолч
   expect(state.defaultOptions).not.toHaveProperty('items')
   calcMutations.mergeOptions(state, state.locationOptions)
   expect(state.defaultOptions).toHaveProperty('items')
+})
+
+test('инициализация динамических свойств', () => {
+  // этот список получаем из продуктов API
+  const options = ['level', 'heating_system', 'mdu_part', 'quantity_of_parking']
+  // этот список задаем в параметрах
+  const state = {
+    dynamicMerged: [],
+    dynamicOptions: [],
+    dynamicOptionsParams: [
+      {
+        alias: 'restricted_area',
+        name: 'Закрытая территория',
+        type: 'FeSelect',
+        sort: 65,
+        smallSize: false,
+        limit: 3,
+        initial: '0'
+      },
+
+      {
+        alias: 'level',
+        name: 'Этаж',
+        type: 'FeSelect',
+        sort: 12,
+        smallSize: true,
+        limit: 3,
+        initial: '4'
+      },
+      {
+        alias: 'heating_system',
+        name: 'Отопление',
+        type: 'FeSelect',
+        sort: 13,
+        smallSize: true,
+        limit: 3,
+        initial: '0'
+      },
+      {
+        alias: 'quantity_of_parking',
+        name: 'Количество парковочных мест',
+        max: 999999999,
+        min: 1,
+        initial: 50,
+        sort: 45,
+        step: 1,
+        units: 'Парковочные места',
+        caption: 'шт',
+        type: 'FeRangeInput',
+        offers: [
+          {
+            label: '5 шт',
+            value: 5
+          },
+          {
+            label: '15 шт',
+            value: 15
+          },
+          {
+            label: '25 шт',
+            value: 25
+          },
+          {
+            label: '30 шт',
+            value: 30
+          }
+        ]
+      }
+
+    ]
+  }
+  const dynamicList = intersection(calcGetters.getDynamicList(state), options)
+  calcMutations.setDynamicOptions(state, [...dynamicList])
+  calcMutations.mergeDynamicOptions(state)
+  expect(calcGetters.getDynamicOptions(state)).toHaveLength(3)
 })

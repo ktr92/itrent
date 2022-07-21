@@ -2,7 +2,7 @@ describe('Calculator test', () => {
   beforeEach(() => {
   })
   /* RENT-1 */
-  it('Should open calculator page', () => {
+  /* it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -51,6 +51,31 @@ describe('Calculator test', () => {
           })
         }
       })
+    })
+  }) */
+  it('Should set valid input type', () => {
+    const select = []
+    const rangeinput = []
+    cy.visit('/calculator')
+    cy.request({
+      method: 'GET',
+      url: 'https://rent3.gitlab.io/frontend/rent-options/options.json'
+    }).then((response) => {
+      response.body.dynamicOptionsParams.forEach((item) => {
+        if (item.type === 'FeSelect') {
+          select.push(item)
+        }
+        if (item.type === 'FeRangeInput') {
+          rangeinput.push(item)
+        }
+      })
+      cy.get('.calculator-form-wrapper.md-sticky')
+        .find('.fe-select')
+        .should('have.length', select.length + 1) // плюс кол-во select свойств по умолчанию (не динамических)
+
+      cy.get('.calculator-form-wrapper.md-sticky')
+        .find('.fe-rangeiput')
+        .should('have.length', rangeinput.length + 0) // плюс кол-во rengeinput свойств по умолчанию (не динамических)
     })
   })
 })

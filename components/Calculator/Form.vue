@@ -84,6 +84,7 @@
               >
                 <FeRangeInput
                   v-model="dynamicModel[dynamicOption.alias]"
+                  class="fe-rangeiput"
                   :label="dynamicOption.name"
                   :min="dynamicOption.min"
                   :max="dynamicOption.max"

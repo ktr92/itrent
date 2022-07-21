@@ -1,3 +1,7 @@
+const headers = {
+  'Content-Type': 'application/json;charset=UTF-8'
+}
+
 export default {
 
   setMessage ({ commit }, message) {
@@ -18,6 +22,8 @@ export default {
 
     try {
       await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
+        mode: 'cors',
+        headers,
         params: {
           ...fieldsQuery
         }
