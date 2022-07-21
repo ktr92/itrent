@@ -2,7 +2,7 @@ describe('Calculator test', () => {
   beforeEach(() => {
   })
   /* RENT-1 */
-  /* it('Should open calculator page', () => {
+  it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -52,7 +52,7 @@ describe('Calculator test', () => {
         }
       })
     })
-  }) */
+  })
   it('Should set valid input type', () => {
     const select = []
     const rangeinput = []
