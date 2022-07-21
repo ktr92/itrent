@@ -55,8 +55,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/sentry',
-    'nuxt-lodash'
+    '@nuxtjs/sentry'
   ],
   sentry: {
     dsn: '',
