@@ -1,0 +1,142 @@
+stages:
+  - lint
+ # - test
+  - build
+  - deploy
+
+variables:
+  SERVICE_NAME: landlord-rent-products
+.docker:
+  image: docker:20.10.11
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+    DOCKER_BUILDKIT: 1
+  services:
+    - docker:20.10.11-dind
+
+.docker-before-script: &docker-before-script
+    # Update apk cache:
+    - apk update
+    # Login into Docker registry:
+    - docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+
+.build_project:
+  extends: .docker
+  stage: build
+  tags:
+    - docker
+  before_script:
+    - *docker-before-script
+    - apk add python3 python3-dev py3-pip git build-base
+    - pip3 install docker-image-size-limit==0.4.1
+    - docker info && git --version
+  script:
+    - docker build
+      --target build
+      --cache-from "$CI_REGISTRY_IMAGE:build-cache"
+      -t "$CI_REGISTRY_IMAGE:build-cache"
+      --build-arg BUILDKIT_INLINE_CACHE=1
+      --build-arg API_URL=${API_URL}
+      "."
+
+    - docker build
+        --cache-from "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+        --cache-from "$CI_REGISTRY_IMAGE:build-cache"
+        -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+        --build-arg BUILDKIT_INLINE_CACHE=1
+        --build-arg API_URL=${API_URL}
+        --build-arg OPTIONS_JSON=${OPTIONS_JSON}
+        --build-arg AUTH_TOKEN=${AUTH_TOKEN}
+        --build-arg HOME_PAGE=${HOME_PAGE}
+        "."
+    - docker push "$CI_REGISTRY_IMAGE:build-cache"
+    - disl "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" 1100M
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+.deploy_project:
+   stage: deploy
+   image: williamyeh/ansible:alpine3
+   before_script:
+     - eval $(ssh-agent -s)
+     - echo "$DEPLOY_SSH_PRIV_KEY" | ssh-add - > /dev/null
+   variables:
+     ANSIBLE_HOST_KEY_CHECKING: "False"
+   tags:
+     - docker
+   script:
+     - ansible-playbook ansible-cd.yml
+        -i "$DEPLOY_HOST", -u "$DEPLOY_SSH_USER"
+        -e registry_password="$CI_JOB_TOKEN"
+        -e project_image=$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+        -e project_container=$SERVICE_NAME
+        -e https=$HTTPS
+        -e api_url=$API_URL
+        -e options_json=$OPTIONS_JSON
+        -e auth_token=$AUTH_TOKEN
+        -e home_page=$HOME_PAGE 
+.node-alpine:
+  image: node:14.19.1-alpine3.15
+  variables:
+    DOCKER_DRIVER: overlay2
+
+eslint:
+  extends: .node-alpine
+  stage: lint
+  before_script:
+    - yarn install
+  script:
+    - yarn lint:js #lint
+  tags:
+    - docker
+
+lint_dockerfiles:
+  stage: lint
+  image: hadolint/hadolint:latest-debian
+  script:
+    - hadolint --version
+    - hadolint Dockerfile*
+  tags:
+    - docker
+
+# test-unit:
+#   extends: .node-alpine
+#   stage: test
+#   before_script:
+#     - echo "//gitlab.com/api/v4/projects/28188521/packages/npm/:_authToken=${CI_JOB_TOKEN}" >.npmrc
+#     - yarn config set -- '//gitlab.com/api/v4/projects/28188521/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
+#     - yarn install
+#   script:
+#     - yarn test:unit
+
+build_demo:
+  extends: .build_project
+  environment:
+    name: demo
+    action: prepare
+  only:
+    - prerelease
+
+deploy_demo:
+  extends: .deploy_project
+  environment:
+    name: demo
+  only:
+    - prerelease
+  when: manual
+
+build_production:
+  extends: .build_project
+  environment:
+    name: production
+    action: prepare
+  only:
+    - main
+
+deploy_production:
+  extends: .deploy_project
+  environment:
+    name: production
+  only:
+    - main
+  when: manual
