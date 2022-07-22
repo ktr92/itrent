@@ -215,7 +215,7 @@ export default {
 
         this.timeout = setTimeout(() => {
           this.runUpdate()
-        }, 5000)
+        }, 2000)
       }
     }
   },

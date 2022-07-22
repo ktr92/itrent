@@ -82,7 +82,7 @@ describe('Calculator test', () => {
   }) */
 
   /* RENT-2 */
-  it('Should get select type option values', () => {
+  /*  it('Should get select type option values', () => {
     cy.visit('/calculator')
     const testProp = 'population'
     if (Response.data.items.find(item => item.properties.find(i => i.alias === testProp))) {
@@ -96,5 +96,39 @@ describe('Calculator test', () => {
     } else {
       cy.get(testProp).should('be.empty')
     }
+  }) */
+  /* RENT-3 */
+  it('Should be within limits', () => {
+    cy.visit('/calculator')
+
+    function formatValue (value) {
+      return `${value}`.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ')
+    }
+
+    cy.request({
+      method: 'GET',
+      url: 'https://rent3.gitlab.io/frontend/rent-options/options.json'
+    }).then((response) => {
+      response.body.dynamicOptionsParams.forEach((item) => {
+        if (item.type === 'FeRangeInput') {
+          const min = item.min - 1
+          const max = item.max + 1
+
+          cy.get(`#${item.alias}`).find('input.input').clear().type(min)
+          cy.wait(2100)
+          cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.min))
+
+          cy.get(`#${item.alias}`).find('input.input').clear().type(max)
+          cy.wait(2100)
+          cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
+
+          cy.get(`#${item.alias}`).find('input.input').clear().type(min).blur()
+          cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.min))
+
+          cy.get(`#${item.alias}`).find('input.input').clear().type(max).blur()
+          cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
+        }
+      })
+    })
   })
 })
