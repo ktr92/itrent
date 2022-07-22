@@ -4,7 +4,7 @@ describe('Calculator test', () => {
   beforeEach(() => {
   })
   /* RENT-1 */
-  /*  it('Should open calculator page', () => {
+   it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -82,7 +82,7 @@ describe('Calculator test', () => {
   }) */
 
   /* RENT-2 */
-  /*  it('Should get select type option values', () => {
+  it('Should get select type option values', () => {
     cy.visit('/calculator')
     const testProp = 'population'
     if (Response.data.items.find(item => item.properties.find(i => i.alias === testProp))) {
@@ -96,7 +96,7 @@ describe('Calculator test', () => {
     } else {
       cy.get(testProp).should('be.empty')
     }
-  }) */
+  })
   /* RENT-3 */
   it('Should be within limits', () => {
     cy.visit('/calculator')
