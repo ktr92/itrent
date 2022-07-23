@@ -3,8 +3,7 @@ import Response from '../fixtures/response.json'
 describe('Calculator test', () => {
   beforeEach(() => {
   })
-  /* RENT-1 */
-   it('Should open calculator page', () => {
+  /*  it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -79,9 +78,8 @@ describe('Calculator test', () => {
         .find('.fe-rangeiput')
         .should('have.length', rangeinput.length + 0) // плюс кол-во rengeinput свойств по умолчанию (не динамических)
     })
-  }) */
+  })
 
-  /* RENT-2 */
   it('Should get select type option values', () => {
     cy.visit('/calculator')
     const testProp = 'population'
@@ -97,7 +95,6 @@ describe('Calculator test', () => {
       cy.get(testProp).should('be.empty')
     }
   })
-  /* RENT-3 */
   it('Should be within limits', () => {
     cy.visit('/calculator')
 
@@ -130,5 +127,46 @@ describe('Calculator test', () => {
         }
       })
     })
+  }) */
+
+  it('Should get products list', () => {
+    cy.visit('/calculator')
+    const testProp = 'quantity_of_parking'
+    cy.get(`#${testProp}`).find('input.input').clear().type('50')
+    cy.get('#proposal-list').should('contain.text', 'Пятёрочка')
   })
+
+  it('Should display no data', () => {
+    cy.visit('/calculator')
+    let overparam = 3000
+    const testProp = 'quantity_of_parking'
+    Response.data.items.forEach((item) => {
+      if (item.properties.find(i => i.alias === testProp)) {
+        const prop = item.properties.find(i => i.alias === testProp).values[0].value
+        const minProp = Number(prop.substr(0, prop.indexOf(':')))
+        if (minProp < overparam) {
+          overparam = minProp
+        }
+      }
+    })
+
+    overparam -= 1
+    cy.get(`#${testProp}`).find('input.input').clear().type(overparam)
+    cy.get('#proposal-list').should('contain.text', 'По вашим параметрам ничего не найдено')
+  })
+
+  it('Should update by input change', () => {
+    cy.visit('/calculator')
+    const testProp = 'quantity_of_parking'
+    cy.get(`#${testProp}`).find('input.input').clear().type('50')
+
+    cy.intercept({
+      method: 'GET',
+      url: '**/api/v2/results/products/*'
+    }, {}).as('updateRequest')
+
+    cy.wait('@updateRequest').its('request.url').should('include', 'filters[properties][quantity_of_parking]=50')
+  })
+
+  // cy.intercept('GET', '/should-err', { forceNetworkError: true }).as('err')
 })
