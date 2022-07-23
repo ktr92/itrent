@@ -3,7 +3,7 @@ import Response from '../fixtures/response.json'
 describe('Calculator test', () => {
   beforeEach(() => {
   })
-  /*  it('Should open calculator page', () => {
+  it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -127,7 +127,7 @@ describe('Calculator test', () => {
         }
       })
     })
-  }) */
+  })
 
   it('Should get products list', () => {
     cy.visit('/calculator')
