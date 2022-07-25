@@ -4,8 +4,8 @@ export const state = () => ({
 
 export const actions = {
   setMessage ({ commit }, message) {
-    /*  commit('setMessage', message)
-    setTimeout(() => {
+    commit('setMessage', message)
+    /* setTimeout(() => {
       commit('clearMessage')
     }, 5000) */
   }

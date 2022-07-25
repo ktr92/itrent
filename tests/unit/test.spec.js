@@ -1,9 +1,11 @@
 
-import { createLocalVue } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import Vuex from 'vuex'
 import { intersection } from 'lodash'
+import Alert from '../../components/Fe/Alert'
 import calcMutations from '../../store/calculator/mutations'
 import calcGetters from '../../store/calculator/getters'
+import { mutations } from '../../store'
 import Fields from '../fixtures/fields.json'
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -129,4 +131,12 @@ test('инициализация селектбоксов', () => {
   expect(calcGetters.getDynamicMerged(state)[0]).toHaveProperty('items')
   console.log(calcGetters.getDynamicMerged(state)[0].items[0].values)
   expect(calcGetters.getDynamicMerged(state)[0].items[0].values.filter(i => i.title === val)).toHaveLength(1)
+})
+test('отображение ошибок', () => {
+  const state = {
+    message: null
+  }
+  const wrapper = mount(Alert)
+  mutations.setMessage(state, { title: 'Ошибка:', description: 'Что-то пошло не так...', type: 'error' })
+  expect(wrapper.find('.leading-7').text()).toEqual('Ошибка:')
 })

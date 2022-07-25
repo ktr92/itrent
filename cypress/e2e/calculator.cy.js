@@ -112,17 +112,41 @@ describe('Calculator test', () => {
           const max = item.max + 1
 
           cy.get(`#${item.alias}`).find('input.input').clear().type(min)
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.wait(2100)
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.min))
 
           cy.get(`#${item.alias}`).find('input.input').clear().type(max)
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.wait(2100)
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
 
           cy.get(`#${item.alias}`).find('input.input').clear().type(min).blur()
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.min))
 
           cy.get(`#${item.alias}`).find('input.input').clear().type(max).blur()
+          cy.intercept({
+            method: 'GET',
+            url: '**/api/v2/results/products/*'
+          }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
         }
       })
@@ -168,5 +192,16 @@ describe('Calculator test', () => {
     cy.wait('@updateRequest').its('request.url').should('include', 'filters[properties][quantity_of_parking]=50')
   })
 
-  // cy.intercept('GET', '/should-err', { forceNetworkError: true }).as('err')
+  it('Should show errors', () => {
+    cy.visit('/calculator')
+    const testProp = 'quantity_of_parking'
+    cy.get(`#${testProp}`).find('input.input').clear().type('50')
+
+    cy.intercept('GET', '**/api/v2/results/products/*', (req) => {
+      req.headers.authorization = 'bearer my-bearer-auth-token'
+    }).as('updateRequest')
+    cy.get('#proposal-list').find('.alert').then(($alert) => {
+      expect($alert).to.contain('Unauthenticated')
+    })
+  })
 })
