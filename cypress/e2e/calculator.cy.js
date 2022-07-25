@@ -204,4 +204,44 @@ describe('Calculator test', () => {
       expect($alert).to.contain('Unauthenticated')
     })
   })
+
+  it('Should show skeleton while products loading', () => {
+    cy.visit('/calculator')
+    cy.intercept({
+      method: 'GET',
+      url: '**/api/v2/results/products/*'
+    }).as('loading')
+    cy.get('#proposal-list').find('.animate-pulse').should('be.visible')
+    cy.wait('@loading').then(() => {
+      cy.wait(1000)
+      cy.get('#proposal-list .animate-pulse').should('not.exist')
+    })
+  })
+  it('Should show skeleton on products update', () => {
+    cy.visit('/calculator')
+    const testProp = 'quantity_of_parking'
+    cy.get(`#${testProp}`).find('input.input').clear().type('50')
+
+    cy.intercept({
+      method: 'GET',
+      url: '**/api/v2/results/products/*'
+    }).as('loading')
+    cy.get('#proposal-list').find('.animate-pulse').should('be.visible')
+    cy.wait('@loading').then(() => {
+      cy.wait(1000)
+      cy.get('#proposal-list .animate-pulse').should('not.exist')
+    })
+  })
+  it('Should show skeleton while properties loading', () => {
+    cy.visit('/calculator')
+    cy.intercept({
+      method: 'GET',
+      url: '**/api/v2/results/products/*'
+    }).as('loading')
+    cy.get('.calculator-form-wrapper').find('.animate-pulse').should('be.visible')
+    cy.wait('@loading').then(() => {
+      cy.wait(1000)
+      cy.get('.calculator-form-wrapper .animate-pulse').should('not.exist')
+    })
+  })
 })

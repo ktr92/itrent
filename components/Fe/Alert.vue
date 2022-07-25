@@ -1,5 +1,5 @@
 <template>
-  <div class="flex alert">
+  <div class="flex">
     <div class="flex h-7 mr-2.5">
       <svg-icon
         name="info-circle"

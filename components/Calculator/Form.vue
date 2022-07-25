@@ -13,7 +13,7 @@
 
     <LazyFeAlert
       v-if="message"
-      class="mt-4"
+      class="mt-4 alert"
       :type="message.type"
       :title="message.title"
       :description="message.description"
