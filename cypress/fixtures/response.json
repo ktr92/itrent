@@ -1,25 +1,1655 @@
 {
-  "data": {
-      "id": 192,
-      "version": "2022-07-18T17:25:08.000000Z",
-      "hash": "abb1dbfa4d09125eeb758e716ac20b5d",
-      "products_count": 8,
-      "attributes": {
-          "banks_ids": null,
-          "products_ids": null,
-          "locations_ids": null,
-          "type_id": 11,
-          "properties": [],
+    "data": {
+        "id": 192,
+        "version": "2022-07-18T17:25:08.000000Z",
+        "hash": "abb1dbfa4d09125eeb758e716ac20b5d",
+        "products_count": 8,
+        "attributes": {
+            "banks_ids": null,
+            "products_ids": null,
+            "locations_ids": null,
+            "type_id": 11,
+            "properties": [],
+            "rate": null,
+            "offer": null
+        },
+        "sort": {
+            "by": "created_at",
+            "desc": 1
+        },
+        "items": [{
+          "id": 166,
+          "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+          "title": "Помещение под супермаркет (тестовый)",
+          "description": null,
+          "type": {
+              "id": 11,
+              "title": "Аренда",
+              "slug": "rent"
+          },
+          "logo": null,
+          "bank": {
+              "id": 4,
+              "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+              "title": "Пятёрочка",
+              "is_enabled": 1,
+              "logo": null,
+              "license": "1",
+              "rating": 1,
+              "count_reviews": 0
+          },
           "rate": null,
-          "offer": null
+          "value": null,
+          "offers": [],
+          "properties": [
+              {
+                  "title": "Населенность",
+                  "alias": "population",
+                  "values": [
+                      {
+                          "title": "густонаселенный",
+                          "value": "GUSTONASELENNYI"
+                      },
+                      {
+                          "title": "средненаселенный",
+                          "value": "SREDNENASELENNYI"
+                      },
+                      {
+                          "title": "малонаселенный",
+                          "value": "MALONASELENNYI"
+                      }
+                  ]
+              },
+              {
+                  "title": "Расположение",
+                  "alias": "place",
+                  "values": [
+                      {
+                          "title": "въезд в населённый пункт - первая линия",
+                          "value": "0"
+                      },
+                      {
+                          "title": "въезд в населённый пункт - не первая линия",
+                          "value": "1"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - первая линия",
+                          "value": "2"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - не первая линия",
+                          "value": "3"
+                      },
+                      {
+                          "title": "населенный пункт - центральная магистраль",
+                          "value": "4"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - первая линия",
+                          "value": "5"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - не первая линия",
+                          "value": "6"
+                      },
+                      {
+                          "title": "жилой микрорайон - на выезде",
+                          "value": "7"
+                      },
+                      {
+                          "title": "жилой микрорайон - внутри",
+                          "value": "8"
+                      },
+                      {
+                          "title": "деловой центр - первая линия",
+                          "value": "9"
+                      },
+                      {
+                          "title": "деловой центр - не первая линия",
+                          "value": "10"
+                      },
+                      {
+                          "title": "промышленная зона - первая линия",
+                          "value": "11"
+                      },
+                      {
+                          "title": "промышленная зона - не первая линия",
+                          "value": "12"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                          "value": "13"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                          "value": "14"
+                      }
+                  ]
+              },
+              {
+                  "title": "Пешеходный трафик",
+                  "alias": "pedestrian_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Автомобильный трафик",
+                  "alias": "car_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Нет в радиусе 100 метров",
+                  "alias": "none_within_100_meters",
+                  "values": [
+                      {
+                          "title": "учреждение образования",
+                          "value": "0"
+                      },
+                      {
+                          "title": "дошкольное учреждение",
+                          "value": "1"
+                      },
+                      {
+                          "title": "учреждение культуры",
+                          "value": "2"
+                      },
+                      {
+                          "title": "медицинское учреждение",
+                          "value": "3"
+                      }
+                  ]
+              },
+              {
+                  "title": "Закрытая территория",
+                  "alias": "restricted_area",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Этаж",
+                  "alias": "level",
+                  "values": [
+                      {
+                          "title": "1 этаж",
+                          "value": "0"
+                      },
+                      {
+                          "title": "5 этаж",
+                          "value": "4"
+                      }
+                  ]
+              },
+              {
+                  "title": "Часть МКД",
+                  "alias": "mdu_part",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Зона разгрузки",
+                  "alias": "loading_area",
+                  "values": [
+                      {
+                          "title": "во дворе",
+                          "value": "0"
+                      },
+                      {
+                          "title": "с улицы",
+                          "value": "1"
+                      },
+                      {
+                          "title": "с торца",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Отопление",
+                  "alias": "heating_system",
+                  "values": [
+                      {
+                          "title": "есть, газовое",
+                          "value": "0"
+                      },
+                      {
+                          "title": "есть, электрическое",
+                          "value": "1"
+                      },
+                      {
+                          "title": "есть, центральное",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                  "alias": "entrance_near_mdu_entrance",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Наличие перепадов пола свыше 30см",
+                  "alias": "floor_drop",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество входов (всего)",
+                  "alias": "number_of_entrances",
+                  "values": [
+                      {
+                          "title": "1:30",
+                          "value": "1:30"
+                      }
+                  ]
+              },
+              {
+                  "title": "Площадь помещения",
+                  "alias": "s",
+                  "values": [
+                      {
+                          "title": "300:30000",
+                          "value": "300:30000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество технических входов",
+                  "alias": "number_of_technical_entrances",
+                  "values": [
+                      {
+                          "title": "0:5",
+                          "value": "0:5"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество парковочных мест",
+                  "alias": "quantity_of_parking",
+                  "values": [
+                      {
+                          "title": "30:3000",
+                          "value": "30:3000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Заведенная электрическая мощность",
+                  "alias": "pwr",
+                  "values": [
+                      {
+                          "title": "5:500",
+                          "value": "5:500"
+                      }
+                  ]
+              },
+              {
+                  "title": "Высота потолков",
+                  "alias": "h",
+                  "values": [
+                      {
+                          "title": "200:2000",
+                          "value": "200:2000"
+                      }
+                  ]
+              }
+          ]
+      },{
+          "id": 165,
+          "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+          "title": "Помещение под супермаркет (тестовый)",
+          "description": null,
+          "type": {
+              "id": 11,
+              "title": "Аренда",
+              "slug": "rent"
+          },
+          "logo": null,
+          "bank": {
+              "id": 4,
+              "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+              "title": "Пятёрочка",
+              "is_enabled": 1,
+              "logo": null,
+              "license": "1",
+              "rating": 1,
+              "count_reviews": 0
+          },
+          "rate": null,
+          "value": null,
+          "offers": [],
+          "properties": [
+              {
+                  "title": "Населенность",
+                  "alias": "population",
+                  "values": [
+                      {
+                          "title": "густонаселенный",
+                          "value": "GUSTONASELENNYI"
+                      },
+                      {
+                          "title": "средненаселенный",
+                          "value": "SREDNENASELENNYI"
+                      },
+                      {
+                          "title": "малонаселенный",
+                          "value": "MALONASELENNYI"
+                      }
+                  ]
+              },
+              {
+                  "title": "Расположение",
+                  "alias": "place",
+                  "values": [
+                      {
+                          "title": "въезд в населённый пункт - первая линия",
+                          "value": "0"
+                      },
+                      {
+                          "title": "въезд в населённый пункт - не первая линия",
+                          "value": "1"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - первая линия",
+                          "value": "2"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - не первая линия",
+                          "value": "3"
+                      },
+                      {
+                          "title": "населенный пункт - центральная магистраль",
+                          "value": "4"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - первая линия",
+                          "value": "5"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - не первая линия",
+                          "value": "6"
+                      },
+                      {
+                          "title": "жилой микрорайон - на выезде",
+                          "value": "7"
+                      },
+                      {
+                          "title": "жилой микрорайон - внутри",
+                          "value": "8"
+                      },
+                      {
+                          "title": "деловой центр - первая линия",
+                          "value": "9"
+                      },
+                      {
+                          "title": "деловой центр - не первая линия",
+                          "value": "10"
+                      },
+                      {
+                          "title": "промышленная зона - первая линия",
+                          "value": "11"
+                      },
+                      {
+                          "title": "промышленная зона - не первая линия",
+                          "value": "12"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                          "value": "13"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                          "value": "14"
+                      }
+                  ]
+              },
+              {
+                  "title": "Пешеходный трафик",
+                  "alias": "pedestrian_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Автомобильный трафик",
+                  "alias": "car_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Нет в радиусе 100 метров",
+                  "alias": "none_within_100_meters",
+                  "values": [
+                      {
+                          "title": "учреждение образования",
+                          "value": "0"
+                      },
+                      {
+                          "title": "дошкольное учреждение",
+                          "value": "1"
+                      },
+                      {
+                          "title": "учреждение культуры",
+                          "value": "2"
+                      },
+                      {
+                          "title": "медицинское учреждение",
+                          "value": "3"
+                      }
+                  ]
+              },
+              {
+                  "title": "Закрытая территория",
+                  "alias": "restricted_area",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Этаж",
+                  "alias": "level",
+                  "values": [
+                      {
+                          "title": "1 этаж",
+                          "value": "0"
+                      },
+                      {
+                          "title": "5 этаж",
+                          "value": "4"
+                      }
+                  ]
+              },
+              {
+                  "title": "Часть МКД",
+                  "alias": "mdu_part",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Зона разгрузки",
+                  "alias": "loading_area",
+                  "values": [
+                      {
+                          "title": "во дворе",
+                          "value": "0"
+                      },
+                      {
+                          "title": "с улицы",
+                          "value": "1"
+                      },
+                      {
+                          "title": "с торца",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Отопление",
+                  "alias": "heating_system",
+                  "values": [
+                      {
+                          "title": "есть, газовое",
+                          "value": "0"
+                      },
+                      {
+                          "title": "есть, электрическое",
+                          "value": "1"
+                      },
+                      {
+                          "title": "есть, центральное",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                  "alias": "entrance_near_mdu_entrance",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Наличие перепадов пола свыше 30см",
+                  "alias": "floor_drop",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество входов (всего)",
+                  "alias": "number_of_entrances",
+                  "values": [
+                      {
+                          "title": "1:30",
+                          "value": "1:30"
+                      }
+                  ]
+              },
+              {
+                  "title": "Площадь помещения",
+                  "alias": "s",
+                  "values": [
+                      {
+                          "title": "300:30000",
+                          "value": "300:30000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество технических входов",
+                  "alias": "number_of_technical_entrances",
+                  "values": [
+                      {
+                          "title": "0:5",
+                          "value": "0:5"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество парковочных мест",
+                  "alias": "quantity_of_parking",
+                  "values": [
+                      {
+                          "title": "30:3000",
+                          "value": "30:3000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Заведенная электрическая мощность",
+                  "alias": "pwr",
+                  "values": [
+                      {
+                          "title": "5:500",
+                          "value": "5:500"
+                      }
+                  ]
+              },
+              {
+                  "title": "Высота потолков",
+                  "alias": "h",
+                  "values": [
+                      {
+                          "title": "200:2000",
+                          "value": "200:2000"
+                      }
+                  ]
+              }
+          ]
+      },{
+          "id": 164,
+          "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+          "title": "Помещение под супермаркет (тестовый)",
+          "description": null,
+          "type": {
+              "id": 11,
+              "title": "Аренда",
+              "slug": "rent"
+          },
+          "logo": null,
+          "bank": {
+              "id": 4,
+              "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+              "title": "Пятёрочка",
+              "is_enabled": 1,
+              "logo": null,
+              "license": "1",
+              "rating": 1,
+              "count_reviews": 0
+          },
+          "rate": null,
+          "value": null,
+          "offers": [],
+          "properties": [
+              {
+                  "title": "Населенность",
+                  "alias": "population",
+                  "values": [
+                      {
+                          "title": "густонаселенный",
+                          "value": "GUSTONASELENNYI"
+                      },
+                      {
+                          "title": "средненаселенный",
+                          "value": "SREDNENASELENNYI"
+                      },
+                      {
+                          "title": "малонаселенный",
+                          "value": "MALONASELENNYI"
+                      }
+                  ]
+              },
+              {
+                  "title": "Расположение",
+                  "alias": "place",
+                  "values": [
+                      {
+                          "title": "въезд в населённый пункт - первая линия",
+                          "value": "0"
+                      },
+                      {
+                          "title": "въезд в населённый пункт - не первая линия",
+                          "value": "1"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - первая линия",
+                          "value": "2"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - не первая линия",
+                          "value": "3"
+                      },
+                      {
+                          "title": "населенный пункт - центральная магистраль",
+                          "value": "4"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - первая линия",
+                          "value": "5"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - не первая линия",
+                          "value": "6"
+                      },
+                      {
+                          "title": "жилой микрорайон - на выезде",
+                          "value": "7"
+                      },
+                      {
+                          "title": "жилой микрорайон - внутри",
+                          "value": "8"
+                      },
+                      {
+                          "title": "деловой центр - первая линия",
+                          "value": "9"
+                      },
+                      {
+                          "title": "деловой центр - не первая линия",
+                          "value": "10"
+                      },
+                      {
+                          "title": "промышленная зона - первая линия",
+                          "value": "11"
+                      },
+                      {
+                          "title": "промышленная зона - не первая линия",
+                          "value": "12"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                          "value": "13"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                          "value": "14"
+                      }
+                  ]
+              },
+              {
+                  "title": "Пешеходный трафик",
+                  "alias": "pedestrian_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Автомобильный трафик",
+                  "alias": "car_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Нет в радиусе 100 метров",
+                  "alias": "none_within_100_meters",
+                  "values": [
+                      {
+                          "title": "учреждение образования",
+                          "value": "0"
+                      },
+                      {
+                          "title": "дошкольное учреждение",
+                          "value": "1"
+                      },
+                      {
+                          "title": "учреждение культуры",
+                          "value": "2"
+                      },
+                      {
+                          "title": "медицинское учреждение",
+                          "value": "3"
+                      }
+                  ]
+              },
+              {
+                  "title": "Закрытая территория",
+                  "alias": "restricted_area",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Этаж",
+                  "alias": "level",
+                  "values": [
+                      {
+                          "title": "1 этаж",
+                          "value": "0"
+                      },
+                      {
+                          "title": "5 этаж",
+                          "value": "4"
+                      }
+                  ]
+              },
+              {
+                  "title": "Часть МКД",
+                  "alias": "mdu_part",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Зона разгрузки",
+                  "alias": "loading_area",
+                  "values": [
+                      {
+                          "title": "во дворе",
+                          "value": "0"
+                      },
+                      {
+                          "title": "с улицы",
+                          "value": "1"
+                      },
+                      {
+                          "title": "с торца",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Отопление",
+                  "alias": "heating_system",
+                  "values": [
+                      {
+                          "title": "есть, газовое",
+                          "value": "0"
+                      },
+                      {
+                          "title": "есть, электрическое",
+                          "value": "1"
+                      },
+                      {
+                          "title": "есть, центральное",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                  "alias": "entrance_near_mdu_entrance",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Наличие перепадов пола свыше 30см",
+                  "alias": "floor_drop",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество входов (всего)",
+                  "alias": "number_of_entrances",
+                  "values": [
+                      {
+                          "title": "1:30",
+                          "value": "1:30"
+                      }
+                  ]
+              },
+              {
+                  "title": "Площадь помещения",
+                  "alias": "s",
+                  "values": [
+                      {
+                          "title": "300:30000",
+                          "value": "300:30000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество технических входов",
+                  "alias": "number_of_technical_entrances",
+                  "values": [
+                      {
+                          "title": "0:5",
+                          "value": "0:5"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество парковочных мест",
+                  "alias": "quantity_of_parking",
+                  "values": [
+                      {
+                          "title": "30:3000",
+                          "value": "30:3000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Заведенная электрическая мощность",
+                  "alias": "pwr",
+                  "values": [
+                      {
+                          "title": "5:500",
+                          "value": "5:500"
+                      }
+                  ]
+              },
+              {
+                  "title": "Высота потолков",
+                  "alias": "h",
+                  "values": [
+                      {
+                          "title": "200:2000",
+                          "value": "200:2000"
+                      }
+                  ]
+              }
+          ]
+      },{
+          "id": 163,
+          "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+          "title": "Помещение под супермаркет (тестовый)",
+          "description": null,
+          "type": {
+              "id": 11,
+              "title": "Аренда",
+              "slug": "rent"
+          },
+          "logo": null,
+          "bank": {
+              "id": 4,
+              "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+              "title": "Пятёрочка",
+              "is_enabled": 1,
+              "logo": null,
+              "license": "1",
+              "rating": 1,
+              "count_reviews": 0
+          },
+          "rate": null,
+          "value": null,
+          "offers": [],
+          "properties": [
+              {
+                  "title": "Населенность",
+                  "alias": "population",
+                  "values": [
+                      {
+                          "title": "густонаселенный",
+                          "value": "GUSTONASELENNYI"
+                      },
+                      {
+                          "title": "средненаселенный",
+                          "value": "SREDNENASELENNYI"
+                      },
+                      {
+                          "title": "малонаселенный",
+                          "value": "MALONASELENNYI"
+                      }
+                  ]
+              },
+              {
+                  "title": "Расположение",
+                  "alias": "place",
+                  "values": [
+                      {
+                          "title": "въезд в населённый пункт - первая линия",
+                          "value": "0"
+                      },
+                      {
+                          "title": "въезд в населённый пункт - не первая линия",
+                          "value": "1"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - первая линия",
+                          "value": "2"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - не первая линия",
+                          "value": "3"
+                      },
+                      {
+                          "title": "населенный пункт - центральная магистраль",
+                          "value": "4"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - первая линия",
+                          "value": "5"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - не первая линия",
+                          "value": "6"
+                      },
+                      {
+                          "title": "жилой микрорайон - на выезде",
+                          "value": "7"
+                      },
+                      {
+                          "title": "жилой микрорайон - внутри",
+                          "value": "8"
+                      },
+                      {
+                          "title": "деловой центр - первая линия",
+                          "value": "9"
+                      },
+                      {
+                          "title": "деловой центр - не первая линия",
+                          "value": "10"
+                      },
+                      {
+                          "title": "промышленная зона - первая линия",
+                          "value": "11"
+                      },
+                      {
+                          "title": "промышленная зона - не первая линия",
+                          "value": "12"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                          "value": "13"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                          "value": "14"
+                      }
+                  ]
+              },
+              {
+                  "title": "Пешеходный трафик",
+                  "alias": "pedestrian_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Автомобильный трафик",
+                  "alias": "car_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Нет в радиусе 100 метров",
+                  "alias": "none_within_100_meters",
+                  "values": [
+                      {
+                          "title": "учреждение образования",
+                          "value": "0"
+                      },
+                      {
+                          "title": "дошкольное учреждение",
+                          "value": "1"
+                      },
+                      {
+                          "title": "учреждение культуры",
+                          "value": "2"
+                      },
+                      {
+                          "title": "медицинское учреждение",
+                          "value": "3"
+                      }
+                  ]
+              },
+              {
+                  "title": "Закрытая территория",
+                  "alias": "restricted_area",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Этаж",
+                  "alias": "level",
+                  "values": [
+                      {
+                          "title": "1 этаж",
+                          "value": "0"
+                      },
+                      {
+                          "title": "5 этаж",
+                          "value": "4"
+                      }
+                  ]
+              },
+              {
+                  "title": "Часть МКД",
+                  "alias": "mdu_part",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Зона разгрузки",
+                  "alias": "loading_area",
+                  "values": [
+                      {
+                          "title": "во дворе",
+                          "value": "0"
+                      },
+                      {
+                          "title": "с улицы",
+                          "value": "1"
+                      },
+                      {
+                          "title": "с торца",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Отопление",
+                  "alias": "heating_system",
+                  "values": [
+                      {
+                          "title": "есть, газовое",
+                          "value": "0"
+                      },
+                      {
+                          "title": "есть, электрическое",
+                          "value": "1"
+                      },
+                      {
+                          "title": "есть, центральное",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                  "alias": "entrance_near_mdu_entrance",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Наличие перепадов пола свыше 30см",
+                  "alias": "floor_drop",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество входов (всего)",
+                  "alias": "number_of_entrances",
+                  "values": [
+                      {
+                          "title": "1:30",
+                          "value": "1:30"
+                      }
+                  ]
+              },
+              {
+                  "title": "Площадь помещения",
+                  "alias": "s",
+                  "values": [
+                      {
+                          "title": "300:30000",
+                          "value": "300:30000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество технических входов",
+                  "alias": "number_of_technical_entrances",
+                  "values": [
+                      {
+                          "title": "0:5",
+                          "value": "0:5"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество парковочных мест",
+                  "alias": "quantity_of_parking",
+                  "values": [
+                      {
+                          "title": "30:3000",
+                          "value": "30:3000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Заведенная электрическая мощность",
+                  "alias": "pwr",
+                  "values": [
+                      {
+                          "title": "5:500",
+                          "value": "5:500"
+                      }
+                  ]
+              },
+              {
+                  "title": "Высота потолков",
+                  "alias": "h",
+                  "values": [
+                      {
+                          "title": "200:2000",
+                          "value": "200:2000"
+                      }
+                  ]
+              }
+          ]
+      },{
+          "id": 162,
+          "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+          "title": "Помещение под супермаркет (тестовый)",
+          "description": null,
+          "type": {
+              "id": 11,
+              "title": "Аренда",
+              "slug": "rent"
+          },
+          "logo": null,
+          "bank": {
+              "id": 4,
+              "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+              "title": "Пятёрочка",
+              "is_enabled": 1,
+              "logo": null,
+              "license": "1",
+              "rating": 1,
+              "count_reviews": 0
+          },
+          "rate": null,
+          "value": null,
+          "offers": [],
+          "properties": [
+              {
+                  "title": "Населенность",
+                  "alias": "population",
+                  "values": [
+                      {
+                          "title": "густонаселенный",
+                          "value": "GUSTONASELENNYI"
+                      },
+                      {
+                          "title": "средненаселенный",
+                          "value": "SREDNENASELENNYI"
+                      },
+                      {
+                          "title": "малонаселенный",
+                          "value": "MALONASELENNYI"
+                      }
+                  ]
+              },
+              {
+                  "title": "Расположение",
+                  "alias": "place",
+                  "values": [
+                      {
+                          "title": "въезд в населённый пункт - первая линия",
+                          "value": "0"
+                      },
+                      {
+                          "title": "въезд в населённый пункт - не первая линия",
+                          "value": "1"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - первая линия",
+                          "value": "2"
+                      },
+                      {
+                          "title": "выезд из населённого пункта - не первая линия",
+                          "value": "3"
+                      },
+                      {
+                          "title": "населенный пункт - центральная магистраль",
+                          "value": "4"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - первая линия",
+                          "value": "5"
+                      },
+                      {
+                          "title": "въезд в жилой микрорайон - не первая линия",
+                          "value": "6"
+                      },
+                      {
+                          "title": "жилой микрорайон - на выезде",
+                          "value": "7"
+                      },
+                      {
+                          "title": "жилой микрорайон - внутри",
+                          "value": "8"
+                      },
+                      {
+                          "title": "деловой центр - первая линия",
+                          "value": "9"
+                      },
+                      {
+                          "title": "деловой центр - не первая линия",
+                          "value": "10"
+                      },
+                      {
+                          "title": "промышленная зона - первая линия",
+                          "value": "11"
+                      },
+                      {
+                          "title": "промышленная зона - не первая линия",
+                          "value": "12"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                          "value": "13"
+                      },
+                      {
+                          "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                          "value": "14"
+                      }
+                  ]
+              },
+              {
+                  "title": "Пешеходный трафик",
+                  "alias": "pedestrian_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Автомобильный трафик",
+                  "alias": "car_traffic",
+                  "values": [
+                      {
+                          "title": "высокий",
+                          "value": "0"
+                      },
+                      {
+                          "title": "средний",
+                          "value": "1"
+                      },
+                      {
+                          "title": "низкий",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Нет в радиусе 100 метров",
+                  "alias": "none_within_100_meters",
+                  "values": [
+                      {
+                          "title": "учреждение образования",
+                          "value": "0"
+                      },
+                      {
+                          "title": "дошкольное учреждение",
+                          "value": "1"
+                      },
+                      {
+                          "title": "учреждение культуры",
+                          "value": "2"
+                      },
+                      {
+                          "title": "медицинское учреждение",
+                          "value": "3"
+                      }
+                  ]
+              },
+              {
+                  "title": "Закрытая территория",
+                  "alias": "restricted_area",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Этаж",
+                  "alias": "level",
+                  "values": [
+                      {
+                          "title": "1 этаж",
+                          "value": "0"
+                      },
+                      {
+                          "title": "5 этаж",
+                          "value": "4"
+                      }
+                  ]
+              },
+              {
+                  "title": "Часть МКД",
+                  "alias": "mdu_part",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Зона разгрузки",
+                  "alias": "loading_area",
+                  "values": [
+                      {
+                          "title": "во дворе",
+                          "value": "0"
+                      },
+                      {
+                          "title": "с улицы",
+                          "value": "1"
+                      },
+                      {
+                          "title": "с торца",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Отопление",
+                  "alias": "heating_system",
+                  "values": [
+                      {
+                          "title": "есть, газовое",
+                          "value": "0"
+                      },
+                      {
+                          "title": "есть, электрическое",
+                          "value": "1"
+                      },
+                      {
+                          "title": "есть, центральное",
+                          "value": "2"
+                      }
+                  ]
+              },
+              {
+                  "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                  "alias": "entrance_near_mdu_entrance",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      },
+                      {
+                          "title": "да",
+                          "value": "1"
+                      }
+                  ]
+              },
+              {
+                  "title": "Наличие перепадов пола свыше 30см",
+                  "alias": "floor_drop",
+                  "values": [
+                      {
+                          "title": "нет",
+                          "value": "0"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество входов (всего)",
+                  "alias": "number_of_entrances",
+                  "values": [
+                      {
+                          "title": "1:30",
+                          "value": "1:30"
+                      }
+                  ]
+              },
+              {
+                  "title": "Площадь помещения",
+                  "alias": "s",
+                  "values": [
+                      {
+                          "title": "300:30000",
+                          "value": "300:30000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество технических входов",
+                  "alias": "number_of_technical_entrances",
+                  "values": [
+                      {
+                          "title": "0:5",
+                          "value": "0:5"
+                      }
+                  ]
+              },
+              {
+                  "title": "Количество парковочных мест",
+                  "alias": "quantity_of_parking",
+                  "values": [
+                      {
+                          "title": "30:3000",
+                          "value": "30:3000"
+                      }
+                  ]
+              },
+              {
+                  "title": "Заведенная электрическая мощность",
+                  "alias": "pwr",
+                  "values": [
+                      {
+                          "title": "5:500",
+                          "value": "5:500"
+                      }
+                  ]
+              },
+              {
+                  "title": "Высота потолков",
+                  "alias": "h",
+                  "values": [
+                      {
+                          "title": "200:2000",
+                          "value": "200:2000"
+                      }
+                  ]
+              }
+          ]
       },
-      "sort": {
-          "by": "created_at",
-          "desc": 1
-      },
-      "items": [
           {
-              "id": 16,
+              "id": 161,
               "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
               "title": "Помещение под супермаркет (тестовый)",
               "description": null,
@@ -345,824 +1975,1151 @@
                   }
               ]
           },
-          {
-              "id": 15,
-              "token": "0f556f07-ac59-420b-97bf-96d5abc4499b",
-              "title": "Аптека",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 5,
-                  "token": "1c17a1fe-ab5c-4315-9b89-f822938e0f59",
-                  "title": "Горздрав",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Населенность",
-                      "alias": "population",
-                      "values": [
-                          {
-                              "title": "средненаселенный",
-                              "value": "SREDNENASELENNYI"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Расположение",
-                      "alias": "place",
-                      "values": [
-                          {
-                              "title": "деловой центр - первая линия",
-                              "value": "9"
-                          },
-                          {
-                              "title": "деловой центр - не первая линия",
-                              "value": "10"
-                          },
-                          {
-                              "title": "промышленная зона - первая линия",
-                              "value": "11"
-                          },
-                          {
-                              "title": "промышленная зона - не первая линия",
-                              "value": "12"
-                          },
-                          {
-                              "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
-                              "value": "13"
-                          },
-                          {
-                              "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
-                              "value": "14"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Пешеходный трафик",
-                      "alias": "pedestrian_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          },
-                          {
-                              "title": "средний",
-                              "value": "1"
-                          },
-                          {
-                              "title": "низкий",
-                              "value": "2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Автомобильный трафик",
-                      "alias": "car_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Нет в радиусе 100 метров",
-                      "alias": "none_within_100_meters",
-                      "values": [
-                          {
-                              "title": "дошкольное учреждение",
-                              "value": "1"
-                          },
-                          {
-                              "title": "учреждение культуры",
-                              "value": "2"
-                          },
-                          {
-                              "title": "медицинское учреждение",
-                              "value": "3"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Закрытая территория",
-                      "alias": "restricted_area",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          },
-                          {
-                              "title": "да",
-                              "value": "1"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Этаж",
-                      "alias": "level",
-                      "values": [
-                          {
-                              "title": "5 этаж",
-                              "value": "4"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Часть МКД",
-                      "alias": "mdu_part",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          },
-                          {
-                              "title": "да",
-                              "value": "1"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Зона разгрузки",
-                      "alias": "loading_area",
-                      "values": [
-                          {
-                              "title": "во дворе",
-                              "value": "0"
-                          },
-                          {
-                              "title": "с улицы",
-                              "value": "1"
-                          },
-                          {
-                              "title": "с торца",
-                              "value": "2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Отопление",
-                      "alias": "heating_system",
-                      "values": [
-                          {
-                              "title": "есть, газовое",
-                              "value": "0"
-                          },
-                          {
-                              "title": "есть, электрическое",
-                              "value": "1"
-                          },
-                          {
-                              "title": "есть, центральное",
-                              "value": "2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
-                      "alias": "entrance_near_mdu_entrance",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          },
-                          {
-                              "title": "да",
-                              "value": "1"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Наличие перепадов пола свыше 30см",
-                      "alias": "floor_drop",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          },
-                          {
-                              "title": "есть",
-                              "value": "1"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Площадь помещения",
-                      "alias": "s",
-                      "values": [
-                          {
-                              "title": "300:1000",
-                              "value": "300:1000"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество парковочных мест",
-                      "alias": "quantity_of_parking",
-                      "values": [
-                          {
-                              "title": "10:300",
-                              "value": "10:300"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество входов (всего)",
-                      "alias": "number_of_entrances",
-                      "values": [
-                          {
-                              "title": "1:30",
-                              "value": "1:30"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество технических входов",
-                      "alias": "number_of_technical_entrances",
-                      "values": [
-                          {
-                              "title": "1:5",
-                              "value": "1:5"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Высота потолков",
-                      "alias": "h",
-                      "values": [
-                          {
-                              "title": "300:1000",
-                              "value": "300:1000"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Заведенная электрическая мощность",
-                      "alias": "pwr",
-                      "values": [
-                          {
-                              "title": "2:50",
-                              "value": "2:50"
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": 14,
-              "token": "cb270cc4-ee8f-49db-9071-0ad0edcbc569",
-              "title": "Помещение под супермаркет",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 4,
-                  "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
-                  "title": "Пятёрочка",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Населенность",
-                      "alias": "population",
-                      "values": [
-                          {
-                              "title": "густонаселенный",
-                              "value": "GUSTONASELENNYI"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Расположение",
-                      "alias": "place",
-                      "values": [
-                          {
-                              "title": "въезд в населённый пункт - первая линия",
-                              "value": "0"
-                          },
-                          {
-                              "title": "выезд из населённого пункта - первая линия",
-                              "value": "2"
-                          },
-                          {
-                              "title": "населенный пункт - центральная магистраль",
-                              "value": "4"
-                          },
-                          {
-                              "title": "въезд в жилой микрорайон - первая линия",
-                              "value": "5"
-                          },
-                          {
-                              "title": "жилой микрорайон - на выезде",
-                              "value": "7"
-                          },
-                          {
-                              "title": "жилой микрорайон - внутри",
-                              "value": "8"
-                          },
-                          {
-                              "title": "деловой центр - первая линия",
-                              "value": "9"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Пешеходный трафик",
-                      "alias": "pedestrian_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Автомобильный трафик",
-                      "alias": "car_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Нет в радиусе 100 метров",
-                      "alias": "none_within_100_meters",
-                      "values": [
-                          {
-                              "title": "учреждение образования",
-                              "value": "0"
-                          },
-                          {
-                              "title": "дошкольное учреждение",
-                              "value": "1"
-                          },
-                          {
-                              "title": "учреждение культуры",
-                              "value": "2"
-                          },
-                          {
-                              "title": "медицинское учреждение",
-                              "value": "3"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Закрытая территория",
-                      "alias": "restricted_area",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Этаж",
-                      "alias": "level",
-                      "values": [
-                          {
-                              "title": "1 этаж",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Зона разгрузки",
-                      "alias": "loading_area",
-                      "values": [
-                          {
-                              "title": "во дворе",
-                              "value": "0"
-                          },
-                          {
-                              "title": "с улицы",
-                              "value": "1"
-                          },
-                          {
-                              "title": "с торца",
-                              "value": "2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Отопление",
-                      "alias": "heating_system",
-                      "values": [
-                          {
-                              "title": "есть, газовое",
-                              "value": "0"
-                          },
-                          {
-                              "title": "есть, электрическое",
-                              "value": "1"
-                          },
-                          {
-                              "title": "есть, центральное",
-                              "value": "2"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
-                      "alias": "entrance_near_mdu_entrance",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Наличие перепадов пола свыше 30см",
-                      "alias": "floor_drop",
-                      "values": [
-                          {
-                              "title": "нет",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Площадь помещения",
-                      "alias": "s",
-                      "values": [
-                          {
-                              "title": "350:850",
-                              "value": "350:850"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество входов (всего)",
-                      "alias": "number_of_entrances",
-                      "values": [
-                          {
-                              "title": "2:1000",
-                              "value": "2:1000"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество технических входов",
-                      "alias": "number_of_technical_entrances",
-                      "values": [
-                          {
-                              "title": "1:1000",
-                              "value": "1:1000"
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": 13,
-              "token": "8a734a6f-7487-4e70-899c-f8216d4928a1",
-              "title": "Аптека",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 2,
-                  "token": "1a1120ad-9bb6-4e2f-bd1a-f45fe98da3c4",
-                  "title": "Вита",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Населенность",
-                      "alias": "population",
-                      "values": [
-                          {
-                              "title": "средненаселенный",
-                              "value": "SREDNENASELENNYI"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Расположение",
-                      "alias": "place",
-                      "values": [
-                          {
-                              "title": "жилой микрорайон - внутри",
-                              "value": "8"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Пешеходный трафик",
-                      "alias": "pedestrian_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Автомобильный трафик",
-                      "alias": "car_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Площадь помещения",
-                      "alias": "s",
-                      "values": [
-                          {
-                              "title": "100:900",
-                              "value": "100:900"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество парковочных мест",
-                      "alias": "quantity_of_parking",
-                      "values": [
-                          {
-                              "title": "30:200",
-                              "value": "30:200"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Высота потолков",
-                      "alias": "h",
-                      "values": [
-                          {
-                              "title": "250:500",
-                              "value": "250:500"
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": 10,
-              "token": "430ed7bd-f907-4c22-9f58-2dd791061aaf",
-              "title": "Торговая сеть",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 3,
-                  "token": "afe75f1e-2ca3-4010-861c-279f38000a10",
-                  "title": "Светофор",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Населенность",
-                      "alias": "population",
-                      "values": [
-                          {
-                              "title": "средненаселенный",
-                              "value": "SREDNENASELENNYI"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Расположение",
-                      "alias": "place",
-                      "values": [
-                          {
-                              "title": "жилой микрорайон - на выезде",
-                              "value": "7"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Пешеходный трафик",
-                      "alias": "pedestrian_traffic",
-                      "values": [
-                          {
-                              "title": "высокий",
-                              "value": "0"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Автомобильный трафик",
-                      "alias": "car_traffic",
-                      "values": [
-                          {
-                              "title": "средний",
-                              "value": "1"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Площадь помещения",
-                      "alias": "s",
-                      "values": [
-                          {
-                              "title": "200:1000",
-                              "value": "200:1000"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Высота потолков",
-                      "alias": "h",
-                      "values": [
-                          {
-                              "title": "500:1000",
-                              "value": "500:1000"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество парковочных мест",
-                      "alias": "quantity_of_parking",
-                      "values": [
-                          {
-                              "title": "50:400",
-                              "value": "50:400"
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": 9,
-              "token": "c367a31c-33fb-4af2-bf95-7c26a822d4ef",
-              "title": "Торговая сеть",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 3,
-                  "token": "afe75f1e-2ca3-4010-861c-279f38000a10",
-                  "title": "Светофор",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": []
-          },
-          {
-              "id": 4,
-              "token": "3279dcad-9ca7-4f07-a231-a1deaeb61c84",
-              "title": "Магазин шаговой доступности",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 1,
-                  "token": "0c7d6d20-622a-4903-801d-3887c4d516d6",
-                  "title": "Магнит",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Населенность",
-                      "alias": "population",
-                      "values": [
-                          {
-                              "title": "средненаселенный",
-                              "value": "SREDNENASELENNYI"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Количество парковочных мест",
-                      "alias": "quantity_of_parking",
-                      "values": [
-                          {
-                              "title": "10:999",
-                              "value": "10:999"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Площадь помещения",
-                      "alias": "s",
-                      "values": [
-                          {
-                              "title": "300:700",
-                              "value": "300:700"
-                          }
-                      ]
-                  }
-              ]
-          },
-          {
-              "id": 2,
-              "token": "c486ac15-1a03-47e9-baa2-935595defc67",
-              "title": "Помещение для аптеки",
-              "description": null,
-              "type": {
-                  "id": 11,
-                  "title": "Аренда",
-                  "slug": "rent"
-              },
-              "logo": null,
-              "bank": {
-                  "id": 5,
-                  "token": "1c17a1fe-ab5c-4315-9b89-f822938e0f59",
-                  "title": "Горздрав",
-                  "is_enabled": 1,
-                  "logo": null,
-                  "license": "1",
-                  "rating": 1,
-                  "count_reviews": 0
-              },
-              "rate": null,
-              "value": null,
-              "offers": [],
-              "properties": [
-                  {
-                      "title": "Расположение",
-                      "alias": "place",
-                      "values": [
-                          {
-                              "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
-                              "value": "14"
-                          }
-                      ]
-                  },
-                  {
-                      "title": "Высота потолков",
-                      "alias": "h",
-                      "values": [
-                          {
-                              "title": "0:2500",
-                              "value": "0:2500"
-                          }
-                      ]
-                  }
-              ]
-          }
-      ]
+            {
+                "id": 16,
+                "token": "df6081a6-2d46-4b76-bda0-12b7ae43649d",
+                "title": "Помещение под супермаркет (тестовый)",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 4,
+                    "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+                    "title": "Пятёрочка",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "густонаселенный",
+                                "value": "GUSTONASELENNYI"
+                            },
+                            {
+                                "title": "средненаселенный",
+                                "value": "SREDNENASELENNYI"
+                            },
+                            {
+                                "title": "малонаселенный",
+                                "value": "MALONASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "въезд в населённый пункт - первая линия",
+                                "value": "0"
+                            },
+                            {
+                                "title": "въезд в населённый пункт - не первая линия",
+                                "value": "1"
+                            },
+                            {
+                                "title": "выезд из населённого пункта - первая линия",
+                                "value": "2"
+                            },
+                            {
+                                "title": "выезд из населённого пункта - не первая линия",
+                                "value": "3"
+                            },
+                            {
+                                "title": "населенный пункт - центральная магистраль",
+                                "value": "4"
+                            },
+                            {
+                                "title": "въезд в жилой микрорайон - первая линия",
+                                "value": "5"
+                            },
+                            {
+                                "title": "въезд в жилой микрорайон - не первая линия",
+                                "value": "6"
+                            },
+                            {
+                                "title": "жилой микрорайон - на выезде",
+                                "value": "7"
+                            },
+                            {
+                                "title": "жилой микрорайон - внутри",
+                                "value": "8"
+                            },
+                            {
+                                "title": "деловой центр - первая линия",
+                                "value": "9"
+                            },
+                            {
+                                "title": "деловой центр - не первая линия",
+                                "value": "10"
+                            },
+                            {
+                                "title": "промышленная зона - первая линия",
+                                "value": "11"
+                            },
+                            {
+                                "title": "промышленная зона - не первая линия",
+                                "value": "12"
+                            },
+                            {
+                                "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                                "value": "13"
+                            },
+                            {
+                                "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                                "value": "14"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Пешеходный трафик",
+                        "alias": "pedestrian_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            },
+                            {
+                                "title": "средний",
+                                "value": "1"
+                            },
+                            {
+                                "title": "низкий",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Автомобильный трафик",
+                        "alias": "car_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            },
+                            {
+                                "title": "средний",
+                                "value": "1"
+                            },
+                            {
+                                "title": "низкий",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Нет в радиусе 100 метров",
+                        "alias": "none_within_100_meters",
+                        "values": [
+                            {
+                                "title": "учреждение образования",
+                                "value": "0"
+                            },
+                            {
+                                "title": "дошкольное учреждение",
+                                "value": "1"
+                            },
+                            {
+                                "title": "учреждение культуры",
+                                "value": "2"
+                            },
+                            {
+                                "title": "медицинское учреждение",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Закрытая территория",
+                        "alias": "restricted_area",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Этаж",
+                        "alias": "level",
+                        "values": [
+                            {
+                                "title": "1 этаж",
+                                "value": "0"
+                            },
+                            {
+                                "title": "5 этаж",
+                                "value": "4"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Часть МКД",
+                        "alias": "mdu_part",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "да",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Зона разгрузки",
+                        "alias": "loading_area",
+                        "values": [
+                            {
+                                "title": "во дворе",
+                                "value": "0"
+                            },
+                            {
+                                "title": "с улицы",
+                                "value": "1"
+                            },
+                            {
+                                "title": "с торца",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Отопление",
+                        "alias": "heating_system",
+                        "values": [
+                            {
+                                "title": "есть, газовое",
+                                "value": "0"
+                            },
+                            {
+                                "title": "есть, электрическое",
+                                "value": "1"
+                            },
+                            {
+                                "title": "есть, центральное",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                        "alias": "entrance_near_mdu_entrance",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "да",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Наличие перепадов пола свыше 30см",
+                        "alias": "floor_drop",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество входов (всего)",
+                        "alias": "number_of_entrances",
+                        "values": [
+                            {
+                                "title": "1:30",
+                                "value": "1:30"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "300:30000",
+                                "value": "300:30000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество технических входов",
+                        "alias": "number_of_technical_entrances",
+                        "values": [
+                            {
+                                "title": "0:5",
+                                "value": "0:5"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество парковочных мест",
+                        "alias": "quantity_of_parking",
+                        "values": [
+                            {
+                                "title": "30:3000",
+                                "value": "30:3000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Заведенная электрическая мощность",
+                        "alias": "pwr",
+                        "values": [
+                            {
+                                "title": "5:500",
+                                "value": "5:500"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Высота потолков",
+                        "alias": "h",
+                        "values": [
+                            {
+                                "title": "200:2000",
+                                "value": "200:2000"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "token": "0f556f07-ac59-420b-97bf-96d5abc4499b",
+                "title": "Аптека",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 5,
+                    "token": "1c17a1fe-ab5c-4315-9b89-f822938e0f59",
+                    "title": "Горздрав",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "средненаселенный",
+                                "value": "SREDNENASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "деловой центр - первая линия",
+                                "value": "9"
+                            },
+                            {
+                                "title": "деловой центр - не первая линия",
+                                "value": "10"
+                            },
+                            {
+                                "title": "промышленная зона - первая линия",
+                                "value": "11"
+                            },
+                            {
+                                "title": "промышленная зона - не первая линия",
+                                "value": "12"
+                            },
+                            {
+                                "title": "удаленный район с плохо развитой инфраструктурой - первая линия",
+                                "value": "13"
+                            },
+                            {
+                                "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                                "value": "14"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Пешеходный трафик",
+                        "alias": "pedestrian_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            },
+                            {
+                                "title": "средний",
+                                "value": "1"
+                            },
+                            {
+                                "title": "низкий",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Автомобильный трафик",
+                        "alias": "car_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Нет в радиусе 100 метров",
+                        "alias": "none_within_100_meters",
+                        "values": [
+                            {
+                                "title": "дошкольное учреждение",
+                                "value": "1"
+                            },
+                            {
+                                "title": "учреждение культуры",
+                                "value": "2"
+                            },
+                            {
+                                "title": "медицинское учреждение",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Закрытая территория",
+                        "alias": "restricted_area",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "да",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Этаж",
+                        "alias": "level",
+                        "values": [
+                            {
+                                "title": "5 этаж",
+                                "value": "4"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Часть МКД",
+                        "alias": "mdu_part",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "да",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Зона разгрузки",
+                        "alias": "loading_area",
+                        "values": [
+                            {
+                                "title": "во дворе",
+                                "value": "0"
+                            },
+                            {
+                                "title": "с улицы",
+                                "value": "1"
+                            },
+                            {
+                                "title": "с торца",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Отопление",
+                        "alias": "heating_system",
+                        "values": [
+                            {
+                                "title": "есть, газовое",
+                                "value": "0"
+                            },
+                            {
+                                "title": "есть, электрическое",
+                                "value": "1"
+                            },
+                            {
+                                "title": "есть, центральное",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                        "alias": "entrance_near_mdu_entrance",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "да",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Наличие перепадов пола свыше 30см",
+                        "alias": "floor_drop",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            },
+                            {
+                                "title": "есть",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "300:1000",
+                                "value": "300:1000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество парковочных мест",
+                        "alias": "quantity_of_parking",
+                        "values": [
+                            {
+                                "title": "10:300",
+                                "value": "10:300"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество входов (всего)",
+                        "alias": "number_of_entrances",
+                        "values": [
+                            {
+                                "title": "1:30",
+                                "value": "1:30"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество технических входов",
+                        "alias": "number_of_technical_entrances",
+                        "values": [
+                            {
+                                "title": "1:5",
+                                "value": "1:5"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Высота потолков",
+                        "alias": "h",
+                        "values": [
+                            {
+                                "title": "300:1000",
+                                "value": "300:1000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Заведенная электрическая мощность",
+                        "alias": "pwr",
+                        "values": [
+                            {
+                                "title": "2:50",
+                                "value": "2:50"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "token": "cb270cc4-ee8f-49db-9071-0ad0edcbc569",
+                "title": "Помещение под супермаркет",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 4,
+                    "token": "a94d38ed-6efc-490c-a7c2-867c8d7dcd44",
+                    "title": "Пятёрочка",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "густонаселенный",
+                                "value": "GUSTONASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "въезд в населённый пункт - первая линия",
+                                "value": "0"
+                            },
+                            {
+                                "title": "выезд из населённого пункта - первая линия",
+                                "value": "2"
+                            },
+                            {
+                                "title": "населенный пункт - центральная магистраль",
+                                "value": "4"
+                            },
+                            {
+                                "title": "въезд в жилой микрорайон - первая линия",
+                                "value": "5"
+                            },
+                            {
+                                "title": "жилой микрорайон - на выезде",
+                                "value": "7"
+                            },
+                            {
+                                "title": "жилой микрорайон - внутри",
+                                "value": "8"
+                            },
+                            {
+                                "title": "деловой центр - первая линия",
+                                "value": "9"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Пешеходный трафик",
+                        "alias": "pedestrian_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Автомобильный трафик",
+                        "alias": "car_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Нет в радиусе 100 метров",
+                        "alias": "none_within_100_meters",
+                        "values": [
+                            {
+                                "title": "учреждение образования",
+                                "value": "0"
+                            },
+                            {
+                                "title": "дошкольное учреждение",
+                                "value": "1"
+                            },
+                            {
+                                "title": "учреждение культуры",
+                                "value": "2"
+                            },
+                            {
+                                "title": "медицинское учреждение",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Закрытая территория",
+                        "alias": "restricted_area",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Этаж",
+                        "alias": "level",
+                        "values": [
+                            {
+                                "title": "1 этаж",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Зона разгрузки",
+                        "alias": "loading_area",
+                        "values": [
+                            {
+                                "title": "во дворе",
+                                "value": "0"
+                            },
+                            {
+                                "title": "с улицы",
+                                "value": "1"
+                            },
+                            {
+                                "title": "с торца",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Отопление",
+                        "alias": "heating_system",
+                        "values": [
+                            {
+                                "title": "есть, газовое",
+                                "value": "0"
+                            },
+                            {
+                                "title": "есть, электрическое",
+                                "value": "1"
+                            },
+                            {
+                                "title": "есть, центральное",
+                                "value": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+                        "alias": "entrance_near_mdu_entrance",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Наличие перепадов пола свыше 30см",
+                        "alias": "floor_drop",
+                        "values": [
+                            {
+                                "title": "нет",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "350:850",
+                                "value": "350:850"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество входов (всего)",
+                        "alias": "number_of_entrances",
+                        "values": [
+                            {
+                                "title": "2:1000",
+                                "value": "2:1000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество технических входов",
+                        "alias": "number_of_technical_entrances",
+                        "values": [
+                            {
+                                "title": "1:1000",
+                                "value": "1:1000"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "token": "8a734a6f-7487-4e70-899c-f8216d4928a1",
+                "title": "Аптека",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 2,
+                    "token": "1a1120ad-9bb6-4e2f-bd1a-f45fe98da3c4",
+                    "title": "Вита",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "средненаселенный",
+                                "value": "SREDNENASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "жилой микрорайон - внутри",
+                                "value": "8"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Пешеходный трафик",
+                        "alias": "pedestrian_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Автомобильный трафик",
+                        "alias": "car_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "100:900",
+                                "value": "100:900"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество парковочных мест",
+                        "alias": "quantity_of_parking",
+                        "values": [
+                            {
+                                "title": "30:200",
+                                "value": "30:200"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Высота потолков",
+                        "alias": "h",
+                        "values": [
+                            {
+                                "title": "250:500",
+                                "value": "250:500"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "token": "430ed7bd-f907-4c22-9f58-2dd791061aaf",
+                "title": "Торговая сеть",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 3,
+                    "token": "afe75f1e-2ca3-4010-861c-279f38000a10",
+                    "title": "Светофор",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "средненаселенный",
+                                "value": "SREDNENASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "жилой микрорайон - на выезде",
+                                "value": "7"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Пешеходный трафик",
+                        "alias": "pedestrian_traffic",
+                        "values": [
+                            {
+                                "title": "высокий",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Автомобильный трафик",
+                        "alias": "car_traffic",
+                        "values": [
+                            {
+                                "title": "средний",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "200:1000",
+                                "value": "200:1000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Высота потолков",
+                        "alias": "h",
+                        "values": [
+                            {
+                                "title": "500:1000",
+                                "value": "500:1000"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество парковочных мест",
+                        "alias": "quantity_of_parking",
+                        "values": [
+                            {
+                                "title": "50:400",
+                                "value": "50:400"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "token": "c367a31c-33fb-4af2-bf95-7c26a822d4ef",
+                "title": "Торговая сеть",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 3,
+                    "token": "afe75f1e-2ca3-4010-861c-279f38000a10",
+                    "title": "Светофор",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": []
+            },
+            {
+                "id": 4,
+                "token": "3279dcad-9ca7-4f07-a231-a1deaeb61c84",
+                "title": "Магазин шаговой доступности",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 1,
+                    "token": "0c7d6d20-622a-4903-801d-3887c4d516d6",
+                    "title": "Магнит",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Населенность",
+                        "alias": "population",
+                        "values": [
+                            {
+                                "title": "средненаселенный",
+                                "value": "SREDNENASELENNYI"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Количество парковочных мест",
+                        "alias": "quantity_of_parking",
+                        "values": [
+                            {
+                                "title": "10:999",
+                                "value": "10:999"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Площадь помещения",
+                        "alias": "s",
+                        "values": [
+                            {
+                                "title": "300:700",
+                                "value": "300:700"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "token": "c486ac15-1a03-47e9-baa2-935595defc67",
+                "title": "Помещение для аптеки",
+                "description": null,
+                "type": {
+                    "id": 11,
+                    "title": "Аренда",
+                    "slug": "rent"
+                },
+                "logo": null,
+                "bank": {
+                    "id": 5,
+                    "token": "1c17a1fe-ab5c-4315-9b89-f822938e0f59",
+                    "title": "Горздрав",
+                    "is_enabled": 1,
+                    "logo": null,
+                    "license": "1",
+                    "rating": 1,
+                    "count_reviews": 0
+                },
+                "rate": null,
+                "value": null,
+                "offers": [],
+                "properties": [
+                    {
+                        "title": "Расположение",
+                        "alias": "place",
+                        "values": [
+                            {
+                                "title": "удаленный район с плохо развитой инфраструктурой - не первая линия",
+                                "value": "14"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Высота потолков",
+                        "alias": "h",
+                        "values": [
+                            {
+                                "title": "0:2500",
+                                "value": "0:2500"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
   }
-}

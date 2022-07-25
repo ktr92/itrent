@@ -5,7 +5,7 @@
   >
     <div
       ref="calculatorFormWrapper"
-      class="md:grid md:grid-cols-6 calculator-form-wrapper md-sticky"
+      class="pb-12 md:pb-0 md:grid md:grid-cols-6 calculator-form-wrapper md-sticky"
       :style="{
         top: `-${getStickyTop}px`,
         'align-self': 'start',

@@ -21,9 +21,16 @@
 .nav-button {
   @apply inline-block border-t-3 border-transparent p-2 leading-normal text-2sm text-black text-opacity-45 hover:text-opacity-85;
   &.nuxt-link-exact-active {
-    @apply font-medium border-elm text-black text-opacity-85;
+    @apply relative font-medium border-elm text-opacity-85;
+   
   }
 }
+nav .nuxt-link-exact-active {
+    @apply font-medium border-elm text-black text-opacity-85;
+  }
+
+
+ 
 
 .mx-input {
   border: none !important;

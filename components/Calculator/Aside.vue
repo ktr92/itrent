@@ -1,6 +1,6 @@
 <template>
   <div id="proposal-list">
-    <div class="absolute top-0 w-full min-h-screen bg-white z-50 md:relative md:min-h-auto md: w-auto md:block" :class="[show ? 'block' : 'hidden']">
+    <div class="fixed overflow-x-hidden overflow-y-scroll md:overflow-auto top-0 w-full min-h-screen h-full bg-white z-50 md:relative md:min-h-auto md:w-auto md:h-auto md:block" :class="[show ? 'block' : 'hidden']">
       <div class="border-b p-4 mb-6 px-3.5 md:hidden">
         <div class="flex items-center justify-between mb-1">
           <h2

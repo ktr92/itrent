@@ -129,7 +129,6 @@ test('инициализация селектбоксов', () => {
   }
   calcMutations.updateState(state, [options[0], obj])
   expect(calcGetters.getDynamicMerged(state)[0]).toHaveProperty('items')
-  console.log(calcGetters.getDynamicMerged(state)[0].items[0].values)
   expect(calcGetters.getDynamicMerged(state)[0].items[0].values.filter(i => i.title === val)).toHaveLength(1)
 })
 test('отображение ошибок', () => {

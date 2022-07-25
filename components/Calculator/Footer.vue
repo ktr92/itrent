@@ -1,6 +1,6 @@
 <template>
-  <div class="border-t bg-white w-full py-4 z-50">
-    <div class="container grid grid-cols-12">
+  <div class="border-b shadow-1xs md:shadow-none bg-white w-full py-2 md:py-4 z-50">
+    <div v-if="resultCount" class="container grid grid-cols-12">
       <div class="col-span-8 pr-9 border-r flex items-center justify-end hidden md:block">
         <div>
           <p class="text-right text-2sm text-black text-opacity-45">
@@ -38,6 +38,10 @@
         </div>
       </div>
     </div>
+    <div class="flex items-center justify-between bottom-0 w-full md:hidden">
+      <LayoutNavbar />
+      <UserOptions :user="authUser" />
+    </div>
   </div>
 </template>
 <script>
@@ -56,7 +60,12 @@ export default {
     showAside: {
       type: Boolean,
       default: () => true
+    },
+    user: {
+      type: [Array, Object],
+      default: () => []
     }
+
   },
   data () {
     return {
@@ -70,6 +79,11 @@ export default {
     },
     resultCount () {
       return this.getResult.products_count
+    },
+    authUser () {
+      return {
+        fullName: 'user'
+      }
     }
     /*  getSelectedCountText () {
       return `Вы выбрали ${
