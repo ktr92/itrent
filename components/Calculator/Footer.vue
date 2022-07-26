@@ -1,6 +1,6 @@
 <template>
-  <div class="border-b shadow-1xs md:shadow-none bg-white w-full py-2 md:py-4 z-50">
-    <div v-if="resultCount" class="container grid grid-cols-12">
+  <div class="border-b shadow-1xs md:shadow-none bg-white w-full md:py-4 z-50">
+    <div v-if="resultCount" class="container grid grid-cols-12 p-2 md:pt-0">
       <div class="col-span-8 pr-9 border-r flex items-center justify-end hidden md:block">
         <div>
           <p class="text-right text-2sm text-black text-opacity-45">
@@ -8,7 +8,7 @@
           </p>
         </div>
       </div>
-      <div class="col-span-12 m-auto w-full md:col-span-4 pl-3.5 pr-3.5 md:pl-9 md:pr-3.5 flex items-center">
+      <div class="col-span-12 m-auto w-full md:col-span-4 pl-2 pr-2 md:pl-9 md:pr-3.5 flex items-center">
         <div
           v-if="!show"
           class="w-full md:hidden"
@@ -22,7 +22,7 @@
             Показать <span v-if="resultCount" class="md:hidden">({{ resultCount }} запросов)</span>
           </FeButton>
         </div>
-        <div v-else class="md:block col-span-12 m-auto w-full md:col-span-4 pl-3.5 pr-3.5 md:pl-9 md:pr-3.5 flex items-center">
+        <div v-else class="md:block col-span-12 m-auto w-full md:col-span-4 md:pl-9 md:pr-3.5 flex items-center">
           <nuxt-link
             to="/create"
             class="w-full"
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between bottom-0 w-full md:hidden">
+    <div v-if="onScroll" class="flex items-center justify-between bottom-0 w-full md:hidden py-2 ">
       <LayoutNavbar />
       <UserOptions :user="authUser" />
     </div>
@@ -69,7 +69,9 @@ export default {
   },
   data () {
     return {
-      show: this.showAside
+      show: this.showAside,
+      onScroll: false,
+      scrollTimer: null
     }
   },
   computed: {
@@ -96,9 +98,30 @@ export default {
       this.show = val
     }
   },
+  beforeMount  () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestory () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     asideToggle () {
       this.$emit('asideToggle')
+    },
+    showNavbar () {
+      this.onScroll = true
+    },
+    hideNavbar () {
+      this.onScroll = false
+    },
+    handleScroll () {
+      if (this.scrollTimer !== null) {
+        clearTimeout(this.scrollTimer)
+      }
+      this.showNavbar()
+      this.scrollTimer = setTimeout(() => {
+        this.hideNavbar()
+      }, 2000)
     }
     /* onSave () {
       if (!this.selectedProductsCount || !this.allowToChange) {
