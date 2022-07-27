@@ -39,7 +39,7 @@
       </div>
     </div>
     <div v-if="onScroll" class="flex items-center justify-between bottom-0 w-full md:hidden py-2 ">
-      <LayoutNavbar />
+      <UiNavbar />
       <UserOptions :user="authUser" />
     </div>
   </div>

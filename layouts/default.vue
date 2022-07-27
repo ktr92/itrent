@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LayoutHeader :user="authUser" />
+    <UiHeader :user="authUser" />
     <Nuxt />
   </div>
 </template>

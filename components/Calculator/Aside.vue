@@ -21,7 +21,6 @@
           :title="message.title"
           :description="message.description"
         />
-        <!-- <LazyLayoutAlert v-if="message" :entrymessage="message" /> -->
         <div v-if="getReady" class="mt-2">
           <div v-if="getResultItems.length">
             <div

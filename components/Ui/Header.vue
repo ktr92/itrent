@@ -4,7 +4,7 @@
       <nuxt-link to="/" class="block mr-24 px-3.5 border-b md:border-none pb-3.5 w-full md:pb-0 md:w-auto md:inline-block">
         <img src="@/assets/images/logo.svg" alt="" class="w-40">
       </nuxt-link>
-      <LayoutNavbar class="hidden md:block" :user="user" />
+      <UiNavbar class="hidden md:block" :user="user" />
       <UserOptions class="hidden md:block" :user="user" />
     </div>
   </header>
