@@ -1,5 +1,5 @@
 <template>
-  <div class="border-b shadow-1xs md:shadow-none bg-white w-full md:py-4 z-50">
+  <div class="border-t shadow-1xs md:shadow-none bg-white w-full md:py-4 z-50">
     <div v-if="resultCount" class="container grid grid-cols-12 p-2 md:pt-0">
       <div class="col-span-8 pr-9 border-r flex items-center justify-end hidden md:block">
         <div>
@@ -8,10 +8,24 @@
           </p>
         </div>
       </div>
-      <div class="col-span-12 m-auto w-full md:col-span-4 pl-2 pr-2 md:pl-9 md:pr-3.5 flex items-center">
+      <div v-if="!show" class="hidden md:block col-span-12 m-auto w-full md:col-span-4 md:pl-9 md:pr-3.5 flex items-center">
+        <nuxt-link
+          to="/create"
+          class="w-full"
+        >
+          <FeButton
+            size="sm"
+            :is-disabled="!selectedProductsCount"
+            class="w-full"
+          >
+            Отправить заявку
+          </FeButton>
+        </nuxt-link>
+      </div>
+      <div class="col-span-12 m-auto w-full md:col-span-4 pl-2 pr-2 md:pl-9 md:pr-3.5 flex items-center md:hidden">
         <div
           v-if="!show"
-          class="w-full md:hidden"
+          class="w-full"
           @click="asideToggle"
         >
           <FeButton
@@ -19,7 +33,7 @@
             :is-disabled="!resultCount"
             class="w-full"
           >
-            Показать <span v-if="resultCount" class="md:hidden">({{ resultCount }} запросов)</span>
+            Показать <span v-if="resultCount">({{ resultCount }} запросов)</span>
           </FeButton>
         </div>
         <div v-else class="md:block col-span-12 m-auto w-full md:col-span-4 md:pl-9 md:pr-3.5 flex items-center">

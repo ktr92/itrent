@@ -29,6 +29,7 @@
         :name="name"
         :disabled="disabled"
         class="fe-input"
+        :placeholder="placeholder"
         @focus="onFocus"
         @blur="onBlur"
         @maska="
@@ -42,7 +43,7 @@
           class="m-auto w-3 h-3 fill-current text-black text-opacity-25"
         />
       </div>
-      <div
+      <!-- <div
         class="
           absolute
           z-0
@@ -61,7 +62,7 @@
         ]"
       >
         {{ placeholder }}
-      </div>
+      </div> -->
     </div>
     <div
       v-if="description || errors.length"

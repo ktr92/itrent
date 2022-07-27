@@ -23,7 +23,7 @@
               }"
             >
               <FeInput
-                id="last-name"
+                id="form-name"
                 v-model="formData.name"
                 :errors="errors"
                 label="ФИО"
@@ -42,8 +42,8 @@
               :custom-messages="{ min: `Телефон должен состоять из 11 цифр` }"
               class="col-span-1"
             >
-              <fe-input
-                id="phone"
+              <FeInput
+                id="form-phone"
                 v-model="innerPhone"
                 :mask="phoneMask"
                 :errors="errors"
@@ -53,10 +53,43 @@
               />
             </ValidationProvider>
           </div>
+          <div class="pb-2 mb-2">
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Email"
+              :rules="{
+                required: true,
+                email: true,
+              }"
+              class="col-span-1"
+            >
+              <FeInput
+                id="form-email"
+                v-model="formData.email"
+                :errors="errors"
+                label="E-mail"
+                placeholder="email@example.com"
+              />
+            </ValidationProvider>
+          </div>
+          <div class="pb-2 mb-2 flex justify-between items-center col-span-3">
+            <span
+              class="
+                flex
+                items-center
+                text-2sm text-black text-opacity-85
+                cursor-default
+              "
+            >Согласен на обработку персональных данных
+            </span>
+            <ValidationProvider>
+              <FeSwitch id="sign-application" v-model="signApplication" />
+            </ValidationProvider>
+          </div>
           <button
             class="button button-sm w-1/2"
-            :class="{ 'button-disabled': invalid === true }"
-            :disabled="invalid"
+            :class="{ 'button-disabled': invalid === true && signApplication === false }"
+            :disabled="invalid && signApplication"
             @click="checkSign"
           >
             Создать заявку
@@ -68,7 +101,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+
 export default {
   components: {
     ValidationObserver,
@@ -76,23 +112,24 @@ export default {
   },
   data () {
     return {
+      signApplication: false,
       phoneMask: '+7 (###) ###-##-##',
       innerPhone: '',
       formErrors: {},
       formData: {
         name: '',
         phone: '',
-        email: '',
-        params: null,
-        products: null
+        email: ''
       }
     }
   },
   computed: {
+    ...mapGetters('result', ['getSelectedProducts']),
+    ...mapGetters('calculator', ['getForm', 'getFormDynamic'])
   },
   methods: {
     checkSign () {
-
+      this.$store.dispatch('applications/sendData', { ...this.formData, ...this.getSelectedProducts, ...this.getFormDynamic, ...this.getForm })
     }
   }
 }
