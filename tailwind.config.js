@@ -60,7 +60,8 @@ module.exports = {
         '20xs': '20px'
       },
       height: {
-        '20xs': '20px'
+        '20xs': '20px',
+        '5px': '5px'
       }
     }
   },

@@ -7,11 +7,14 @@
       ref="calculatorFormWrapper"
       class="pb-12 md:pb-0 md:grid md:grid-cols-6 calculator-form-wrapper md-sticky"
     >
-      <div class="col-span-7">
+      <div class="col-span-7 px-3.5 md:pr-9 md:pl-0 border-r">
         <UiTitle title="Формирование заявки" />
         <div class="leading-normal text-2sm text-black text-opacity-45 mb-4">
           Для отображения вашей заявки для арендодателей, заполните поля ниже и создайте заявку
         </div>
+
+        <UiProgress :current-step="currentStep" :total-steps="totalSteps" />
+
         <ValidationObserver v-slot="{ invalid }">
           <div class="pb-2 mb-2">
             <ValidationProvider
@@ -87,7 +90,7 @@
             </ValidationProvider>
           </div>
           <button
-            class="button button-sm w-1/2"
+            class="button button-sm w-full md:w-1/2"
             :class="{ 'button-disabled': invalid === true && signApplication === false }"
             :disabled="invalid && signApplication"
             @click="checkSign"
@@ -112,6 +115,8 @@ export default {
   },
   data () {
     return {
+      currentStep: 1,
+      totalSteps: 2,
       signApplication: false,
       phoneMask: '+7 (###) ###-##-##',
       innerPhone: '',
