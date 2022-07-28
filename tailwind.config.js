@@ -22,7 +22,10 @@ module.exports = {
       lg: '1024px'
     },
     container: {
-      center: true
+      center: true,
+      maxWidth: {
+        lg: '824px'
+      }
     },
     extend: {
       fontSize: {
@@ -54,7 +57,8 @@ module.exports = {
       },
       boxShadow: {
         '3xl': '0px 2px 3px rgba(0, 0, 0, 0.12), 0px 3px 11px 1px rgba(0, 0, 0, 0.08)',
-        '1xs': '0px -4px 5px rgba(0, 0, 0, 0.06)'
+        '1xs': '0px -4px 5px rgba(0, 0, 0, 0.06)',
+        '1card': '0px 3px 11px rgba(0, 0, 0, 0.08), 0px 2px 3px rgba(0, 0, 0, 0.12);'
       },
       width: {
         '20xs': '20px'

@@ -1,3 +1,4 @@
+
 export default function ({ $axios }) {
   $axios.onRequest((config) => {
     if (config.url.includes(process.env.API_URL)) {

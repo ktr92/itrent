@@ -67,6 +67,7 @@ export default {
   },
   env: {
     API_URL: process.env.API_URL,
+    BPIUM_URL: process.env.BPIUM_URL,
     AUTH_TOKEN: process.env.AUTH_TOKEN,
     OPTIONS_JSON: process.env.OPTIONS_JSON
   },
