@@ -83,6 +83,13 @@
         Создать заявку
       </button>
     </ValidationObserver>
+    <LazyFeAlert
+      v-if="message"
+      class="mt-4 alert"
+      :type="message.type"
+      :title="message.title"
+      :description="message.description"
+    />
   </div>
 </template>
 
@@ -110,7 +117,8 @@ export default {
   },
   computed: {
     ...mapGetters('result', ['getSelectedProducts']),
-    ...mapGetters('calculator', ['getForm', 'getFormDynamic'])
+    ...mapGetters('calculator', ['getForm', 'getFormDynamic']),
+    ...mapGetters('applications', ['message'])
   },
   methods: {
     checkSign () {

@@ -5,5 +5,11 @@ export default {
   },
   changeStep (state, payload) {
     state.step = payload
+  },
+  setMessage (state, message) {
+    state.message = message
+  },
+  clearMessage (state) {
+    state.message = null
   }
 }

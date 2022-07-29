@@ -3,5 +3,6 @@ export default () => ({
     user: [],
     application: []
   },
-  step: 1
+  step: 1,
+  message: null
 })

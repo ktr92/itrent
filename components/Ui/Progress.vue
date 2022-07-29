@@ -1,5 +1,5 @@
 <template>
-  <div class="border-b pb-4 mb-4">
+  <div class="pb-4 mb-4">
     <div class="text-elm text-sm pb-2">
       Шаг {{ currentStep }} / {{ totalSteps }}
     </div>

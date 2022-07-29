@@ -1,15 +1,19 @@
 <template>
   <div class="rounded shadow-1card p-4 relative pb-14">
-    <div class="mb-2 flex justify-center" :class="{'text-elm': color}">
-      <div>
-        <svg-icon :name="icon" class="fill-current w-14 h-14" :class="{'fill-elm': color}" />
+    <div class="flex items-center md:block">
+      <div class="mb-2 mt-1 md:mt-0 flex md:justify-center" :class="{'text-elm': color}">
+        <div>
+          <svg-icon :name="icon" class="fill-current w-14 h-14" :class="{'fill-elm': color}" />
+        </div>
       </div>
-    </div>
-    <div class="text-center text-lg font-bold text-opacity-85 mb-2" :class="{'text-elm': color}">
-      {{ title }}
-    </div>
-    <div class="text-center text-2xl font-bold text-opacity-85 mb-2" :class="{'text-elm': color}">
-      {{ price }} {{ currency }}
+      <div class="ml-2 md:ml-0">
+        <div class="md:text-center text-md md:text-lg font-bold text-opacity-85 md:mb-2" :class="{'text-elm': color}">
+          {{ title }}
+        </div>
+        <div class="md:text-center text-lg md:text-2xl font-bold text-opacity-85 md:mb-2" :class="{'text-elm': color}">
+          {{ price }} {{ currency }}
+        </div>
+      </div>
     </div>
     <div class="pt-2 border-t mt-2 mb-8">
       <ul>
