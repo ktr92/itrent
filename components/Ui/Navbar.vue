@@ -21,7 +21,7 @@
       </li>
       <li class="inline-block mr-4">
         <nuxt-link
-          to="#"
+          to="/applications"
           class="
                 flex
                 items-center
