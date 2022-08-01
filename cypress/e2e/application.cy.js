@@ -34,7 +34,7 @@ describe('Calculator test', () => {
     cy.contains('Формирование заявки')
   })
 
-  it('All inputs must be required', () => {
+  it('All inputs should be required', () => {
     cy.visit('/calculator')
     const testProp = 'quantity_of_parking'
     cy.get(`#${testProp}`).find('input.input').clear().type('50')
@@ -45,7 +45,18 @@ describe('Calculator test', () => {
     cy.wait('@getProducts')
     cy.get('#productlist-0 > div').click()
     cy.get('.createbutton').click()
-    cy.get('.application-form-wrapper').find('input').clear()
     cy.get('button#createapplication').should('be.disabled')
+    cy.get('#sign-application').click()
+    cy.get('button#createapplication').should('be.disabled')
+    cy.get('.application-form-wrapper').find('input.fe-input').clear()
+    cy.get('button#createapplication').should('be.disabled')
+    cy.get('#sign-application').click()
+    cy.get('button#createapplication').should('be.disabled')
+    cy.get('#form-name input').type('name')
+    cy.get('#form-phone input').type('9179999999')
+    cy.get('#form-email input').type('email@email.email')
+    cy.get('button#createapplication').should('be.disabled')
+    cy.get('#sign-application').click()
+    cy.get('button#createapplication').should('not.be.disabled')
   })
 })

@@ -3,6 +3,7 @@
     <ValidationObserver v-slot="{ invalid }">
       <div class="pb-2 mb-2">
         <ValidationProvider
+
           v-slot="{ errors }"
           class="col-span-1"
           name="ФИО"
@@ -77,8 +78,8 @@
       <button
         id="createapplication"
         class="button button-sm w-full md:w-1/2"
-        :class="{ 'button-disabled': invalid === true && signApplication === false }"
-        :disabled="invalid && !signApplication"
+        :class="{ 'button-disabled': invalid || !signApplication }"
+        :disabled="invalid || !signApplication"
         @click="checkSign"
       >
         Создать заявку
