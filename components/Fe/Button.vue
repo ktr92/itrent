@@ -1,5 +1,6 @@
 <template>
   <button
+    :disabled="isDisabled"
     :class="[
       sizes[size],
       styles[appearance][isActive ? 'active' : 'default'],

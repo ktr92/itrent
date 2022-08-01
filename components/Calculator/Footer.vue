@@ -11,11 +11,12 @@
       <div v-if="!show" class="hidden md:block col-span-12 m-auto w-full md:col-span-4 md:pl-9 md:pr-3.5 flex items-center">
         <nuxt-link
           to="/create"
-          class="w-full"
+          class="w-full createbutton"
+          :class="{'disabled': selectedProductsCount < 1}"
         >
           <FeButton
             size="sm"
-            :is-disabled="!selectedProductsCount"
+            :is-disabled="selectedProductsCount < 1"
             class="w-full"
           >
             Отправить заявку
@@ -39,11 +40,12 @@
         <div v-else class="md:block col-span-12 m-auto w-full md:col-span-4 md:pl-9 md:pr-3.5 flex items-center">
           <nuxt-link
             to="/create"
-            class="w-full"
+            class="w-full createbutton"
+            :class="{'disabled': selectedProductsCount < 1}"
           >
             <FeButton
               size="sm"
-              :is-disabled="!selectedProductsCount"
+              :is-disabled="!selectedProductsCount < 1"
               class="w-full"
             >
               Отправить заявку <span v-if="selectedProductsCount" class="md:hidden">({{ selectedProductsCount }})</span>
@@ -147,3 +149,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.disabled {
+  pointer-events: none;
+  cursor:not-allowed;
+}
+</style>

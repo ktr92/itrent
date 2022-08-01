@@ -4,8 +4,8 @@
     style="grid-template-columns: 2fr 1fr; align-items: start"
   >
     <div
-      ref="calculatorFormWrapper"
-      class="pb-12 md:pb-0 md:grid md:grid-cols-6 calculator-form-wrapper md-sticky"
+      ref="applicationFormWrapper"
+      class="pb-12 md:pb-0 md:grid md:grid-cols-6 application-form-wrapper md-sticky"
     >
       <div class="col-span-7 px-3.5 md:pr-0 md:pl-0">
         <UiTitle title="Формирование заявки" />

@@ -25,6 +25,7 @@
           <div v-if="getResultItems.length">
             <div
               v-for="(product, index) in getResultItems"
+              :id="`productlist-${index}`"
               :key="`${product.token}_${index}`"
               class="pb-2 mb-2 last:mb-0 last:pb-0 last:border-b-0"
             >

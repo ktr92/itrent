@@ -75,6 +75,7 @@
         </ValidationProvider>
       </div>
       <button
+        id="createapplication"
         class="button button-sm w-full md:w-1/2"
         :class="{ 'button-disabled': invalid === true && signApplication === false }"
         :disabled="invalid && !signApplication"
