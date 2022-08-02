@@ -1,10 +1,30 @@
-
+const base64 = require('base-64')
 export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
   },
-  sendData ({ commit, rootState, dispatch }, payload) {
-    commit('changeStep', 2)
+  async sendData ({ commit, rootState, dispatch }, payload) {
+    try {
+      await fetch('https://rentallease.bpium.ru/api/v1/catalogs/19.records', {
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        method: 'POST',
+        headers:
+        new Headers({
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + base64.encode('api-rental-bpium@ipotech.su' + ':' + 'HappyAPI2022')
+        }),
+        body: JSON.stringify({
+          ...payload.values
+        })
+      })
+        .then((res, req) => { console.log(res) })
+        .then(json => console.log(json))
+    } catch (err) {
+      dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
+    }
+
+    // commit('changeStep', 2)
 
     /* await this.$axios.post(`${process.env.BPIUM_URL}/records`, {
       ...payload.values
@@ -18,7 +38,7 @@ export default {
       async function postData (url = '', data = {}) {
         const response = await fetch(url, {
           method: 'POST',
-          mode: 'cors',
+          mode: 'no-cors',
           cache: 'no-cache',
           credentials: 'same-origin',
           headers: {
@@ -39,11 +59,11 @@ export default {
         .then((data) => {
           console.log(data)
         })
-    } catch (error) {
-
+    } catch (err) {
+      dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
     } */
 
-  /*   try {
+    /* try {
       const testURL = 'https://rentallease.bpium.ru/auth/login'
       const myInit = {
         method: 'POST',
