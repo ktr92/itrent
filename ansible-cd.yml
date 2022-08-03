@@ -31,6 +31,7 @@
           OPTIONS_JSON: "{{ options_json }}"
           AUTH_TOKEN: "{{ auth_token }}"
           HOME_PAGE: "{{ home_page }}"
+          BPIUM_URL: "{{ bpium_url }}"
         memory: 2024M
         memory_swappiness: 1
         log_driver: json-file
