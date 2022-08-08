@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="px-3.5 md:px-0">
+      <div class="px-3.5 md:px-2">
         <LazyFeAlert
           v-if="message"
           class="mt-2 alert"
@@ -31,7 +31,7 @@
             >
               <ResultCard
                 :id="'proposal-item-'.concat(product.token)"
-                :logo="product.logo ? product.logo : ''"
+                :logo="product.logo ? product.logo.url : ''"
                 :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
                 :rate="product.rate ? product.rate: []"
                 :selected="isSealed(product)"

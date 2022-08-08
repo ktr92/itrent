@@ -8,7 +8,7 @@
             name="check-circle"
             class="w-6 h-6 fill-current text-elm"
           />
-          <span v-else class="object-contain">
+          <span v-else class="object-contain flex align-center justify-center">
             <img
               :src="logo"
               alt=""
