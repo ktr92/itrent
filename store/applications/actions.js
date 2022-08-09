@@ -1,10 +1,11 @@
+const base64 = require('base-64')
 export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
   },
-  sendData ({ commit, rootState, dispatch }, payload) {
+  async sendData ({ commit, rootState, dispatch }, payload) {
     /* try {
-      await fetch('https://rentallease.bpium.ru/api/v1/catalogs/19.records', {
+      await fetch('/api/v1/catalogs/19/records', {
         cache: 'no-cache',
         credentials: 'same-origin',
         method: 'POST',
@@ -23,15 +24,17 @@ export default {
       dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
     } */
 
-    commit('changeStep', 2)
-
-    /* await this.$axios.post(`${process.env.BPIUM_URL}/records`, {
-      ...payload.values
-    },
+    // commit('changeStep', 2)
+    const path = 'records'
+    await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
+      ...payload
+    }),
     {
-      method: 'HEAD',
-      mode: 'no-cors'
-    }) */
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Basic ' + base64.encode('api-rental-bpium@ipotech.su' + ':' + 'HappyAPI2022')
+      }
+    })
 
     /*  try {
       async function postData (url = '', data = {}) {

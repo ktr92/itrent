@@ -55,8 +55,14 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+    '@nuxtjs/proxy'
   ],
+
+  proxy: {
+    '/api/v1/catalogs/19': { target: process.env.BPIUM_URL, pathRewrite: { '^/api/v1/catalogs/19': '' } }
+  },
+
   sentry: {
     dsn: '',
     config: {
@@ -77,7 +83,9 @@ export default {
     baseURL: process.env.NODE_ENV ? process.env.BASEURL : 'http://localhost:3000',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    proxy: true,
+    proxyHeaders: false
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

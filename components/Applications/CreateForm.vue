@@ -132,15 +132,13 @@ export default {
           3: [{
             contact: this.formData.phone
           }],
-          4: [{
-            contact: this.formData.name
-          }],
-          6: {
-            ...this.getForm, ...this.getFormDynamic
-          },
-          7: {
-            ...this.getSelectedProducts
-          }
+          4: this.formData.name,
+          6: JSON.stringify({
+            location: this.getForm.location.name, ...this.getFormDynamic
+          }),
+          7: JSON.stringify([
+            this.getSelectedProducts.map((item) => { return { token: item.token, name: item.bank.title, title: item.title } })
+          ])
         }
       })
     }
