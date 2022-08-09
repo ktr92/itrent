@@ -21,8 +21,8 @@ export default {
         .then(json => console.log(json))
     } catch (err) {
       dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
-    }
- */
+    } */
+
     commit('changeStep', 2)
 
     /* await this.$axios.post(`${process.env.BPIUM_URL}/records`, {

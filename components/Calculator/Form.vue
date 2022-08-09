@@ -161,7 +161,7 @@ export default {
   },
   computed: {
     ...mapState('result', ['productsIsReady']),
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'message']),
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'getFormDynamic', 'message']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
       return orderBy(this.defaultOptions, 'sort')
@@ -208,7 +208,11 @@ export default {
     }
   },
   async mounted () {
-    await this.init()
+    if (Object.keys(this.getFormDynamic).length === 0) {
+      await this.init()
+    } else {
+      this.load()
+    }
     if (!this.productsIsReady) { this.submit() }
 
     this.$nuxt.$on('fieldChanged', () => {
@@ -242,6 +246,16 @@ export default {
       // this.$store.commit('calculator/mergeDynamicOptions')
       // инициализация начальных данных формы динамических свойств
       this.$store.commit('calculator/setDynamicForm')
+      // получаем параметры для динамических свойств
+      this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
+      this.dynamicOptions.length > 0 ? this.optionsReady = true : this.optionsReady = false
+    },
+    load () {
+      this.defaultOptions = []
+      this.dynamicOptions = []
+      // получаем параметры для свойств по умолчанию
+      this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
+
       // получаем параметры для динамических свойств
       this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
       this.dynamicOptions.length > 0 ? this.optionsReady = true : this.optionsReady = false

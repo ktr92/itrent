@@ -4,7 +4,7 @@
       <div class="col-span-8 pr-9 border-r flex items-center justify-end hidden md:block">
         <div>
           <p class="text-right text-2sm text-black text-opacity-45">
-            Вы выбрали {{ selectedProductsCount }} арендатора, отправьте заявку, после арендатор увидит ваше предложение и возможно свяжется
+            Вы выбрали {{ getSelectedProducts.length }} арендатора, отправьте заявку, после арендатор увидит ваше предложение и возможно свяжется
           </p>
         </div>
       </div>
@@ -12,11 +12,11 @@
         <nuxt-link
           to="/create"
           class="w-full createbutton"
-          :class="{'disabled': selectedProductsCount < 1}"
+          :class="{'disabled': getSelectedProducts.length < 1}"
         >
           <FeButton
             size="sm"
-            :is-disabled="selectedProductsCount < 1"
+            :is-disabled="getSelectedProducts.length < 1"
             class="w-full"
           >
             Отправить заявку
@@ -41,14 +41,14 @@
           <nuxt-link
             to="/create"
             class="w-full createbutton"
-            :class="{'disabled': selectedProductsCount < 1}"
+            :class="{'disabled': getSelectedProducts.length < 1}"
           >
             <FeButton
               size="sm"
-              :is-disabled="!selectedProductsCount < 1"
+              :is-disabled="!getSelectedProducts.length < 1"
               class="w-full"
             >
-              Отправить заявку <span v-if="selectedProductsCount" class="md:hidden">({{ selectedProductsCount }})</span>
+              Отправить заявку <span v-if="getSelectedProducts.length" class="md:hidden">({{ getSelectedProducts.length }})</span>
             </FeButton>
           </nuxt-link>
         </div>
@@ -92,9 +92,6 @@ export default {
   },
   computed: {
     ...mapGetters('result', ['getSelectedProducts', 'getResult']),
-    selectedProductsCount () {
-      return this.getSelectedProducts.length
-    },
     resultCount () {
       return this.getResult.products_count
     },
