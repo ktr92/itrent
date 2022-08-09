@@ -31,7 +31,7 @@
             >
               <ResultCard
                 :id="'proposal-item-'.concat(product.token)"
-                :logo="product.logo ? product.logo.url : ''"
+                :logo="product.bank.logo ? product.bank.logo.url : ''"
                 :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
                 :rate="product.rate ? product.rate: []"
                 :selected="isSealed(product)"
