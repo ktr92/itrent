@@ -1,4 +1,4 @@
-import Response from '../fixtures/response.json'
+// import Response from '../fixtures/response.json'
 
 describe('Calculator test', () => {
   beforeEach(() => {
