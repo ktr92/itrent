@@ -13,6 +13,7 @@ export default {
 
   async getProducts ({ commit, dispatch, rootGetters }) {
     commit('setReady', false)
+    commit('clearSelected')
     // получаем список Арендаторов
     // const formDefault = rootGetters['calculator/getForm']
     const formDynamic = rootGetters['calculator/getFormDynamic']
