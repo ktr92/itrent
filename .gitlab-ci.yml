@@ -49,6 +49,7 @@ variables:
         --build-arg OPTIONS_JSON=${OPTIONS_JSON}
         --build-arg AUTH_TOKEN=${AUTH_TOKEN}
         --build-arg HOME_PAGE=${HOME_PAGE}
+        --build-arg BPIUM_URL=${BPIUM_URL}
         "."
     - docker push "$CI_REGISTRY_IMAGE:build-cache"
     - disl "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" 1100M
@@ -74,7 +75,8 @@ variables:
         -e api_url=$API_URL
         -e options_json=$OPTIONS_JSON
         -e auth_token=$AUTH_TOKEN
-        -e home_page=$HOME_PAGE 
+        -e home_page=$HOME_PAGE
+        -e bpium_url=$BPIUM_URL
 .node-alpine:
   image: node:14.19.1-alpine3.15
   variables:
