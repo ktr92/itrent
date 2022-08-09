@@ -1,10 +1,9 @@
-const base64 = require('base-64')
 export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
   },
-  async sendData ({ commit, rootState, dispatch }, payload) {
-    try {
+  sendData ({ commit, rootState, dispatch }, payload) {
+    /* try {
       await fetch('https://rentallease.bpium.ru/api/v1/catalogs/19.records', {
         cache: 'no-cache',
         credentials: 'same-origin',
@@ -23,8 +22,8 @@ export default {
     } catch (err) {
       dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
     }
-
-    // commit('changeStep', 2)
+ */
+    commit('changeStep', 2)
 
     /* await this.$axios.post(`${process.env.BPIUM_URL}/records`, {
       ...payload.values
