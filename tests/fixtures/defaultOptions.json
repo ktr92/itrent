@@ -1,0 +1,19 @@
+{
+  "defaultOptions":{
+     "alias":"locations",
+     "name":"Регион недвижимости",
+     "rules":"required",
+     "default":false,
+     "limit":5,
+     "sort":0,
+     "type":"FeSelect"
+  },
+  "locationOptions":[
+     {
+        "title":"Казань",
+        "alias":"KAZAN",
+        "region_title":"Республика Татарстан",
+        "rating":3
+     }
+  ]
+}
