@@ -21,14 +21,12 @@ test('Default options must be merged with their values', () => {
 })
 
 test('Dynamic properties must be merged with other ones', () => {
-  // этот список получаем из продуктов API
-  const options = ['level', 'heating_system', 'mdu_part', 'quantity_of_parking']
-  // этот список задаем в параметрах
+  const options = ['level', 'none', 'mdu_part', 'quantity_of_parking']
   const state = {
     dynamicMerged: [],
     dynamicOptions: [],
     dynamicOptionsParams: [
-      ...dynamicOptions.options
+      ...dynamicOptions.dynamicOptionsParams
     ]
 
   }
@@ -38,7 +36,7 @@ test('Dynamic properties must be merged with other ones', () => {
   expect(calcGetters.getDynamicOptions(state)).toHaveLength(3)
 })
 
-test('инициализация селектбоксов', () => {
+test('Dynamic selects must be filled by respective values', () => {
   const options = ['level']
   const fields = Fields
   const obj = fields.filter(item => item.alias === options[0])
@@ -46,13 +44,7 @@ test('инициализация селектбоксов', () => {
   const state = {
     dynamicMerged: [
       {
-        alias: 'level',
-        name: 'Этаж',
-        type: 'FeSelect',
-        sort: 12,
-        smallSize: true,
-        limit: 3,
-        initial: '4'
+        ...dynamicOptions.dynamicOptionsParams.filter(item => item.alias === options[0])[0]
       }
     ]
   }
