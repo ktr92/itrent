@@ -6,12 +6,15 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 test('Show message in case of error', () => {
+  // Arrange
   const state = {
-    message: {
-      title: 'Ошибка:',
-      description: 'Что-то пошло не так...',
-      type: 'error'
-    }
+    message: null
+  }
+  // Act
+  state.message = {
+    title: 'Ошибка:',
+    description: 'Что-то пошло не так...',
+    type: 'error'
   }
   const propsData = {
     type: state.message.type,
@@ -23,7 +26,7 @@ test('Show message in case of error', () => {
     propsData,
     stubs: ['SvgIcon']
   })
-
+  // Assert
   expect(wrapper.text().includes('Ошибка:')).toBe(true)
   expect(wrapper.text().includes('Что-то пошло не так...')).toBe(true)
 })
