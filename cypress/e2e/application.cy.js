@@ -1,4 +1,4 @@
-import Response from '../fixtures/response.json'
+// import Response from '../fixtures/response.json'
 
 describe('Calculator test', () => {
   beforeEach(() => {
@@ -60,13 +60,13 @@ describe('Calculator test', () => {
     cy.get('button#createapplication').should('not.be.disabled')
   }) */
 
-  it('Open 2 step after form success', () => {
+  /* it('Open 2 step after form success', () => {
     cy.visit('/calculator')
     const testProp = 'quantity_of_parking'
     cy.get(`#${testProp}`).find('input.input').clear().type('50')
     cy.intercept({
       method: 'GET',
-      url: '**/api/v2/results/products/*'
+      url: '/api/v2/results/products/*'
     }, Response).as('getProducts')
     cy.wait('@getProducts')
     cy.get('#productlist-0 > div').click()
@@ -78,5 +78,5 @@ describe('Calculator test', () => {
     cy.get('#sign-application').click()
     cy.get('button#createapplication').click()
     cy.contains('Шаг 2 / 2')
-  })
+  }) */
 })

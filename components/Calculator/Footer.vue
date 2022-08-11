@@ -1,9 +1,9 @@
 <template>
   <div class="border-t shadow-1xs md:shadow-none bg-white w-full md:py-4 z-50">
     <div v-if="resultCount" class="container grid grid-cols-12 p-2 md:pt-0">
-      <div class="col-span-8 pr-9 border-r flex items-center justify-end hidden md:block">
+      <div class="col-span-8 pr-8 border-r flex items-center justify-end hidden md:block">
         <div>
-          <p class="text-right text-2sm text-black text-opacity-45">
+          <p class="text-2sm text-black text-opacity-45">
             Вы выбрали {{ getSelectedProducts.length }} арендатора, отправьте заявку, после арендатор увидит ваше предложение и возможно свяжется
           </p>
         </div>
@@ -32,7 +32,7 @@
           <FeButton
             size="sm"
             :is-disabled="!resultCount"
-            class="w-full"
+            class="w-full font-normal"
           >
             Показать <span v-if="resultCount">({{ resultCount }} запросов)</span>
           </FeButton>
@@ -46,7 +46,7 @@
             <FeButton
               size="sm"
               :is-disabled="!getSelectedProducts.length < 1"
-              class="w-full"
+              class="w-full font-normal"
             >
               Отправить заявку <span v-if="getSelectedProducts.length" class="md:hidden">({{ getSelectedProducts.length }})</span>
             </FeButton>
