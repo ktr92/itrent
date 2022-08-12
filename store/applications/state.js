@@ -4,5 +4,6 @@ export default () => ({
     application: []
   },
   step: 1,
-  message: null
+  message: null,
+  connectsid: null
 })

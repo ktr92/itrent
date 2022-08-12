@@ -11,5 +11,8 @@ export default {
   },
   clearMessage (state) {
     state.message = null
+  },
+  setCookie (state, payload) {
+    state.connectsid = payload
   }
 }

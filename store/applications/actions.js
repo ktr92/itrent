@@ -4,7 +4,6 @@ export default {
     commit('setMessage', message)
   },
   async sendData ({ commit, rootState, dispatch }, payload) {
-    // commit('changeStep', 2)
     try {
       const path = 'records'
       await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
@@ -13,7 +12,11 @@ export default {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Basic ' + base64.encode('api-rental-bpium@ipotech.su' + ':' + 'HappyAPI2022')
+          Authorization: 'Basic ' + base64.encode(`${process.env.BPIUM_LOGIN}` + ':' + `${process.env.BPIUM_PASS}`)
+        }
+      }).then((response) => {
+        if (response) {
+          commit('changeStep', 2)
         }
       })
     } catch (e) {

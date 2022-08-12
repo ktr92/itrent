@@ -4,7 +4,7 @@ describe('Calculator test', () => {
   beforeEach(() => {
   })
 
-  /* it('Should open calculator page', () => {
+  it('Should open calculator page', () => {
     cy.visit('/')
     cy.get('a[href*="/calculator"]')
       .should('be.visible')
@@ -115,7 +115,7 @@ describe('Calculator test', () => {
           cy.get(`#${item.alias}`).find('input.input').clear().type(min)
           cy.intercept({
             method: 'GET',
-            url: '/api/v2/results/products/*'
+            url: '**/api/v2/results/products/*'
           }, {}).as(
             'getProducts'
           )
@@ -132,21 +132,21 @@ describe('Calculator test', () => {
           cy.get(`#${item.alias}`).find('input.input').clear().type(max)
           cy.intercept({
             method: 'GET',
-            url: '/api/v2/results/products/*'
+            url: '**/api/v2/results/products/*'
           }, {}).as(
             'getProducts3'
           )
           cy.wait('@getProducts3')
           cy.intercept({
             method: 'GET',
-            url: '/api/v2/results/products/*'
+            url: '**/api/v2/results/products/*'
           }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
 
           cy.get(`#${item.alias}`).find('input.input').clear().type(min).blur()
           cy.intercept({
             method: 'GET',
-            url: '/api/v2/results/products/*'
+            url: '**/api/v2/results/products/*'
           }, {}).as(
             'getProducts4'
           )
@@ -155,7 +155,7 @@ describe('Calculator test', () => {
           cy.get(`#${item.alias}`).find('input.input').clear().type(max).blur()
           cy.intercept({
             method: 'GET',
-            url: '/api/v2/results/products/*'
+            url: '**/api/v2/results/products/*'
           }, {})
           cy.get(`#${item.alias}`).find('input.input').should('have.value', formatValue(item.max))
         }
@@ -196,7 +196,7 @@ describe('Calculator test', () => {
 
     cy.intercept({
       method: 'GET',
-      url: '/api/v2/results/products/*'
+      url: '**/api/v2/results/products/*'
     }, {}).as('updateRequest')
 
     cy.wait('@updateRequest').its('request.url').should('include', 'filters[properties][quantity_of_parking]=50')
@@ -207,7 +207,7 @@ describe('Calculator test', () => {
     const testProp = 'quantity_of_parking'
     cy.get(`#${testProp}`).find('input.input').clear().type('50')
 
-    cy.intercept('GET', '/api/v2/results/products/*', (req) => {
+    cy.intercept('GET', '**/api/v2/results/products/*', (req) => {
       req.headers.authorization = 'bearer my-bearer-auth-token'
     }).as('updateRequest')
     cy.get('#proposal-list').find('.alert').then(($alert) => {
@@ -219,7 +219,7 @@ describe('Calculator test', () => {
     cy.visit('/calculator')
     cy.intercept({
       method: 'GET',
-      url: '/api/v2/results/products/*'
+      url: '**/api/v2/results/products/*'
     }).as('loading')
     cy.get('#proposal-list').find('.animate-pulse').should('be.visible')
     cy.wait('@loading').then(() => {
@@ -233,7 +233,7 @@ describe('Calculator test', () => {
 
     cy.intercept({
       method: 'GET',
-      url: /api/v2/results/products/*'
+      url: '**/api/v2/results/products/*'
     }).as('loading')
     cy.get('#proposal-list').find('.animate-pulse').should('be.visible')
     cy.wait('@loading').then(() => {
@@ -244,7 +244,7 @@ describe('Calculator test', () => {
     cy.visit('/calculator')
     cy.intercept({
       method: 'GET',
-      url: '/api/v2/results/products/*'
+      url: '**/api/v2/results/products/*'
     }).as('loading')
     cy.get('.calculator-form-wrapper').find('.animate-pulse').should('be.visible')
     cy.wait('@loading').then(() => {
@@ -257,8 +257,8 @@ describe('Calculator test', () => {
     cy.viewport(375, 550)
     cy.intercept({
       method: 'GET',
-      url: '/api/v2/results/products/*'
+      url: '**/api/v2/results/products/*'
     }, Response).as('getProducts')
     cy.wait('@getProducts')
-  }) */
+  })
 })

@@ -23,7 +23,9 @@ export default {
     '~/plugins/axios',
     { src: '~/plugins/cypress', ssr: false },
     { src: '~/plugins/directive.click-outside.js', ssr: false },
-    { src: '~/plugins/vee-validate', ssr: false }
+    { src: '~/plugins/vee-validate', ssr: false },
+    { src: '@/plugins/ssr-cookie-proxy.js', mode: 'server' }
+
   ],
 
   svgSprite: {
@@ -74,6 +76,8 @@ export default {
   env: {
     API_URL: process.env.API_URL,
     BPIUM_URL: process.env.BPIUM_URL,
+    BPIUM_LOGIN: process.env.BPIUM_LOGIN,
+    BPIUM_PASS: process.env.BPIUM_PASS,
     AUTH_TOKEN: process.env.AUTH_TOKEN,
     OPTIONS_JSON: process.env.OPTIONS_JSON
   },
@@ -85,7 +89,8 @@ export default {
       'Content-Type': 'application/json'
     },
     proxy: true,
-    proxyHeaders: false
+    proxyHeaders: false,
+    withCredentials: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

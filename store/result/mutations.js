@@ -15,6 +15,7 @@ export default {
   clearSelected (state) {
     state.selectedProducts.length = 0
   },
+
   selectProduct (state, payload) {
     const selected = state.selectedProducts
     if (selected.includes(payload)) {

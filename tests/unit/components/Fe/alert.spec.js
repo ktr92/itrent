@@ -10,7 +10,6 @@ test('Show message in case of error', () => {
   const state = {
     message: null
   }
-  // Act
   state.message = {
     title: 'Ошибка:',
     description: 'Что-то пошло не так...',
