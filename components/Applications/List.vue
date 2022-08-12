@@ -1,7 +1,7 @@
 <template>
   <div class="pt-2 mb-16">
     <ApplicationsCard
-      v-for="application in applications.data"
+      v-for="application in getApplications.data"
       :id="application.id"
       :key="application.id"
       :created-at="application.createdAt"
@@ -18,9 +18,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
-
+  computed: {
+    ...mapGetters('applications', ['getApplications', 'statusMap'])
+  }
 }
 </script>
 

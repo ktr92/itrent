@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/enrollment/${id}`" class="block cursor-pointer py-4">
+  <nuxt-link :to="`/landlord/${id}`" class="block cursor-pointer py-4">
     <div class="leading-snug text-2sm text-black text-opacity-45 mb-2">
       № {{ id }} • от {{ creationDate }}
     </div>
@@ -9,7 +9,6 @@
         class="absolute top-1/2 -left-5 transform -translate-y-1/2"
         @click.prevent="isCollapsed = !isCollapsed"
       >
-        <!--<div class="w-2 h-2 rounded-full bg-tahiti-gold"></div>-->
         <svg-icon
           name="chevron-down"
           class="cursor-pointer w-3 h-3 fill-current text-black text-opacity-45"
@@ -17,12 +16,7 @@
         />
       </div>
       <h3 class="font-semibold leading-7 text-xl text-black opacity-85 mr-4">
-        {{
-          formatFullName(`${enrollmentBorrowers[0].privateInfo.lastName || ''}
-            ${enrollmentBorrowers[0].privateInfo.firstName || ''}
-            ${enrollmentBorrowers[0].privateInfo.middleName || ''}
-          `)
-        }}
+        {{ enrollmentBorrowers[0].privateInfo.name }}
       </h3>
       <div class="flex items-center flex-wrap gap-2">
         <Tag type="success" :text="applicationStatus" />
@@ -191,11 +185,7 @@ export default {
       return `${signatureCount} / ${borrowersCount}`
     },
     requestParameters () {
-      const enrollmentBorrower = this.enrollmentBorrowers[0]
-
-      return enrollmentBorrower.requests.map((request) => {
-        const internalRequest = new Request(request, enrollmentBorrower)
-
+      return this.enrollmentBorrowers[0].requests.map((request) => {
         return {
           id: request.id,
           bankName: request.proposal
@@ -204,8 +194,8 @@ export default {
           status: request.status,
           statusText: request.statusMap[request.status],
           proposalName: request.proposal?.name || null,
-          rate: internalRequest.rate,
-          payment: internalRequest.payment
+          rate: request.rate,
+          payment: request.payment
         }
       })
     }
@@ -214,7 +204,7 @@ export default {
     handleClickRequest (e, { enrollmentId, requestId }) {
       e.preventDefault()
       this.$router.push(
-        `/enrollment/${enrollmentId}?index=2&requestId=${requestId}`
+        `/landlord/${enrollmentId}?index=2&requestId=${requestId}`
       )
     }
   }
