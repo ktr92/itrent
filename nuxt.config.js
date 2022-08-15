@@ -56,7 +56,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
     '@nuxtjs/sentry',
     '@nuxtjs/proxy'
   ],
@@ -85,17 +84,19 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.NODE_ENV ? process.env.BASEURL : 'http://localhost:3000',
-    headers: {
-      'Content-Type': 'application/json'
-    },
     proxy: true,
-    proxyHeaders: false,
-    withCredentials: true
+    proxyHeaders: true,
+    withCredentials: true,
+    credentials: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vee-validate/dist/rules']
+  },
+
+  router: {
+    middleware: ['ssr-cookie']
   }
 
 }

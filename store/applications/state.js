@@ -5,5 +5,5 @@ export default () => ({
   },
   step: 1,
   message: null,
-  connectsid: null
+  connectsid: false
 })
