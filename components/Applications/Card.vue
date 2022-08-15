@@ -1,39 +1,32 @@
 <template>
-  <nuxt-link :to="`/landlord/${id}`" class="block cursor-pointer py-4">
+  <nuxt-link :to="`/enrollment/${id}`" class="block cursor-pointer py-4">
     <div class="leading-snug text-2sm text-black text-opacity-45 mb-2">
-      № {{ id }} • от {{ creationDate }}
+      № {{ id }} • {{ creationDate }}
     </div>
-    <div class="relative flex items-center mb-2">
-      <div
-        v-if="requestParameters.length"
-        class="absolute top-1/2 -left-5 transform -translate-y-1/2"
-        @click.prevent="isCollapsed = !isCollapsed"
-      >
-        <svg-icon
-          name="chevron-down"
-          class="cursor-pointer w-3 h-3 fill-current text-black text-opacity-45"
-          :class="{ 'transform -rotate-90': isCollapsed }"
-        />
+    <div class="relative flex items-center mb-2 justify-between">
+      <div>
+        <div
+          v-if="requestParameters.length"
+          class="absolute top-1/2 -left-5 transform -translate-y-1/2"
+          @click.prevent="isCollapsed = !isCollapsed"
+        >
+          <svg-icon
+            name="chevron-down"
+            class="cursor-pointer w-3 h-3 fill-current text-black text-opacity-45"
+            :class="{ 'transform -rotate-90': isCollapsed }"
+          />
+        </div>
+        <h3 class="font-semibold leading-7 text-xl text-black opacity-85 mr-4">
+          {{ address }} • <span class="whitespace-nowrap">{{ s }} кв.м</span>
+        </h3>
       </div>
-      <h3 class="font-semibold leading-7 text-xl text-black opacity-85 mr-4">
-        {{ enrollmentBorrowers[0].privateInfo.name }}
-      </h3>
       <div class="flex items-center flex-wrap gap-2">
-        <Tag type="success" :text="applicationStatus" />
-        <Tag type="success-outline" :text="`Авториз. ${authorizedCounter}`" />
-        <Tag type="success-outline" :text="`Подпись ${signatureCounter}`" />
+        <Tag type="success-outline" :text="applicationStatus" />
       </div>
     </div>
     <div class="leading-snug text-2sm text-black text-opacity-45 mb-1">
-      Сумма кредита: {{ propertyValue }} Р • {{ term }} лет • Перв. взнос -
-      {{ paymentDown }} Р (<span
-        id="creditPercent"
-        :data-payment="paymentDown"
-        :data-object="objectPrice"
-      >
-        {{ (paymentDown / (objectPrice / 100)).toFixed(2) }}
-      </span>
-      %)
+      Цена за кв.м • От {{ objectPrice }} Р <br>
+      Цена за аренду • От {{ totalPrice }} Р
     </div>
     <ul v-if="!isCollapsed" class="pt-4">
       <li
@@ -120,11 +113,19 @@ export default {
       type: String,
       default: ''
     },
+    address: {
+      type: String,
+      default: ''
+    },
     propertyValue: {
       type: Number,
       default: null
     },
     objectPrice: {
+      type: Number,
+      default: null
+    },
+    s: {
       type: Number,
       default: null
     },
@@ -147,10 +148,13 @@ export default {
   },
   data () {
     return {
-      isCollapsed: true
+      isCollapsed: false
     }
   },
   computed: {
+    totalPrice () {
+      return this.objectPrice * this.s
+    },
     creationDate () {
       const dateCreatedAt = new Date(this.createdAt)
       return dateCreatedAt.toLocaleString('ru-RU', {
@@ -204,7 +208,7 @@ export default {
     handleClickRequest (e, { enrollmentId, requestId }) {
       e.preventDefault()
       this.$router.push(
-        `/landlord/${enrollmentId}?index=2&requestId=${requestId}`
+        `/enrollment/${enrollmentId}?index=2&requestId=${requestId}`
       )
     }
   }

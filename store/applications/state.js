@@ -7,12 +7,9 @@ export default () => ({
   message: null,
   connectsid: null,
   statusMap: {
-    0: 'Черновик',
-    1: 'Работа с анкетами',
-    2: 'Работа с банками',
-    3: 'Оформление кредитного договора',
-    4: 'Оформление сделки',
-    5: 'Закрыто'
+    0: 'На рассмотрении',
+    1: 'Отказ',
+    2: 'Завершен'
   },
   applications: {
     currentPage: 1,
@@ -21,53 +18,17 @@ export default () => ({
     data: [
       {
         statusMap: {
-          0: 'Черновик',
-          1: 'Работа с анкетами',
-          2: 'Работа с банками',
-          3: 'Оформление кредитного договора',
-          4: 'Оформление сделки'
-        },
-        id: 2,
-        createdAt: '2021-09-25T12:42:46+00:00',
-        updatedAt: '2021-09-25T12:42:46+00:00',
-        status: 0,
-        objectPrice: 15000000,
-        firstPayment: 4000000,
-        ownFunds: 0,
-        creditAmount: 15000000,
-        creditTerm: 120,
-        enrollmentBorrowers: [
-          {
-            typeMap: {
-              0: 'Основной заемщик',
-              1: 'Созаемщик'
-            },
-            id: 1,
-            borrower: {
-              isAuthorized: false
-            },
-            type: 0,
-            privateInfo: {
-              name: 'Bruce'
-            },
-            files: [],
-            requests: []
-          }
-        ]
-      },
-      {
-        statusMap: {
-          0: 'Черновик',
-          1: 'Работа с анкетами',
-          2: 'Работа с банками',
-          3: 'Оформление кредитного договора',
-          4: 'Оформление сделки'
+          0: 'На рассмотрении',
+          1: 'Отказ',
+          2: 'Завершен'
         },
         id: 1,
         createdAt: '2021-09-25T12:42:46+00:00',
         updatedAt: '2021-09-25T12:42:46+00:00',
-        status: 0,
-        objectPrice: 15000000,
+        status: 1,
+        objectPrice: 3000,
+        s: 45,
+        address: 'Казань, ЖК Дальние Дали, Австровского 80, корпус 3 кв. 45',
         firstPayment: 4000000,
         ownFunds: 0,
         creditAmount: 15000000,
@@ -121,6 +82,42 @@ export default () => ({
                 secondaryBorrowers: []
               }
             ]
+          }
+        ]
+      },
+      {
+        statusMap: {
+          0: 'На рассмотрении',
+          1: 'Отказ',
+          2: 'Завершен'
+        },
+        id: 2,
+        createdAt: '2022-07-25T12:42:46+00:00',
+        updatedAt: '2022-07-25T12:42:46+00:00',
+        status: 0,
+        objectPrice: 5000,
+        s: 45,
+        address: 'Казань, ЖК Дальние Дали, корпус 3 кв. 220',
+        firstPayment: 4000000,
+        ownFunds: 0,
+        creditAmount: 15000000,
+        creditTerm: 120,
+        enrollmentBorrowers: [
+          {
+            typeMap: {
+              0: 'Основной заемщик',
+              1: 'Созаемщик'
+            },
+            id: 1,
+            borrower: {
+              isAuthorized: false
+            },
+            type: 0,
+            privateInfo: {
+              name: 'Bruce'
+            },
+            files: [],
+            requests: []
           }
         ]
       }

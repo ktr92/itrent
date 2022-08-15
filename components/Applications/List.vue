@@ -12,6 +12,8 @@
       :object-price="application.objectPrice"
       :payment-down="application.firstPayment"
       :term="application.creditTerm / 12"
+      :s="application.s"
+      :address="application.address"
       class="border-b"
     />
   </div>

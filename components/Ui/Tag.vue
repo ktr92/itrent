@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border rounded py-px px-2 leading-5 text-sm"
+    class="border rounded py-px px-2 leading-5 text-sm whitespace-nowrap"
     :class="{
       'bg-elm border-elm text-white': type === 'success',
       'border-elm text-elm': type === 'success-outline',
