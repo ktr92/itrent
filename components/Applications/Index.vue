@@ -11,12 +11,7 @@
         'align-self': 'start',
       }"
     >
-      <div class="col-span-12 px-3.5 md:pl-0">
-        <div class="leading-normal text-2sm text-black text-opacity-45 my-2">
-          Здесь будут отображены ваши заявки после их модерации.
-        </div>
-        <ApplicationsList />
-      </div>
+      <ApplicationsList />
     </div>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
-  <nuxt-link :to="`/enrollment/${id}`" class="block cursor-pointer py-4">
+  <nuxt-link :to="`/enrollment/${id}`" class="block cursor-pointer py-4 px-4 md:px-0">
     <div class="leading-snug text-2sm text-black text-opacity-45 mb-2">
       № {{ id }} • {{ creationDate }}
     </div>
-    <div class="relative flex items-center mb-2 justify-between">
+    <div class="relative flex items-start md:items-center mb-2 md:justify-between">
       <div>
         <div
           v-if="requestParameters.length"
@@ -16,12 +16,15 @@
             :class="{ 'transform -rotate-90': isCollapsed }"
           />
         </div>
-        <h3 class="font-semibold leading-7 text-xl text-black opacity-85 mr-4">
+        <h3 class="font-semibold leading-7  text-md md:text-xl text-black opacity-85 mr-4">
           {{ address }} • <span class="whitespace-nowrap">{{ s }} кв.м</span>
         </h3>
       </div>
-      <div class="flex items-center flex-wrap gap-2">
-        <Tag type="success-outline" :text="applicationStatus" />
+      <div class="flex items-center flex-wrap gap-2 w-32 mt-2 md:mt-0 ">
+        <Tag
+          :type="statusType"
+          :text="applicationStatus"
+        />
       </div>
     </div>
     <div class="leading-snug text-2sm text-black text-opacity-45 mb-1">
@@ -59,6 +62,9 @@
           />
           <span class="hover:text-black">
             {{ parameters.bankName }} /
+            {{ parameters.proposalName }} /
+            {{ parameters.payment }} за кв.м /
+            Цена за аренду От {{ parameters.paymentTotal }} Р /
             <span
               class="font-semibold"
               :class="{
@@ -67,8 +73,6 @@
                 'text-sunset-orange': parameters.status === 3,
               }"
             >{{ parameters.statusText }}</span>
-            • {{ parameters.proposalName }} • Ставка - {{ parameters.rate }}% •
-            {{ parameters.payment | format }} Р/мес
           </span>
         </div>
       </li>
@@ -152,6 +156,18 @@ export default {
     }
   },
   computed: {
+    statusType () {
+      if (this.status === 0) {
+        return 'success-outline'
+      }
+      if (this.status === 1) {
+        return 'error-outline'
+      }
+      if (this.status === 2) {
+        return 'success'
+      }
+      return 'default-outline'
+    },
     totalPrice () {
       return this.objectPrice * this.s
     },
@@ -198,8 +214,8 @@ export default {
           status: request.status,
           statusText: request.statusMap[request.status],
           proposalName: request.proposal?.name || null,
-          rate: request.rate,
-          payment: request.payment
+          payment: request.proposal.payment,
+          paymentTotal: request.proposal.payment * this.s
         }
       })
     }
