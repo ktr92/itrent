@@ -4,23 +4,21 @@ export default {
     commit('setMessage', message)
   },
   async sendData ({ commit, rootState, dispatch }, payload) {
-    try {
-      const path = 'records'
-      await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
-        ...payload
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Basic ' + base64.encode(`${process.env.BPIUM_LOGIN}` + ':' + `${process.env.BPIUM_PASS}`)
-        }
-      }).then((response) => {
-        if (response) {
-          commit('changeStep', 2)
-        }
-      })
-    } catch (e) {
-      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
-    }
+    const path = 'records'
+    await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
+      ...payload
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Basic ' + base64.encode(`${process.env.BPIUM_LOGIN}` + ':' + `${process.env.BPIUM_PASS}`)
+      }
+    }).then((response) => {
+      if (response) {
+        commit('changeStep', 2)
+      }
+    }).catch((error) => {
+      dispatch('setMessage', { title: `${error.data.code || 'Ошибка'}:`, description: `${error.data.message || 'Что-то пошло не так...'}`, type: 'error' })
+    })
   }
 }
