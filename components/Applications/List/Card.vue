@@ -82,7 +82,7 @@
 
 <script>
 import Tag from '@/components/Ui/Tag'
-
+import { formatDate } from '@/utils/formatDate'
 export default {
   components: {
     Tag
@@ -172,12 +172,7 @@ export default {
       return this.objectPrice * this.s
     },
     creationDate () {
-      const dateCreatedAt = new Date(this.createdAt)
-      return dateCreatedAt.toLocaleString('ru-RU', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
-      })
+      return formatDate(this.createdAt)
     },
     applicationStatus () {
       return this.statusMap[this.status]
