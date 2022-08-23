@@ -14,7 +14,7 @@
                 mt-4
               "
             >
-              Доступные ипотечные программы ({{ availableProposalsLength }})
+              ({{ availableProposalsLength }})
             </h1>
             <ApplicationsDetailCard :enrollment="enrollment" />
           </div>

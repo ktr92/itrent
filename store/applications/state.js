@@ -66,7 +66,8 @@ export default () => ({
                   id: 2,
                   bank: {
                     id: 1,
-                    name: 'Магнит'
+                    name: 'Магнит',
+                    logo: ''
                   },
                   name: 'Иван Иванов',
                   payment: 5000
@@ -133,7 +134,8 @@ export default () => ({
                   id: 2,
                   bank: {
                     id: 1,
-                    name: 'Магнит'
+                    name: 'Магнит',
+                    logo: ''
                   },
                   name: 'Иван Иванов',
                   payment: 5000
@@ -233,7 +235,8 @@ export default () => ({
                   id: 2,
                   bank: {
                     id: 1,
-                    name: 'Пятёрочка'
+                    name: 'Пятёрочка',
+                    logo: ''
                   },
                   name: 'Иван Иванов',
                   payment: 4000
