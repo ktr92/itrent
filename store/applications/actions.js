@@ -1,4 +1,4 @@
-const base64 = require('base-64')
+// const base64 = require('base-64')
 export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
@@ -6,8 +6,8 @@ export default {
   updateCurrentApplication ({ commit }, payload) {
     commit('updateCurrentApplication', payload)
   },
-  async sendData ({ commit, rootState, dispatch }, payload) {
-    const path = 'records'
+  sendData ({ commit, rootState, dispatch }, payload) {
+  /*  const path = 'records'
     await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
       ...payload
     }),
@@ -17,11 +17,11 @@ export default {
         Authorization: 'Basic ' + base64.encode(`${process.env.BPIUM_LOGIN}` + ':' + `${process.env.BPIUM_PASS}`)
       }
     }).then((response) => {
-      if (response) {
-        commit('changeStep', 2)
-      }
+      if (response) { */
+    commit('changeStep', 2)
+    /*  }
     }).catch((error) => {
       dispatch('setMessage', { title: `${error.data.code || 'Ошибка'}:`, description: `${error.data.message || 'Что-то пошло не так...'}`, type: 'error' })
-    })
+    }) */
   }
 }
