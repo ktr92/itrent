@@ -1,7 +1,7 @@
 <template>
   <div class="col-span-12 px-3.5 md:pl-0">
     <div v-if="getApplications.data.length" class="pt-2 mb-16">
-      <ApplicationsListCard
+      <LazyApplicationsListCard
         v-for="application in getApplications.data"
         :id="application.id"
         :key="application.id"

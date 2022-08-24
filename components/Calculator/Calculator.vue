@@ -1,12 +1,13 @@
 <template>
   <div
-    class="container pt-2 md:pt-8 md:pb-52 md:grid "
+    class="container pt-2 md:pt-8 md:pb-12 md:grid "
     style="grid-template-columns: 18fr 12fr; align-items: start"
   >
     <div
       ref="calculatorFormWrapper"
       class="pb-12 md:pb-0 md:grid md:grid-cols-5 calculator-form-wrapper md-sticky"
       :style="{
+        position: 'sticky',
         top: `-${getStickyTop}px`,
         'align-self': 'start',
       }"
@@ -33,24 +34,44 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      showAside: false
+      windowHeight: 860,
+      showAside: false,
+      isMounted: false
     }
   },
   computed: {
+    ...mapGetters('calculator', ['getDynamicList']),
+    calcWrapperHeight () {
+      return this.$refs.calculatorFormWrapper.clientHeight + (this.getDynamicList.length - 6) * 130
+    },
     getStickyTop: {
       get () {
         return this.isMounted
-          ? this.calcWrapperHeight - this.windowHeight + 100
+          ? this.calcWrapperHeight - this.windowHeight
           : 0
       }
     }
   },
+  mounted () {
+    this.isMounted = true
+    this.windowHeight = window.innerHeight
+    console.log(this.$refs.calculatorFormWrapper.clientHeight)
+    this.calcWrapperHeight = this.$refs.calculatorFormWrapper.clientHeight
+    window.addEventListener('resize', this.handleWindowResize)
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.handleWindowResize)
+  },
   methods: {
     asideToggle () {
       this.showAside = !this.showAside
+    },
+    handleWindowResize () {
+      this.windowHeight = window.innerHeight
     }
   }
 }

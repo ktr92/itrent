@@ -1,6 +1,6 @@
 <template>
   <div id="proposal-list">
-    <div class="fixed overflow-x-hidden overflow-y-scroll md:overflow-auto top-0 w-full min-h-screen h-full bg-white z-50 md:relative md:min-h-auto md:w-auto md:h-auto md:block" :class="[show ? 'block' : 'hidden']">
+    <div class="fixed overflow-x-hidden overflow-y-scroll md:overflow-auto top-0 w-full min-h-screen h-full bg-white z-50 md:static md:min-h-auto md:w-auto md:h-auto md:block" :class="[show ? 'block' : 'hidden']">
       <div class="border-b p-4 mb-6 px-3.5 md:hidden">
         <div class="flex items-center justify-between mb-1">
           <h2
@@ -21,7 +21,7 @@
           :title="message.title"
           :description="message.description"
         />
-        <div v-if="getReady" class="mt-2">
+        <div v-if="getReady" class="mt-2 pb-4">
           <div v-if="getResultItems.length">
             <div
               v-for="(product, index) in getResultItems"
