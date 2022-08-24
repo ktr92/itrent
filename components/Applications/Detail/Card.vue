@@ -30,12 +30,19 @@
         </div>
         <div>
           <div
-            class="mb-2 px-2 text-lg font-semibold text-black text-opacity-85"
+            class="mb-2 px-2 text-lg font-semibold text-black text-opacity-85 flex items-center"
           >
-            {{ request.proposal.bank.name }}
+            <div>{{ request.proposal.bank.name }}</div>
+            <div class="flex items-center flex-wrap gap-2 w-32 mt-2 md:mt-0 ml-2">
+              <Tag
+                :type="request.status"
+                :text="getStatusMap[request.status]"
+                size="xs"
+              />
+            </div>
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45">
-            Цена за кв. м • От {{ request.proposal.bank.payment }} Р / мес
+            Цена за кв. м • От {{ request.proposal.payment }} Р / мес
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45">
             Адрес: {{ enrollment.address }} Р / мес
@@ -51,8 +58,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Tag from '@/components/Ui/Tag'
 export default {
-  name: 'BankProposals',
+  components: {
+    Tag
+  },
   props: {
     newBank: {
       type: Object,
@@ -68,7 +78,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('applications', ['getCurrentRequest']),
+    ...mapGetters('applications', ['getCurrentRequest', 'getStatusMap']),
     proposalList () {
       return this.enrollment.enrollmentBorrowers[0].requests
     }

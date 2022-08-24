@@ -8,9 +8,9 @@ export default () => ({
   message: null,
   connectsid: null,
   statusMap: {
-    0: 'На рассмотрении',
-    1: 'Отказ',
-    2: 'Завершен'
+    0: 'Отказ',
+    1: 'На рассмотрении',
+    2: 'Одобрен'
   },
   applications: {
     currentPage: 1,
@@ -18,15 +18,10 @@ export default () => ({
     totalItems: 2,
     data: [
       {
-        statusMap: {
-          0: 'На рассмотрении',
-          1: 'Отказ',
-          2: 'Завершен'
-        },
         id: 1,
         createdAt: '2021-09-25T12:42:46+00:00',
         updatedAt: '2021-09-25T12:42:46+00:00',
-        status: 0,
+        status: 2,
         objectPrice: 3000,
         s: 45,
         address: 'Казань, ЖК Дальние Дали, Австровского 80, корпус 3 кв. 45',
@@ -56,12 +51,7 @@ export default () => ({
             ],
             requests: [
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
+
                 id: 1,
                 proposal: {
                   id: 2,
@@ -73,7 +63,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 5000
                 },
-                status: 1,
+                status: 2,
                 creditTerm: 120,
                 objectPrice: 10000000,
                 firstPayment: 60000,
@@ -86,15 +76,10 @@ export default () => ({
         ]
       },
       {
-        statusMap: {
-          0: 'На рассмотрении',
-          1: 'Отказ',
-          2: 'Завершен'
-        },
         id: 3,
         createdAt: '2021-09-25T12:42:46+00:00',
         updatedAt: '2021-09-25T12:42:46+00:00',
-        status: 0,
+        status: 1,
         objectPrice: 500,
         s: 45,
         address: 'Казань, ЖК Дальние Дали, Австровского 80, корпус 3 кв. 45',
@@ -124,12 +109,7 @@ export default () => ({
             ],
             requests: [
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
+
                 id: 5,
                 proposal: {
                   id: 2,
@@ -150,12 +130,7 @@ export default () => ({
                 secondaryBorrowers: []
               },
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
+
                 id: 4,
                 proposal: {
                   id: 2,
@@ -176,12 +151,7 @@ export default () => ({
                 secondaryBorrowers: []
               },
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
+
                 id: 1,
                 proposal: {
                   id: 3,
@@ -193,7 +163,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 4000
                 },
-                status: 1,
+                status: 0,
                 creditTerm: 120,
                 objectPrice: 10000000,
                 firstPayment: 60000,
@@ -202,12 +172,7 @@ export default () => ({
                 secondaryBorrowers: []
               },
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
+
                 id: 2,
                 proposal: {
                   id: 2,
@@ -219,7 +184,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 7000
                 },
-                status: 3,
+                status: 2,
                 creditTerm: 120,
                 objectPrice: 10000000,
                 firstPayment: 60000,
@@ -228,12 +193,6 @@ export default () => ({
                 secondaryBorrowers: []
               },
               {
-                statusMap: {
-                  0: 'ожидает отправки',
-                  1: 'на рассмотрении',
-                  2: 'одобрен',
-                  3: 'отказ'
-                },
                 id: 3,
                 proposal: {
                   id: 7,
@@ -258,12 +217,62 @@ export default () => ({
         ]
       },
       {
-        statusMap: {
-          0: 'На рассмотрении',
-          1: 'Отказ',
-          2: 'Одобрен'
-        },
-        id: 2,
+
+        id: 12,
+        createdAt: '2022-07-25T12:42:46+00:00',
+        updatedAt: '2022-07-25T12:42:46+00:00',
+        status: 0,
+        objectPrice: 5000,
+        s: 45,
+        address: 'Казань, ЖК Дальние Дали, корпус 3 кв. 220',
+        firstPayment: 4000000,
+        ownFunds: 0,
+        creditAmount: 15000000,
+        creditTerm: 120,
+        enrollmentBorrowers: [
+          {
+            typeMap: {
+              0: 'Основной заемщик',
+              1: 'Созаемщик'
+            },
+            id: 1,
+            borrower: {
+              isAuthorized: false
+            },
+            type: 0,
+            privateInfo: {
+              name: 'Bruce'
+            },
+            files: [],
+            requests: [
+              {
+
+                id: 1,
+                proposal: {
+                  id: 2,
+                  bank: {
+                    id: 1,
+                    name: 'Планета здоровья',
+                    logo: 'https://rent-products-api.ipotech.su/storage/banks/logo/64/GYErvdhRJwZgEt32e8fN5Vi1Ry2DSsFVZX0SMlR7.png'
+                  },
+                  name: 'Иван Иванов',
+                  payment: 5000
+                },
+                status: 0,
+                creditTerm: 120,
+                objectPrice: 10000000,
+                firstPayment: 60000,
+                mothersCapital: true,
+                ownFunds: 10000,
+                secondaryBorrowers: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+
+        id: 22,
         createdAt: '2022-07-25T12:42:46+00:00',
         updatedAt: '2022-07-25T12:42:46+00:00',
         status: 1,
@@ -289,43 +298,29 @@ export default () => ({
               name: 'Bruce'
             },
             files: [],
-            requests: []
-          }
-        ]
-      },
-      {
-        statusMap: {
-          0: 'На рассмотрении',
-          1: 'Отказ',
-          2: 'Одобрен'
-        },
-        id: 2,
-        createdAt: '2022-07-25T12:42:46+00:00',
-        updatedAt: '2022-07-25T12:42:46+00:00',
-        status: 2,
-        objectPrice: 5000,
-        s: 45,
-        address: 'Казань, ЖК Дальние Дали, корпус 3 кв. 220',
-        firstPayment: 4000000,
-        ownFunds: 0,
-        creditAmount: 15000000,
-        creditTerm: 120,
-        enrollmentBorrowers: [
-          {
-            typeMap: {
-              0: 'Основной заемщик',
-              1: 'Созаемщик'
-            },
-            id: 1,
-            borrower: {
-              isAuthorized: false
-            },
-            type: 0,
-            privateInfo: {
-              name: 'Bruce'
-            },
-            files: [],
-            requests: []
+            requests: [
+              {
+
+                id: 1,
+                proposal: {
+                  id: 2,
+                  bank: {
+                    id: 1,
+                    name: 'Планета здоровья',
+                    logo: 'https://rent-products-api.ipotech.su/storage/banks/logo/64/GYErvdhRJwZgEt32e8fN5Vi1Ry2DSsFVZX0SMlR7.png'
+                  },
+                  name: 'Иван Иванов',
+                  payment: 5000
+                },
+                status: 1,
+                creditTerm: 120,
+                objectPrice: 10000000,
+                firstPayment: 60000,
+                mothersCapital: true,
+                ownFunds: 10000,
+                secondaryBorrowers: []
+              }
+            ]
           }
         ]
       }

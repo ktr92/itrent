@@ -22,8 +22,8 @@
       </div>
       <div class="flex items-center flex-wrap gap-2 w-32 mt-2 md:mt-0 ">
         <Tag
-          :type="statusType"
-          :text="applicationStatus"
+          :type="status"
+          :text="getStatusMap[status]"
         />
       </div>
     </div>
@@ -55,9 +55,9 @@
           <div
             class="absolute top-0 left-0 pl-0.5 h-full"
             :class="{
-              'bg-tahiti-gold': parameters.status === 0,
-              'bg-elm': parameters.status === 1 || parameters.status === 2,
-              'bg-sunset-orange': parameters.status === 3,
+              'bg-tahiti-gold': parameters.status === 1,
+              'bg-elm': parameters.status === 2,
+              'bg-sunset-orange': parameters.status === 0,
             }"
           />
           <span class="hover:text-black">
@@ -68,9 +68,9 @@
             <span
               class="font-semibold"
               :class="{
-                'text-tahiti-gold': parameters.status === 0,
-                'text-elm': parameters.status === 1 || parameters.status === 2,
-                'text-sunset-orange': parameters.status === 3,
+                'text-tahiti-gold': parameters.status === 1,
+                'text-elm': parameters.status === 2,
+                'text-sunset-orange': parameters.status === 0,
               }"
             >{{ parameters.statusText }}</span>
           </span>
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Tag from '@/components/Ui/Tag'
 import { formatDate } from '@/utils/formatDate'
 export default {
@@ -96,10 +97,10 @@ export default {
       type: String,
       default: ''
     },
-    statusMap: {
+    /*  statusMap: {
       type: Object,
       required: true
-    },
+    }, */
     status: {
       type: Number,
       required: true
@@ -156,26 +157,12 @@ export default {
     }
   },
   computed: {
-    statusType () {
-      if (this.status === 0) {
-        return 'success-outline'
-      }
-      if (this.status === 1) {
-        return 'error-outline'
-      }
-      if (this.status === 2) {
-        return 'success'
-      }
-      return 'default-outline'
-    },
+    ...mapGetters('applications', ['getStatusMap']),
     totalPrice () {
       return this.objectPrice * this.s
     },
     creationDate () {
       return formatDate(this.createdAt)
-    },
-    applicationStatus () {
-      return this.statusMap[this.status]
     },
     authorizedCounter () {
       const borrowersCount = this.enrollmentBorrowers.length
@@ -207,7 +194,7 @@ export default {
             ? request.proposal.bank.name
             : request.bank.name,
           status: request.status,
-          statusText: request.statusMap[request.status],
+          statusText: this.getStatusMap[request.status],
           proposalName: request.proposal?.name || null,
           payment: request.proposal.payment,
           paymentTotal: request.proposal.payment * this.s

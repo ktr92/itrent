@@ -6,7 +6,6 @@
         :id="application.id"
         :key="application.id"
         :created-at="application.createdAt"
-        :status-map="application.statusMap"
         :status="application.status"
         :enrollment-borrowers="application.enrollmentBorrowers"
         :property-value="application.creditAmount"
