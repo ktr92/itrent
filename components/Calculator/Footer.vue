@@ -45,7 +45,7 @@
           >
             <FeButton
               size="sm"
-              :is-disabled="!getSelectedProducts.length < 1"
+              :is-disabled="getSelectedProducts.length < 1"
               class="w-full font-normal"
             >
               Отправить заявку <span v-if="getSelectedProducts.length" class="md:hidden">({{ getSelectedProducts.length }})</span>
