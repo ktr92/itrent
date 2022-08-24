@@ -6,6 +6,9 @@ export default {
   changeStep (state, payload) {
     state.step = payload
   },
+  updateCurrentRequest (state, payload) {
+    state.currentRequest = payload
+  },
   setMessage (state, message) {
     state.message = message
   },

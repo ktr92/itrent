@@ -17,7 +17,17 @@
         :class="{ activeBank: isActive(request.id) || '' }"
         @click="addActiveClass(request)"
       >
-        <div class="h-8 w-8 flex items-center justify-center" />
+        <div class="h-8 w-8 flex items-center justify-center">
+          <div class="w-6 h-6 rounded-full bg-white  flex align-center justify-center">
+            <span class="object-contain flex align-center justify-center">
+              <img
+                :src="request.proposal.bank.logo"
+                alt=""
+                class="m-auto w-4 h-4"
+              >
+            </span>
+          </div>
+        </div>
         <div>
           <div
             class="mb-2 px-2 text-lg font-semibold text-black text-opacity-85"
@@ -25,12 +35,13 @@
             {{ request.proposal.bank.name }}
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45">
-            {{ request.proposal.name }}
+            Цена за кв. м • От {{ request.proposal.bank.payment }} Р / мес
           </div>
-          <div class="px-2 flex text-2sm text-black text-opacity-45">
-            <div class="pr-2" />
-            &bull;
-            <div class="pl-2" />
+          <div class="px-2 text-2sm text-black text-opacity-45">
+            Адрес: {{ enrollment.address }} Р / мес
+          </div>
+          <div class="px-2 text-2sm text-black text-opacity-45">
+            Квадратные метры • {{ enrollment.s }} кв.м
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45" />
         </div>
@@ -39,7 +50,7 @@
   </div>
 </template>
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'BankProposals',
   props: {
@@ -57,17 +68,17 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('applications', ['getCurrentRequest']),
     proposalList () {
       return this.enrollment.enrollmentBorrowers[0].requests
     }
   },
   methods: {
-    addActiveClass (proposal) {
-      this.$emit('openBankProposal', proposal)
-      this.$forceUpdate()
+    addActiveClass (request) {
+      this.$emit('openRequest', request)
     },
     isActive (id) {
-      return true
+      return (this.getCurrentRequest ? this.getCurrentRequest.id : 1) === id
     }
   }
 }

@@ -3,6 +3,9 @@ export default {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
   },
+  updateCurrentRequest ({ commit }, payload) {
+    commit('updateCurrentRequest', payload)
+  },
   async sendData ({ commit, rootState, dispatch }, payload) {
     const path = 'records'
     await this.$axios.post(`/api/v1/catalogs/19/${path}`, JSON.stringify({
