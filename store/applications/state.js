@@ -3,7 +3,7 @@ export default () => ({
     user: [],
     application: []
   },
-  currentRequest: null,
+  currentApplication: null,
   step: 1,
   message: null,
   connectsid: null,
@@ -63,6 +63,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 5000
                 },
+                period: '20 лет 3 мес',
                 status: 2,
                 creditTerm: 120,
                 objectPrice: 10000000,
@@ -110,7 +111,29 @@ export default () => ({
             requests: [
               {
 
-                id: 5,
+                id: 1,
+                proposal: {
+                  id: 3,
+                  bank: {
+                    id: 1,
+                    name: 'Фармленд',
+                    logo: 'https://rent-products-api.ipotech.su/storage/banks/logo/62/iZyeYz0OHBRjwSPhFteOvCgicxMGKrxEihItW9OO.png'
+                  },
+                  name: 'Иван Иванов',
+                  payment: 4000
+                },
+                period: '20 лет 3 мес',
+                status: 0,
+                creditTerm: 120,
+                objectPrice: 10000000,
+                firstPayment: 60000,
+                mothersCapital: true,
+                ownFunds: 10000,
+                secondaryBorrowers: []
+              },
+              {
+
+                id: 2,
                 proposal: {
                   id: 2,
                   bank: {
@@ -131,7 +154,7 @@ export default () => ({
               },
               {
 
-                id: 4,
+                id: 3,
                 proposal: {
                   id: 2,
                   bank: {
@@ -142,6 +165,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 5000
                 },
+                period: '20 лет 3 мес',
                 status: 2,
                 creditTerm: 120,
                 objectPrice: 10000000,
@@ -150,30 +174,10 @@ export default () => ({
                 ownFunds: 10000,
                 secondaryBorrowers: []
               },
+
               {
 
-                id: 1,
-                proposal: {
-                  id: 3,
-                  bank: {
-                    id: 1,
-                    name: 'Фармленд',
-                    logo: 'https://rent-products-api.ipotech.su/storage/banks/logo/62/iZyeYz0OHBRjwSPhFteOvCgicxMGKrxEihItW9OO.png'
-                  },
-                  name: 'Иван Иванов',
-                  payment: 4000
-                },
-                status: 0,
-                creditTerm: 120,
-                objectPrice: 10000000,
-                firstPayment: 60000,
-                mothersCapital: true,
-                ownFunds: 10000,
-                secondaryBorrowers: []
-              },
-              {
-
-                id: 2,
+                id: 4,
                 proposal: {
                   id: 2,
                   bank: {
@@ -184,6 +188,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 7000
                 },
+                period: '20 лет 3 мес',
                 status: 2,
                 creditTerm: 120,
                 objectPrice: 10000000,
@@ -193,7 +198,7 @@ export default () => ({
                 secondaryBorrowers: []
               },
               {
-                id: 3,
+                id: 5,
                 proposal: {
                   id: 7,
                   bank: {
@@ -204,6 +209,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 4000
                 },
+                period: '20 лет 3 мес',
                 status: 1,
                 creditTerm: 120,
                 objectPrice: 10000000,
@@ -258,6 +264,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 5000
                 },
+                period: '20 лет 3 мес',
                 status: 0,
                 creditTerm: 120,
                 objectPrice: 10000000,
@@ -312,6 +319,7 @@ export default () => ({
                   name: 'Иван Иванов',
                   payment: 5000
                 },
+                period: '20 лет 3 мес',
                 status: 1,
                 creditTerm: 120,
                 objectPrice: 10000000,

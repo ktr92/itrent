@@ -6,6 +6,7 @@
           py-2
           pl-2
           pr-4
+          mb-2
           cursor-pointer
           flex
           justify-start
@@ -45,7 +46,7 @@
             Цена за кв. м • От {{ request.proposal.payment }} Р / мес
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45">
-            Адрес: {{ enrollment.address }} Р / мес
+            Адрес: {{ enrollment.address }}
           </div>
           <div class="px-2 text-2sm text-black text-opacity-45">
             Квадратные метры • {{ enrollment.s }} кв.м
@@ -77,18 +78,32 @@ export default {
       default: ''
     }
   },
+  data () {
+    return {
+      currentRequest: 1
+    }
+  },
   computed: {
-    ...mapGetters('applications', ['getCurrentRequest', 'getStatusMap']),
+    ...mapGetters('applications', ['getCurrentApplication', 'getStatusMap']),
     proposalList () {
       return this.enrollment.enrollmentBorrowers[0].requests
     }
   },
+  watch: {
+    getCurrentApplication () {
+      this.currentRequest = this.getCurrentApplication.id
+    }
+  },
+  mounted () {
+    this.currentRequest = this.$route.query.requestId || 1
+    this.addActiveClass(this.proposalList.filter(item => item.id === Number(this.currentRequest))[0])
+  },
   methods: {
     addActiveClass (request) {
-      this.$emit('openRequest', request)
+      this.$store.dispatch('applications/updateCurrentApplication', request)
     },
     isActive (id) {
-      return (this.getCurrentRequest ? this.getCurrentRequest.id : 1) === id
+      return this.currentRequest === id
     }
   }
 }

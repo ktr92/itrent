@@ -8,5 +8,5 @@ export default {
     return state.applications.data.filter(item => item.id === id)[0]
   },
   getStatusMap: state => state.statusMap,
-  getCurrentRequest: state => state.currentRequest
+  getCurrentApplication: state => state.currentApplication
 }

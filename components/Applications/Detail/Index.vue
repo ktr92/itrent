@@ -2,20 +2,20 @@
   <div class="container pt-0 pb-28">
     <div>
       <div class="container pt-4 pb-28 grid grid-cols-11">
-        <div v-if="enrollment" class="col-span-7 border-r">
+        <div v-if="enrollment" class="col-span-6">
           <div v-if="availableProposalsLength">
-            <ApplicationsDetailCard :enrollment="enrollment" @openRequest="openRequest" />
+            <ApplicationsDetailCard :enrollment="enrollment" />
           </div>
         </div>
-        <div class="col-span-4 pl-9">
-          <ApplicationsDetailInfo />
+        <div class="col-span-5 pl-6 ml-6 border-l">
+          <LazyApplicationsDetailInfo v-if="getCurrentApplication" :enrollment="enrollment" />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   auth: false,
   props: {
@@ -32,6 +32,8 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('applications', ['getCurrentApplication', 'getStatusMap']),
+
     bankList: {
       get () {
         return this.$store.state.workwithbank.bankList
@@ -39,12 +41,6 @@ export default {
     },
     availableProposalsLength () {
       return this.enrollment.enrollmentBorrowers.length || 0
-    }
-  },
-
-  methods: {
-    openRequest (request) {
-      this.$store.dispatch('applications/updateCurrentRequest', request)
     }
   }
 }
