@@ -49,12 +49,12 @@
       <div v-if="optionsReady">
         <div
           v-if="sortedDynamicOptions && sortedDynamicOptions.length"
-          class="grid grid-cols-2 gap-4 pb-4 border-b"
+          class="grid grid-cols-2 gap-4 pb-4"
         >
           <div
             v-for="(dynamicOption) in sortedDynamicOptions"
             :key="dynamicOption.alias"
-            :class="[{ 'col-span-2 md:col-span-1': dynamicOption.smallSize, 'col-span-2 pt-4 border-t': !dynamicOption.smallSize}, {}]"
+            :class="[{ 'col-span-2 md:col-span-1 pt-2': dynamicOption.smallSize, 'col-span-2 pt-2': !dynamicOption.smallSize, 'border-t pt-4': dynamicOption.bordered}, {}]"
           >
             <template
               v-if="dynamicOption.type === 'FeSelect'"
