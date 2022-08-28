@@ -26,6 +26,10 @@
     <div class="py-2">
       <div class="flex  mb-2 last:mb-0">
         <div class="leading-5 text-2xs text-black text-opacity-45 mr-auto">
+          {{ type }}
+        </div>
+
+        <!-- <div class="leading-5 text-2xs text-black text-opacity-45 mr-auto">
           Цена за кв.м
         </div>
         <div
@@ -43,7 +47,7 @@
           <template v-else>
             не указана
           </template>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -58,6 +62,10 @@ export default {
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    type: {
       type: String,
       required: true
     },

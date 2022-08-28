@@ -1,4 +1,5 @@
 import { intersection } from 'lodash'
+import rentOptions from '../../../rent-options/options.json'
 
 const headers = {
   'Content-Type': 'application/json;charset=UTF-8'
@@ -20,7 +21,7 @@ export default {
       dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
     }
   }, */
-  async getOptionsJSON ({ commit, dispatch }) {
+  /*  async getOptionsJSON ({ commit, dispatch }) {
     try {
       const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`, {
         mode: 'cors',
@@ -32,6 +33,9 @@ export default {
     } catch (err) {
       dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
     }
+  }, */
+  getOptionsJSON ({ commit, dispatch }) {
+    commit('setOptionsJSON', [...rentOptions.dynamicOptionsParams])
   },
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {

@@ -9,8 +9,20 @@ export default {
   setResult (state, payload) {
     state.result = payload
   },
+  addResult (state, payload) {
+    payload.forEach(item => state.result.items.push(item))
+  },
   setReady (state, payload) {
     state.productsIsReady = payload
+  },
+  setProductsCount (state, payload) {
+    state.productsCount = payload
+  },
+  setPage (state, payload) {
+    state.page = payload
+  },
+  setSearchId (state, payload) {
+    state.searchId = payload
   },
   clearSelected (state) {
     state.selectedProducts.length = 0

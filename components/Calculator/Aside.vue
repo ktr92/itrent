@@ -33,11 +33,23 @@
                 :id="'proposal-item-'.concat(product.token)"
                 :logo="product.bank.logo ? product.bank.logo.url : ''"
                 :title="product.bank.title ? product.bank.title : 'Неизвестный арендатор'"
+                :type="product.title ? product.title : 'Другие сети'"
                 :rate="product.rate ? product.rate: []"
                 :selected="isSealed(product)"
                 class="calculator-aside__proposal-item cursor-p"
                 @click.native="handleSelectProduct($event, product)"
               />
+            </div>
+            <div
+              v-if="getResultItems.length < getProductsCount"
+              class="calculator-aside-pagination"
+            >
+              <a v-if="!isLoading" @click="handleShowMoreClick">
+                Показать еще
+              </a>
+              <div v-else>
+                <img src="~/assets/images/icons/ellipsis_trobber.svg">
+              </div>
             </div>
           </div>
           <div v-else>
@@ -74,11 +86,12 @@ export default {
   data () {
     return {
       cardsResult: [],
-      show: this.showAside
+      show: this.showAside,
+      isLoading: false
     }
   },
   computed: {
-    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message', 'getProductsCount'])
   },
   watch: {
     showAside (val) {
@@ -98,6 +111,11 @@ export default {
     },
     asideToggle () {
       this.$emit('asideToggle')
+    },
+    async handleShowMoreClick () {
+      this.isLoading = true
+      await setTimeout(() => { this.$store.dispatch('result/nextPage') }, 2000)
+      this.isLoading = false
     }
   }
 }

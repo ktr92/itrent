@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container pt-2 md:pt-8 md:pb-12 md:grid "
+    class="container pt-2 md:pt-8 md:pb-16 md:grid "
     style="grid-template-columns: 18fr 12fr; align-items: start"
   >
     <div
@@ -40,14 +40,15 @@ export default {
     return {
       windowHeight: 860,
       showAside: false,
-      isMounted: false
+      isMounted: false,
+      calcWrapperHeight: 0
     }
   },
   computed: {
     ...mapGetters('calculator', ['getDynamicList']),
-    calcWrapperHeight () {
+    /*  calcWrapperHeight () {
       return this.$refs.calculatorFormWrapper.clientHeight + (this.getDynamicList.length - 6) * 130
-    },
+    }, */
     getStickyTop: {
       get () {
         return this.isMounted
@@ -60,7 +61,7 @@ export default {
     this.isMounted = true
     this.windowHeight = window.innerHeight
     console.log(this.$refs.calculatorFormWrapper.clientHeight)
-    this.calcWrapperHeight = this.$refs.calculatorFormWrapper.clientHeight
+    this.calcWrapperHeight = this.$refs.calculatorFormWrapper.clientHeight + (this.getDynamicList.length - 10) * 130
     window.addEventListener('resize', this.handleWindowResize)
   },
   destroyed () {
