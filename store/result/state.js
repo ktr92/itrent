@@ -6,5 +6,6 @@ export default () => ({
   productsCount: 0,
   page: 1,
   pagesize: 10,
-  searchId: null
+  searchId: null,
+  moreLoading: false
 })

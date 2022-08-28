@@ -58,6 +58,7 @@ export default {
   },
   async fetchMoreProducts ({ getters, dispatch, commit }, payload) {
     try {
+      commit('setMoreLoading', true)
       const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/${getters.getSearchId}`, {
         mode: 'cors',
         headers,
@@ -67,6 +68,7 @@ export default {
         }
       })
       commit('addResult', [...response.data])
+      commit('setMoreLoading', false)
     } catch (e) {
       dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
     }

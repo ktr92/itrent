@@ -44,7 +44,7 @@
               v-if="getResultItems.length < getProductsCount"
               class="calculator-aside-pagination"
             >
-              <a v-if="!isLoading" @click="handleShowMoreClick">
+              <a v-if="!getMoreLoading" class="text-elm" @click="handleShowMoreClick">
                 Показать еще
               </a>
               <div v-else>
@@ -91,7 +91,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message', 'getProductsCount'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message', 'getProductsCount', 'getMoreLoading'])
   },
   watch: {
     showAside (val) {
@@ -112,10 +112,8 @@ export default {
     asideToggle () {
       this.$emit('asideToggle')
     },
-    async handleShowMoreClick () {
-      this.isLoading = true
-      await setTimeout(() => { this.$store.dispatch('result/nextPage') }, 2000)
-      this.isLoading = false
+    handleShowMoreClick () {
+      this.$store.dispatch('result/nextPage')
     }
   }
 }

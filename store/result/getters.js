@@ -7,5 +7,6 @@ export default {
   getPage: state => state.page,
   getPagesize: state => state.pagesize,
   getSearchId: state => state.searchId,
+  getMoreLoading: state => state.moreLoading,
   message: state => state.message
 }

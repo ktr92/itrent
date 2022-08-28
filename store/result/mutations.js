@@ -15,6 +15,9 @@ export default {
   setReady (state, payload) {
     state.productsIsReady = payload
   },
+  setMoreLoading (state, payload) {
+    state.moreLoading = payload
+  },
   setProductsCount (state, payload) {
     state.productsCount = payload
   },
