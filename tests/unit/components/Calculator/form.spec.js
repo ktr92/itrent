@@ -1,3 +1,5 @@
+it('Should set valid input type', () => {})
+
 /* import { createLocalVue, mount } from '@vue/test-utils'
 import Vuex from 'vuex'
 import dynamicOptions from '@/tests/fixtures/dynamicOptions.json'
