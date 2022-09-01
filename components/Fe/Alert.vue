@@ -25,7 +25,6 @@
 
 <script>
 export default {
-  name: 'FeAlert',
   props: {
     type: {
       type: String,

@@ -168,8 +168,8 @@ export default {
     },
     location: {
       get () {
-        return this.$store.state.calculator.form.location
-          ? this.$store.state.calculator.form.location.val
+        return this.getForm.location
+          ? this.getForm.location.val
           : {}
       },
       set (value) {
@@ -214,6 +214,9 @@ export default {
     this.$nuxt.$on('fieldChanged', () => {
       this.onInput()
     })
+  },
+  beforeDestroy () {
+    this.$nuxt.$off('fieldChanged')
   },
   methods: {
     ...mapActions('result', ['getProducts']),

@@ -1,10 +1,11 @@
 import { merge } from 'lodash'
-import { shallowMount, enableAutoDestroy } from '@vue/test-utils'
+import { mount, enableAutoDestroy } from '@vue/test-utils'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import CalculatorForm from '@/components/Calculator/Form.vue'
 import FeAlert from '@/components/Fe/Alert'
 import { getStoreConfig } from '@/store/calculator/index.js'
+import { getResultStoreConfig } from '@/store/result/index.js'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,7 @@ describe('CalculatorForm', () => {
 
   let wrapper
   let mockedActions
-  let mockedMutations
+  /* let mockedMutations */
 
   const DEFAULT_PROPS = {
     allowToChange: true
@@ -22,26 +23,39 @@ describe('CalculatorForm', () => {
 
   const createComponent = ({ props, storeConfig } = {}) => {
     const defaultStore = getStoreConfig()
+
     mockedActions = Object.fromEntries(
       Object.keys(defaultStore.actions).map(key => [key, jest.fn()])
     )
-    mockedMutations = Object.fromEntries(
+    /*  mockedMutations = Object.fromEntries(
       Object.keys(defaultStore.mutations).map(key => [key, jest.fn()])
-    )
+    ) */
 
-    const store = new Vuex.Store(
-      merge(defaultStore, mockedActions, mockedMutations, storeConfig)
-    )
+    const store = new Vuex.Store({
+      modules: {
+        calculator: {
+          namespaced: true,
+          ...merge(
+            defaultStore,
+            { actions: mockedActions },
+            storeConfig
+          )
+        },
+        result: {
+          namespaced: true,
+          getResultStoreConfig
+        }
+      }
+    })
 
-    wrapper = shallowMount(CalculatorForm, {
+    wrapper = mount(CalculatorForm, {
       propsData: {
         ...DEFAULT_PROPS,
         ...props
       },
       store,
-      stubs: ['ValidationObserver', 'CalculatorSkeleton', 'ValidationProvider', 'FeSwitch', 'FeRangeInput', 'FeSelect']
+      stubs: ['CalculatorSkeleton', 'FeSwitch', 'FeRangeInput', 'FeSelect', 'LazyFeAlert']
     })
-    wrapper.setMethods({ init: jest.fn(), load: jest.fn(), submit: jest.fn() })
   }
 
   it('Render message when error', () => {
@@ -53,7 +67,7 @@ describe('CalculatorForm', () => {
       }
     })
 
-    expect(wrapper.find(FeAlert).exists()).toBe(true)
+    expect(wrapper.findComponent(FeAlert).exists()).toBe(true)
   })
 })
 
