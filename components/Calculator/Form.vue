@@ -7,7 +7,7 @@
         Поиск арендаторов для сдачи недвижимости в аренду
       </h2>
       <div class="leading-normal text-2sm text-black text-opacity-45">
-        Вводите параметры расчета и делитесь предложениям с клиентом.
+        Вводите параметры расчета и делитесь предложением с клиентом.
       </div>
     </div>
 
@@ -139,10 +139,6 @@ export default {
     ValidationProvider
   },
   props: {
-    enrollment: {
-      type: Object,
-      default: () => null
-    },
     allowToChange: {
       type: Boolean,
       default: () => true
