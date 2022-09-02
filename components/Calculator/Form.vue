@@ -29,8 +29,7 @@
               :name="defaultOption.name"
               :class="{ 'col-span-2 md:col-span-1': defaultOption.smallSize, 'col-span-2': !defaultOption.smallSize}"
             >
-              <component
-                :is="defaultOption.type"
+              <FeSelect
                 v-if="showLocation"
                 v-model="location"
                 :options="defaultOption.items"
@@ -133,7 +132,7 @@
 import { mapGetters, mapActions, mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
-import { FeAlert } from '@/components/Fe/Alert.vue'
+import FeAlert from '@/components/Fe/Alert.vue'
 export default {
   components: {
     ValidationObserver,
@@ -217,9 +216,9 @@ export default {
       this.onInput()
     }) */
   },
-  beforeDestroy () {
+  /*  beforeDestroy () {
     this.$nuxt.$off('fieldChanged')
-  },
+  }, */
   methods: {
     ...mapActions('result', ['getProducts']),
     onInput () {

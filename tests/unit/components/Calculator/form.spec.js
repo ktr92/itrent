@@ -1,26 +1,25 @@
 import { merge } from 'lodash'
-import { shallowMount, enableAutoDestroy, config } from '@vue/test-utils'
-import Vue from 'vue'
+import { enableAutoDestroy, config, createLocalVue, shallowMount } from '@vue/test-utils'
 import Vuex from 'vuex'
+import FeAlert from '@/components/Fe/Alert.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
-import FeAlert from '@/components/Fe/Alert'
 import { getStoreConfig } from '@/store/calculator/index.js'
 import { getResultStoreConfig } from '@/store/result/index.js'
 
 config.showDeprecationWarnings = false
-Vue.use(Vuex)
+
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
 describe('CalculatorForm', () => {
   enableAutoDestroy(beforeEach)
 
   let wrapper
   let mockedActions
-  /* let mockedMutations */
 
   const DEFAULT_PROPS = {
     allowToChange: true
   }
-  // const DEFAULT_STORE_CONFIG = getStoreConfig()
 
   const createComponent = ({ props, storeConfig } = {}) => {
     const defaultStore = getStoreConfig()
@@ -28,9 +27,6 @@ describe('CalculatorForm', () => {
     mockedActions = Object.fromEntries(
       Object.keys(defaultStore.actions).map(key => [key, jest.fn()])
     )
-    /*  mockedMutations = Object.fromEntries(
-      Object.keys(defaultStore.mutations).map(key => [key, jest.fn()])
-    ) */
 
     const store = new Vuex.Store({
       modules: {
@@ -50,12 +46,13 @@ describe('CalculatorForm', () => {
     })
 
     wrapper = shallowMount(CalculatorForm, {
+      localVue,
       propsData: {
         ...DEFAULT_PROPS,
         ...props
       },
       store,
-      stubs: ['CalculatorSkeleton', 'FeSwitch', 'FeRangeInput', 'FeSelect', 'ValidationObserver', 'ValidationProvider', 'SvgIcon'],
+      stubs: ['CalculatorSkeleton', 'FeSwitch', 'FeSelect', 'FeRangeInput', 'ValidationObserver', 'ValidationProvider', 'SvgIcon'],
       methods: {
         submit: jest.fn()
       }
@@ -72,8 +69,18 @@ describe('CalculatorForm', () => {
         }
       }
     })
+    expect(wrapper.find(FeAlert).exists()).toBe(true)
+  })
 
-    expect(wrapper.findComponent(FeAlert).exists()).toBe(true)
+  it('Do not render message when no error', () => {
+    createComponent({
+      storeConfig: {
+        getters: {
+          message: () => null
+        }
+      }
+    })
+    expect(wrapper.find(FeAlert).exists()).toBe(false)
   })
 })
 
@@ -93,9 +100,9 @@ it.todo('FeSelect :attr')
 it.todo('<ValidationProvider :name')
 it.todo('component :is="defaultOption.type" :attr')
 
-it('Should set valid input type', () => {})
+/* it('Should set valid input type', () => {})
 
-/* import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import Vuex from 'vuex'
 import dynamicOptions from '@/tests/fixtures/dynamicOptions.json'
 import Form from '@/components/Calculator/Form.vue'
