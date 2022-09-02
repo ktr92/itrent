@@ -1,5 +1,6 @@
 import { merge } from 'lodash'
-import { enableAutoDestroy, config, createLocalVue, shallowMount } from '@vue/test-utils'
+import { enableAutoDestroy, config, shallowMount } from '@vue/test-utils'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import FeAlert from '@/components/Fe/Alert.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
@@ -8,8 +9,7 @@ import { getResultStoreConfig } from '@/store/result/index.js'
 
 config.showDeprecationWarnings = false
 
-const localVue = createLocalVue()
-localVue.use(Vuex)
+Vue.use(Vuex)
 
 describe('CalculatorForm', () => {
   enableAutoDestroy(beforeEach)
@@ -46,7 +46,6 @@ describe('CalculatorForm', () => {
     })
 
     wrapper = shallowMount(CalculatorForm, {
-      localVue,
       propsData: {
         ...DEFAULT_PROPS,
         ...props
