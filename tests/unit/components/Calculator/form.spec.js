@@ -1,5 +1,5 @@
 import { merge } from 'lodash'
-import { mount, enableAutoDestroy } from '@vue/test-utils'
+import { shallowMount, enableAutoDestroy, config } from '@vue/test-utils'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import CalculatorForm from '@/components/Calculator/Form.vue'
@@ -7,6 +7,7 @@ import FeAlert from '@/components/Fe/Alert'
 import { getStoreConfig } from '@/store/calculator/index.js'
 import { getResultStoreConfig } from '@/store/result/index.js'
 
+config.showDeprecationWarnings = false
 Vue.use(Vuex)
 
 describe('CalculatorForm', () => {
@@ -48,14 +49,19 @@ describe('CalculatorForm', () => {
       }
     })
 
-    wrapper = mount(CalculatorForm, {
+    wrapper = shallowMount(CalculatorForm, {
       propsData: {
         ...DEFAULT_PROPS,
         ...props
       },
       store,
-      stubs: ['CalculatorSkeleton', 'FeSwitch', 'FeRangeInput', 'FeSelect', 'LazyFeAlert']
+      stubs: ['CalculatorSkeleton', 'FeSwitch', 'FeRangeInput', 'FeSelect', 'ValidationObserver', 'ValidationProvider', 'SvgIcon'],
+      methods: {
+        submit: jest.fn()
+      }
     })
+
+    wrapper.setMethods({ submit: jest.fn() })
   }
 
   it('Render message when error', () => {

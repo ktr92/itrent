@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <LazyFeAlert
+    <FeAlert
       v-if="message"
       class="mt-4 alert"
       :type="message.type"
@@ -71,7 +71,7 @@
                   :errors="errors.concat(apiErrors[dynamicOption.alias])"
                   :placeholder="dynamicOption.name"
                   :default="dynamicOption.default"
-                  @change="handleSelectChange"
+                  @change="onInput"
                 />
               </ValidationProvider>
             </template>
@@ -133,10 +133,12 @@
 import { mapGetters, mapActions, mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
+import { FeAlert } from '@/components/Fe/Alert.vue'
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
+    FeAlert
   },
   props: {
     allowToChange: {
@@ -211,9 +213,9 @@ export default {
     }
     if (!this.productsIsReady) { this.submit() }
 
-    this.$nuxt.$on('fieldChanged', () => {
+    /*  this.$nuxt.$on('fieldChanged', () => {
       this.onInput()
-    })
+    }) */
   },
   beforeDestroy () {
     this.$nuxt.$off('fieldChanged')

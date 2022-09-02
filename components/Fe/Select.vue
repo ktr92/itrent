@@ -152,7 +152,8 @@ export default {
         }
         this.updateOption(option, true)
       } else {
-        this.$nuxt.$emit('fieldChanged')
+        /* this.$nuxt.$emit('fieldChanged') */
+        /* this.$emit('change') */
       }
     }
   },
@@ -173,7 +174,7 @@ export default {
       this.selectedOption = option
       this.inputVal = option
       this.isActive = false
-      this.$nuxt.$emit('fieldChanged')
+      /*  this.$nuxt.$emit('fieldChanged') */
       if (!ignoreEmit) {
         this.$emit('change', this.selectedOption)
       }
