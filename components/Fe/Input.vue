@@ -142,7 +142,7 @@ export default {
       },
       set (value) {
         this.$emit('input', value)
-        if ('$nuxt' in this) { this.$nuxt.$emit('fieldChanged') }
+        // if ('$nuxt' in this) { this.$nuxt.$emit('fieldChanged') }
       }
     },
     isActive () {

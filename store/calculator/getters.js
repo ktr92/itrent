@@ -20,13 +20,11 @@ export default {
         return ('' + a.name).localeCompare(b.name)
       })
   },
-  getForm: state => ({ ...state.form }),
+  getForm: state => state.form,
   getFormDynamic: state => ({ ...state.formDynamic }),
   getDefaultOptions: state => state.defaultOptions,
   getDynamicOptions: state => state.dynamicOptions,
   getDynamicList: state => state.dynamicOptionsParams.map(item => item.alias),
   getDynamicMerged: state => ([...state.dynamicMerged]),
-  getObjectAreaOffers: state => state.objectAreaOffers,
-  getObjectRoofHOffers: state => state.objectRoofHOffers,
   message: state => state.message
 }

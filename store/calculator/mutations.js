@@ -20,9 +20,6 @@ export default {
   updateLocation (state, payload) {
     state.form.location = payload
   },
-  updateObjectFloor (state, payload) {
-    state.form.objectFloor = payload
-  },
   updateObjectRoofH (state, payload) {
     state.form.objectRoofH = payload
   },

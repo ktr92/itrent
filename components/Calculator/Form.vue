@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <LazyFeAlert
+    <FeAlert
       v-if="message"
       class="mt-4 alert"
       :type="message.type"
@@ -20,7 +20,7 @@
     />
 
     <ValidationObserver ref="form">
-      <template v-if="getDefaultOptions && getDefaultOptions.length">
+      <template v-if="getDefaultOptions.length">
         <div v-for="defaultOption in getDefaultOptions" :key="defaultOption.alias">
           <div class="grid grid-cols-2 gap-4 py-4">
             <ValidationProvider
@@ -47,7 +47,7 @@
 
       <div v-if="optionsReady">
         <div
-          v-if="getDynamicMerged && getDynamicMerged.length"
+          v-if="getDynamicMerged.length"
           class="grid grid-cols-2 gap-4 pb-4"
         >
           <div
@@ -70,7 +70,7 @@
                   :errors="errors.concat(apiErrors[dynamicOption.alias])"
                   :placeholder="dynamicOption.name"
                   :default="dynamicOption.default"
-                  @change="handleSelectChange"
+                  @change="onInput"
                 />
               </ValidationProvider>
             </template>
@@ -132,16 +132,14 @@
 import { mapGetters, mapActions, mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
+import FeAlert from '@/components/Fe/Alert.vue'
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
+    FeAlert
   },
   props: {
-    enrollment: {
-      type: Object,
-      default: () => null
-    },
     allowToChange: {
       type: Boolean,
       default: () => true
@@ -170,8 +168,8 @@ export default {
     },
     location: {
       get () {
-        return this.$store.state.calculator.form.location
-          ? this.$store.state.calculator.form.location.val
+        return this.getForm.location
+          ? this.getForm.location.val
           : {}
       },
       set (value) {
@@ -217,6 +215,9 @@ export default {
       this.onInput()
     }) */
   },
+  /*  beforeDestroy () {
+    this.$nuxt.$off('fieldChanged')
+  }, */
   methods: {
     ...mapActions('result', ['getProducts']),
     onInput () {
@@ -229,12 +230,8 @@ export default {
       }, 500)
     },
     async init () {
-      this.defaultOptions = []
-
-      // получаем параметры для свойств по умолчанию
-      this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
       // формируем массив значений свойств по умолчанию, объединенных с параметрами
-      this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
+      /*  this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions) */
 
       // инициализация свойсв
       await this.$store.dispatch('calculator/setFormOptions')
@@ -249,9 +246,6 @@ export default {
       this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     },
     load () {
-      this.defaultOptions = []
-      // получаем параметры для свойств по умолчанию
-      this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
       this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     },
     submit () {

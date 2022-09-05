@@ -6,8 +6,7 @@ export default () => ({
     location: {
       name: 'Казань',
       val: 'KAZAN'
-    },
-    objectFloor: false
+    }
   },
   dynamicMerged: [],
   dynamicOptions: [],
