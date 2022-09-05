@@ -30,7 +30,7 @@ export default {
     state.formDynamic = payload
   },
   mergeOptions (state, payload) {
-    state.defaultOptions.items = payload
+    state.defaultOptions[0].items = payload
   },
   updateState (state, [field, value]) {
     /*  state[field] = value */

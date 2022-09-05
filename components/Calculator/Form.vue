@@ -22,7 +22,7 @@
     <ValidationObserver ref="form">
       <template v-if="getDefaultOptions.length">
         <div v-for="defaultOption in getDefaultOptions" :key="defaultOption.alias">
-          <div class="grid grid-cols-2 gap-4 py-4">
+          <div v-if="defaultOption.items" class="grid grid-cols-2 gap-4 py-4">
             <ValidationProvider
               v-slot="{ errors }"
               :rules="defaultOption.rules"
@@ -150,7 +150,6 @@ export default {
       timeout: null,
       showLocation: true,
       apiErrors: {},
-      defaultOptions: [],
       previousLocation: null,
       optionsReady: false
     }
@@ -230,6 +229,9 @@ export default {
       }, 500)
     },
     async init () {
+      // формируем массив значений свойств по умолчанию, объединенных с параметрами
+      this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
+
       // формируем массив значений свойств по умолчанию, объединенных с параметрами
       /*  this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions) */
 

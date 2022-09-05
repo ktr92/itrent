@@ -13,6 +13,7 @@ export default () => ({
   dynamicOptionsParams: [
   ],
   defaultOptions:
+  [
     {
       alias: 'locations', // alias (id)
       name: 'Регион недвижимости', // отображаемое имя
@@ -21,7 +22,8 @@ export default () => ({
       limit: 5, // лимит (для селекта)
       sort: 0, // порядок сортировки
       type: 'FeSelect' // тип компонента
-    },
+    }
+  ],
   locationOptions: [
     {
       title: 'Набережные Челны',

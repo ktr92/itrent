@@ -22,7 +22,7 @@ export default {
   },
   getForm: state => state.form,
   getFormDynamic: state => ({ ...state.formDynamic }),
-  getDefaultOptions: state => state.defaultOptions,
+  getDefaultOptions: state => ([...state.defaultOptions]),
   getDynamicOptions: state => state.dynamicOptions,
   getDynamicList: state => state.dynamicOptionsParams.map(item => item.alias),
   getDynamicMerged: state => ([...state.dynamicMerged]),
