@@ -6,6 +6,17 @@ const headers = {
 }
 
 export default {
+  initDefault ({ commit, getters }) {
+    commit('mergeOptions', getters.getRealEstateRegions)
+  },
+  async initDynamic ({ commit, dispatch }) {
+    // инициализация свойств
+    await dispatch('setFormOptions')
+    // инициализация селектов
+    await dispatch('setFormSelect')
+    // инициализация начальных данных формы динамических свойств
+    commit('setDynamicForm')
+  },
   setMessage ({ commit }, message) {
     commit('setMessage', message)
     /*  setTimeout(() => {

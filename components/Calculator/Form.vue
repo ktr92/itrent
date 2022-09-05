@@ -38,7 +38,7 @@
                 :default="defaultOption.default"
                 :limit="defaultOption.limit"
                 class="calculator__select-region"
-                @change="handleSelectChange"
+                @change="onInput"
               />
             </ValidationProvider>
           </div>
@@ -191,6 +191,7 @@ export default {
     dynamicModel () {
       return this.$store.getters['calculator/getFormDynamic']
     }
+
   },
   watch: {
     location: {
@@ -229,26 +230,15 @@ export default {
       }, 500)
     },
     async init () {
-      // формируем массив значений свойств по умолчанию, объединенных с параметрами
-      this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions)
+      // инициализация свойств по умолчанию
+      this.$store.dispatch('calculator/initDefault')
+      // инициализация динамических свойств
+      await this.$store.dispatch('calculator/initDynamic')
 
-      // формируем массив значений свойств по умолчанию, объединенных с параметрами
-      /*  this.$store.commit('calculator/mergeOptions', this.getRealEstateRegions) */
-
-      // инициализация свойсв
-      await this.$store.dispatch('calculator/setFormOptions')
-      // инициализация селектов
-      await this.$store.dispatch('calculator/setFormSelect')
-      // формируем массив динамических значений свойств, объединенных с параметрами
-      // this.$store.commit('calculator/mergeDynamicOptions')
-      // инициализация начальных данных формы динамических свойств
-      this.$store.commit('calculator/setDynamicForm')
-      // получаем параметры для динамических свойств
-
-      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
+      this.checkReady()
     },
     load () {
-      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
+      this.checkReady()
     },
     submit () {
       if (this.$refs.form != null) {
@@ -264,8 +254,8 @@ export default {
         })
       }
     },
-    handleSelectChange (value) {
-
+    checkReady () {
+      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     }
 
   }
