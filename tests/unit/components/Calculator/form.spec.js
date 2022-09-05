@@ -68,7 +68,8 @@ describe('CalculatorForm', () => {
         }
       }
     })
-    expect(wrapper.find(FeAlert).exists()).toBe(true)
+
+    expect(wrapper.findComponent(FeAlert).exists()).toBe(true)
   })
 
   it('Do not render message when no error', () => {
@@ -79,25 +80,21 @@ describe('CalculatorForm', () => {
         }
       }
     })
-    expect(wrapper.find(FeAlert).exists()).toBe(false)
+
+    expect(wrapper.findComponent(FeAlert).exists()).toBe(false)
   })
 })
 
-it.todo(' <template v-if="defaultOptions && defaultOptions.length">')
-it.todo('  <component :is="defaultOption.type" v-if="showLocation"')
-it.todo('   <div v-if="optionsReady">')
-it.todo('  <div v-if="sortedDynamicOptions && sortedDynamicOptions.length" class="grid grid-cols-2 gap-4 pb-4">')
+it.todo('<template v-if="defaultOptions && defaultOptions.length">')
+it.todo('<component :is="defaultOption.type" v-if="showLocation"')
+it.todo('<div v-if="optionsReady">')
+it.todo('<div v-if="sortedDynamicOptions && sortedDynamicOptions.length" class="grid grid-cols-2 gap-4 pb-4">')
 it.todo('<template v-if="dynamicOption.type === FeSelect" >')
 it.todo('<template v-if="dynamicOption.type === FeRangeInput">')
 it.todo('<template v-if="dynamicOption.type === FeSwitch">')
 
 it.todo('@change="handleSelectChange"')
-it.todo(' @input="onInput"')
-
-it.todo('FeRangeInput :attr')
-it.todo('FeSelect :attr')
-it.todo('<ValidationProvider :name')
-it.todo('component :is="defaultOption.type" :attr')
+it.todo('@input="onInput"')
 
 /* it('Should set valid input type', () => {})
 
