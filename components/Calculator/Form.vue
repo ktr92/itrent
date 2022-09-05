@@ -20,8 +20,8 @@
     />
 
     <ValidationObserver ref="form">
-      <template v-if="defaultOptions && defaultOptions.length">
-        <div v-for="defaultOption in sortedDefaultOptions" :key="defaultOption.alias">
+      <template v-if="getDefaultOptions && getDefaultOptions.length">
+        <div v-for="defaultOption in getDefaultOptions" :key="defaultOption.alias">
           <div class="grid grid-cols-2 gap-4 py-4">
             <ValidationProvider
               v-slot="{ errors }"
@@ -29,8 +29,7 @@
               :name="defaultOption.name"
               :class="{ 'col-span-2 md:col-span-1': defaultOption.smallSize, 'col-span-2': !defaultOption.smallSize}"
             >
-              <component
-                :is="defaultOption.type"
+              <FeSelect
                 v-if="showLocation"
                 v-model="location"
                 :options="defaultOption.items"
@@ -48,7 +47,7 @@
 
       <div v-if="optionsReady">
         <div
-          v-if="sortedDynamicOptions && sortedDynamicOptions.length"
+          v-if="getDynamicMerged && getDynamicMerged.length"
           class="grid grid-cols-2 gap-4 pb-4"
         >
           <div
@@ -154,7 +153,6 @@ export default {
       showLocation: true,
       apiErrors: {},
       defaultOptions: [],
-      dynamicOptions: [],
       previousLocation: null,
       optionsReady: false
     }
@@ -164,11 +162,11 @@ export default {
     ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'getFormDynamic', 'message']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
-      return orderBy(this.defaultOptions, 'sort')
+      return orderBy(this.getDefaultOptions, 'sort')
     },
     sortedDynamicOptions () {
       // сортируем массив опций по полю sort
-      return orderBy(this.dynamicOptions, 'sort')
+      return orderBy(this.getDynamicMerged, 'sort')
     },
     location: {
       get () {
@@ -215,9 +213,9 @@ export default {
     }
     if (!this.productsIsReady) { this.submit() }
 
-    this.$nuxt.$on('fieldChanged', () => {
+    /* this.$nuxt.$on('fieldChanged', () => {
       this.onInput()
-    })
+    }) */
   },
   methods: {
     ...mapActions('result', ['getProducts']),
@@ -232,7 +230,7 @@ export default {
     },
     async init () {
       this.defaultOptions = []
-      this.dynamicOptions = []
+
       // получаем параметры для свойств по умолчанию
       this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
       // формируем массив значений свойств по умолчанию, объединенных с параметрами
@@ -247,18 +245,14 @@ export default {
       // инициализация начальных данных формы динамических свойств
       this.$store.commit('calculator/setDynamicForm')
       // получаем параметры для динамических свойств
-      this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
-      this.dynamicOptions.length > 0 ? this.optionsReady = true : this.optionsReady = false
+
+      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     },
     load () {
       this.defaultOptions = []
-      this.dynamicOptions = []
       // получаем параметры для свойств по умолчанию
       this.defaultOptions.push(this.$store.getters['calculator/getDefaultOptions'])
-
-      // получаем параметры для динамических свойств
-      this.dynamicOptions = this.$store.getters['calculator/getDynamicMerged']
-      this.dynamicOptions.length > 0 ? this.optionsReady = true : this.optionsReady = false
+      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     },
     submit () {
       if (this.$refs.form != null) {
