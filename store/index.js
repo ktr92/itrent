@@ -1,12 +1,12 @@
 export const state = () => ({
   message: null,
-  messageBlock: null
+  messageBlock: []
 })
 
 export const actions = {
   setMessage ({ commit }, message) {
     commit('setMessage', message)
-    /* setTimeout(() => {
+  /*   setTimeout(() => {
       commit('clearMessage')
     }, 5000) */
   }
@@ -17,8 +17,10 @@ export const mutations = {
   setMessage (state, message) {
     state.message = message
   },
-  setMessageBlock (state, messageBlock) {
-    state.messageBlock = messageBlock
+  setMessageBlock (state, payload) {
+    if (!state.messageBlock.includes(payload)) {
+      state.messageBlock.push(payload)
+    }
   },
   clearMessage (state) {
     state.message = null
@@ -27,5 +29,5 @@ export const mutations = {
 
 export const getters = {
   message: state => state.message,
-  getessageBlock: state => state.messageBlock
+  getMessageBlock: state => state.messageBlock
 }

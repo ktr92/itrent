@@ -86,7 +86,7 @@
       </button>
     </ValidationObserver>
     <LazyFeAlert
-      v-if="message"
+      v-if="message && getMessageBlock.includes('Application')"
       class="mt-4 alert"
       :type="message.type"
       :title="message.title"
@@ -120,7 +120,7 @@ export default {
   computed: {
     ...mapGetters('result', ['getSelectedProducts']),
     ...mapGetters('calculator', ['getForm', 'getFormDynamic']),
-    ...mapGetters('applications', ['message'])
+    ...mapGetters(['message', 'getMessageBlock'])
   },
   methods: {
     checkSign () {

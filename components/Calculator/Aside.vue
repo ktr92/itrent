@@ -15,7 +15,7 @@
       </div>
       <div class="px-3.5 md:px-2">
         <LazyFeAlert
-          v-if="message"
+          v-if="message && getMessageBlock.includes('Result')"
           class="mt-2 alert"
           :type="message.type"
           :title="message.title"
@@ -91,7 +91,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'message', 'getProductsCount', 'getMoreLoading'])
+    ...mapGetters('result', ['getSelectedProducts', 'getResultItems', 'getReady', 'getProductsCount', 'getMoreLoading']),
+    ...mapGetters(['message', 'getMessageBlock'])
   },
   watch: {
     showAside (val) {

@@ -15,10 +15,9 @@ export default function ({ $axios, store }) {
       store.dispatch(
         'setMessage',
         {
-          title: error.response.status,
-          description: error.response.data ? error.response.data.message : error.message,
-          type: 'error',
-          block: store.state.getMessageBlock
+          title: `Ошибка ${error.response.status}`,
+          description: error.response.data ? error.response.data.message : error.message || 'Что-то пошло не так...',
+          type: 'error'
         })
     } else if (error.request) {
       // Запрос был сделан, но ответ не получен
@@ -27,20 +26,18 @@ export default function ({ $axios, store }) {
       store.dispatch(
         'setMessage',
         {
-          title: 'Ошибка',
-          description: error.request,
-          type: 'error',
-          block: store.state.getMessageBlock
+          title: `Ошибка ${error.response.status}`,
+          description: error.request || 'Что-то пошло не так...',
+          type: 'error'
         })
     } else {
       // Произошло что-то при настройке запроса, вызвавшее ошибку
       store.dispatch(
         'setMessage',
         {
-          title: 'Ошибка',
-          description: error.message,
-          type: 'error',
-          block: store.state.getMessageBlock
+          title: `Ошибка ${error.response.status}`,
+          description: error.message || 'Что-то пошло не так...',
+          type: 'error'
         })
     }
   })

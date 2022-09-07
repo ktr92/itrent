@@ -1,9 +1,6 @@
 import { intersection } from 'lodash'
-/* import rentOptions from '../../../rent-options/options.json'
- */
-const headers = {
-  'Content-Type': 'application/json;charset=UTF-8'
-}
+
+const MESSAGEBLOCK = 'Calculator'
 
 export default {
   initDefault ({ commit, getters }) {
@@ -17,38 +14,17 @@ export default {
     // инициализация начальных данных формы динамических свойств
     commit('setDynamicForm')
   },
-
-  /*  async getDynamicOptions ({ commit, dispatch }, payload) { // получаем динамические свойства
+  async getOptionsJSON ({ commit }) {
     try {
-      await this.$axios.$get('apimethod', { ...payload }).then((response) => {
-        commit('setDynamicOptions', response.data.data)
-      })
-    } catch (e) {
-      dispatch('setMessage', { value: `${e.response.data.code}: ${e.response.data.message}`, type: 'error' }, { root: true })
-    }
-  }, */
-  async getOptionsJSON ({ commit, dispatch }) {
-    try {
-      const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`, {
-        mode: 'cors',
-        headers
-      }).then((response) => {
-        return response
-      })
+      const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`)
       commit('setOptionsJSON', [...options.dynamicOptionsParams])
-    } catch (err) {
-      dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
+    } catch (error) {
+      commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   },
-  /*   getOptionsJSON ({ commit, dispatch }) {
-    commit('setOptionsJSON', [...rentOptions.dynamicOptionsParams])
-  }, */
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
-      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/r2ent`, {
-        mode: 'cors',
-        headers
-      })
+      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`)
       const aliases = [...new Set(options.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], aliases)
@@ -56,10 +32,10 @@ export default {
       commit('setDynamicOptions', [...dynamicList])
       commit('mergeDynamicOptions')
     } catch (error) {
-      commit('setMessageBlock', 'Calculator', { root: true })
+      commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   },
-  async setFormSelect ({ commit, dispatch, rootGetters }) {
+  async setFormSelect ({ commit, rootGetters }) {
     try {
       // получаем список свойств типа Select
       const optionsByAlias = rootGetters['calculator/getDynamicMerged'].filter(item => item.type === 'FeSelect')
@@ -75,19 +51,9 @@ export default {
         Object.entries(params).map(([k, v]) => [`${'fields[]'}${k}`, `${k}`])
       )
       const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
-        mode: 'cors',
-        headers,
         params: {
           ...fieldsQuery
         }
-      }).then((response) => {
-        if (response.data) {
-          return response
-        } else {
-          dispatch('setMessage', { title: 'Ошибка:', description: 'Не удалось получить данные...', type: 'error' })
-        }
-      }).catch((err) => {
-        dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
       })
       // Заполняем Select - свойства списком значений
       const getSelectOptions = (alias) => {
@@ -110,7 +76,7 @@ export default {
         ])
       })
     } catch (e) {
-      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
+      commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   }
 }
