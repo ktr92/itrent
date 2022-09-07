@@ -25,6 +25,5 @@ export default {
   getDefaultOptions: state => ([...state.defaultOptions]),
   getDynamicOptions: state => state.dynamicOptions,
   getDynamicList: state => state.dynamicOptionsParams.map(item => item.alias),
-  getDynamicMerged: state => ([...state.dynamicMerged]),
-  message: state => state.message
+  getDynamicMerged: state => ([...state.dynamicMerged])
 }

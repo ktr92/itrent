@@ -9,12 +9,7 @@ export default {
   updateCurrentApplication (state, payload) {
     state.currentApplication = payload
   },
-  setMessage (state, message) {
-    state.message = message
-  },
-  clearMessage (state) {
-    state.message = null
-  },
+
   setCookie (state, payload) {
     state.connectsid = payload
   }

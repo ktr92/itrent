@@ -1,12 +1,7 @@
 import Vue from 'vue'
 
 export default {
-  setMessage (state, message) {
-    state.message = message
-  },
-  clearMessage (state) {
-    state.message = null
-  },
+
   setOptionsJSON (state, payload) {
     state.dynamicOptionsParams = payload
   },

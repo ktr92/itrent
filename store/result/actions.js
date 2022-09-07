@@ -4,13 +4,6 @@ const headers = {
 
 export default {
 
-  setMessage ({ commit }, message) {
-    commit('setMessage', message)
-    /*  setTimeout(() => {
-        commit('clearMessage')
-      }, 5000) */
-  },
-
   async getProducts ({ commit, dispatch, rootGetters, getters }) {
     commit('setReady', false)
     commit('clearSelected')

@@ -1,5 +1,6 @@
 export const state = () => ({
-  message: null
+  message: null,
+  messageBlock: null
 })
 
 export const actions = {
@@ -16,9 +17,15 @@ export const mutations = {
   setMessage (state, message) {
     state.message = message
   },
+  setMessageBlock (state, messageBlock) {
+    state.messageBlock = messageBlock
+  },
   clearMessage (state) {
     state.message = null
   }
 }
 
-export const getters = { message: state => state.message }
+export const getters = {
+  message: state => state.message,
+  getessageBlock: state => state.messageBlock
+}

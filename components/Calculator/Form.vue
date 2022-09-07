@@ -12,7 +12,7 @@
     </div>
 
     <FeAlert
-      v-if="message"
+      v-if="message && message.block === 'Calculator'"
       class="mt-4 alert"
       :type="message.type"
       :title="message.title"
@@ -156,7 +156,8 @@ export default {
   },
   computed: {
     ...mapState('result', ['productsIsReady']),
-    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'getFormDynamic', 'message']),
+    ...mapGetters('calculator', ['getRealEstateRegions', 'getDefaultOptions', 'getDynamicMerged', 'getForm', 'getFormDynamic']),
+    ...mapGetters(['message']),
     sortedDefaultOptions () {
       // сортируем массив опций по полю sort
       return orderBy(this.getDefaultOptions, 'sort')

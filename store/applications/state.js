@@ -5,7 +5,6 @@ export default () => ({
   },
   currentApplication: null,
   step: 1,
-  message: null,
   connectsid: null,
   statusMap: {
     0: 'Отказ',

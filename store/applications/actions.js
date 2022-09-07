@@ -1,8 +1,6 @@
 const base64 = require('base-64')
 export default {
-  setMessage ({ commit }, message) {
-    commit('setMessage', message)
-  },
+
   updateCurrentApplication ({ commit }, payload) {
     commit('updateCurrentApplication', payload)
   },

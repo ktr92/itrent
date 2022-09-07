@@ -17,12 +17,7 @@ export default {
     // инициализация начальных данных формы динамических свойств
     commit('setDynamicForm')
   },
-  setMessage ({ commit }, message) {
-    commit('setMessage', message)
-    /*  setTimeout(() => {
-        commit('clearMessage')
-      }, 5000) */
-  },
+
   /*  async getDynamicOptions ({ commit, dispatch }, payload) { // получаем динамические свойства
     try {
       await this.$axios.$get('apimethod', { ...payload }).then((response) => {
@@ -50,27 +45,18 @@ export default {
   }, */
   async setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
-      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
+      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/r2ent`, {
         mode: 'cors',
         headers
-      }).then((response) => {
-        if (response.data) {
-          // получаем массив из тех свойств, которые есть в продуктах
-          const aliases = [...new Set(response.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
-          return aliases
-        } else {
-          dispatch('setMessage', { title: 'Ошибка:', description: 'Не удалось получить данные...', type: 'error' })
-        }
-      }).catch((err) => {
-        dispatch('setMessage', { title: 'Ошибка:', description: `${err}`, type: 'error' })
       })
+      const aliases = [...new Set(options.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
       // берем только общие из продуктов и параметров
-      const dynamicList = intersection(rootGetters['calculator/getDynamicList'], options)
+      const dynamicList = intersection(rootGetters['calculator/getDynamicList'], aliases)
       // сохраняем список динамических свойств
       commit('setDynamicOptions', [...dynamicList])
       commit('mergeDynamicOptions')
-    } catch (e) {
-      dispatch('setMessage', { title: `${e.response.data.code || 'Ошибка'}:`, description: `${e.response.data.message || 'Что-то пошло не так...'}`, type: 'error' })
+    } catch (error) {
+      commit('setMessageBlock', 'Calculator', { root: true })
     }
   },
   async setFormSelect ({ commit, dispatch, rootGetters }) {
