@@ -108,7 +108,8 @@ export default {
     return {
       isActive: false,
       keyword: '',
-      selectedOption: {}
+      selectedOption: {},
+      oldval: ''
     }
   },
   computed: {
@@ -190,7 +191,10 @@ export default {
     },
     showDropdown () {
       this.isActive = true
-      if (!this.default) { this.keyword = '' }
+      if (!this.default) {
+        this.oldval = this.keyword
+        this.keyword = ''
+      }
     },
     nameFromVal (options, val) {
       const value = options.filter(item => item.val === val)
@@ -215,7 +219,9 @@ export default {
           return
         }
         this.selectedOption = []
-        this.$emit('change', this.selectedOption)
+        if (this.oldval !== this.keyword) {
+          this.$emit('change', this.selectedOption)
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-/* // import Response from '../fixtures/response.json'
+/* import Response from '../fixtures/response.json'
 
 describe('Calculator test', () => {
   beforeEach(() => {
@@ -122,7 +122,7 @@ describe('Calculator test', () => {
           cy.wait('@getProducts')
           cy.intercept({
             method: 'GET',
-            url: ' /api / v2 / results / products/* '
+            url: ' /api/v2/results/products/* '
           }, {}).as(
             'getProducts2'
           )
@@ -165,26 +165,14 @@ describe('Calculator test', () => {
 
   it('Should get products list', () => {
     cy.visit('/calculator')
-    const testProp = 'quantity_of_parking'
-    cy.get(`#${testProp}`).find('input.input').clear().type('50')
-    cy.get('#proposal-list').should('contain.text', 'Пятёрочка')
+    cy.get('#proposal-list').should('contain.text', 'Помещение')
   })
 
   it('Should display no data', () => {
     cy.visit('/calculator')
-    let overparam = 3000
-    const testProp = 'quantity_of_parking'
-    Response.data.items.forEach((item) => {
-      if (item.properties.find(i => i.alias === testProp)) {
-        const prop = item.properties.find(i => i.alias === testProp).values[0].value
-        const minProp = Number(prop.substr(0, prop.indexOf(':')))
-        if (minProp < overparam) {
-          overparam = minProp
-        }
-      }
-    })
+    const overparam = 1
+    const testProp = 'pwr'
 
-    overparam -= 1
     cy.get(`#${testProp}`).find('input.input').clear().type(overparam)
     cy.get('#proposal-list').should('contain.text', 'По вашим параметрам ничего не найдено')
   })
