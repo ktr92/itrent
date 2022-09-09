@@ -31,6 +31,7 @@
             >
               <FeSelect
                 v-if="showLocation"
+                :id="defaultOption.alias"
                 v-model="location"
                 :options="defaultOption.items"
                 :errors="errors.concat(apiErrors.location)"
@@ -45,9 +46,8 @@
         </div>
       </template>
 
-      <div v-if="optionsReady">
+      <div v-if="isFormReady">
         <div
-          v-if="getDynamicMerged.length"
           class="grid grid-cols-2 gap-4 pb-4"
         >
           <div
@@ -133,11 +133,13 @@ import { mapGetters, mapActions, mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
 import FeAlert from '@/components/Fe/Alert.vue'
+import FeSelect from '@/components/Fe/Select.vue'
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    FeAlert
+    FeAlert,
+    FeSelect
   },
   props: {
     allowToChange: {
@@ -150,8 +152,7 @@ export default {
       timeout: null,
       showLocation: true,
       apiErrors: {},
-      previousLocation: null,
-      optionsReady: false
+      previousLocation: null
     }
   },
   computed: {
@@ -191,6 +192,9 @@ export default {
     },
     dynamicModel () {
       return this.$store.getters['calculator/getFormDynamic']
+    },
+    isFormReady () {
+      return Object.keys(this.getFormDynamic).length
     }
 
   },
@@ -205,10 +209,8 @@ export default {
     }
   },
   async mounted () {
-    if (Object.keys(this.getFormDynamic).length === 0) {
+    if (this.isFormReady === 0) {
       await this.init()
-    } else {
-      this.load()
     }
     if (!this.productsIsReady) { this.submit() }
 
@@ -235,11 +237,6 @@ export default {
       this.$store.dispatch('calculator/initDefault')
       // инициализация динамических свойств
       await this.$store.dispatch('calculator/initDynamic')
-
-      this.checkReady()
-    },
-    load () {
-      this.checkReady()
     },
     submit () {
       if (this.$refs.form != null) {
@@ -254,11 +251,7 @@ export default {
           }
         })
       }
-    },
-    checkReady () {
-      this.getDynamicMerged.length > 0 ? this.optionsReady = true : this.optionsReady = false
     }
-
   }
 }
 </script>

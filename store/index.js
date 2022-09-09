@@ -31,3 +31,10 @@ export const getters = {
   message: state => state.message,
   getMessageBlock: state => state.messageBlock
 }
+
+export const getStoreConfig = () => ({
+  state: { ...state() },
+  actions,
+  mutations,
+  getters
+})

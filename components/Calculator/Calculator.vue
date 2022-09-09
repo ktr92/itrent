@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container pt-2 md:pt-8 md:pb-16 md:grid "
+    class="container pt-2 md:pt-8 md:pb-24 md:grid "
     style="grid-template-columns: 18fr 12fr; align-items: start"
   >
     <div

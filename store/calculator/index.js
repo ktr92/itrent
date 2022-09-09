@@ -3,7 +3,7 @@ import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
 
-export const getStoreConfig = () => ({
+export const getCalculatorConfig = () => ({
   state: { ...state() },
   actions,
   mutations,

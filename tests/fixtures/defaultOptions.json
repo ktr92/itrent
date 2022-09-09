@@ -6,7 +6,12 @@
      "default":false,
      "limit":5,
      "sort":0,
-     "type":"FeSelect"
+     "type":"FeSelect",
+     "items": [
+      {
+        "name": "Москва", "val": "MOSKVA", "rating": 1, "additionally": [{ "name": "Москва" }]
+      }
+    ]
   },
   "locationOptions":[
      {
