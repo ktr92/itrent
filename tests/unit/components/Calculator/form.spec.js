@@ -1,9 +1,8 @@
 import { merge } from 'lodash'
 import { enableAutoDestroy, config, shallowMount } from '@vue/test-utils'
-import Vue, { nextTick } from 'vue'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import FakeValidationProvider from '../../../Fake/ValidationProvider.vue'
-import FeSelect from '@/components/Fe/Select.vue'
 import FeAlert from '@/components/Fe/Alert.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
 import { getStoreConfig } from '@/store/index.js'
@@ -105,7 +104,7 @@ describe('CalculatorForm', () => {
         }
       }
     })
-    await nextTick()
+    await wrapper.vm.$nextTick()
 
     expect(mockedCalculatorActions.initDefault).toHaveBeenCalled()
     expect(mockedCalculatorActions.initDynamic).toHaveBeenCalled()
@@ -124,7 +123,8 @@ describe('CalculatorForm', () => {
         }
       }
     })
-    await nextTick()
+    await wrapper.vm.$nextTick()
+
     expect(mockedCalculatorActions.initDefault).not.toHaveBeenCalled()
     expect(mockedCalculatorActions.initDynamic).not.toHaveBeenCalled()
     expect(wrapper.find('#s').exists()).toBe(true)
@@ -140,7 +140,7 @@ describe('CalculatorForm', () => {
         }
       }
     })
-    await nextTick()
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.find('#locations').exists()).toBe(true)
   })
