@@ -162,16 +162,35 @@ describe('CalculatorForm', () => {
       }
     })
     await wrapper.vm.$nextTick()
-    const selects = wrapper.findAllComponents(FeRangeInput)
     const entries = dynamicOptionsParams.map((item) => {
-      return { alias: item.alias, type: item.type }
+      return { alias: item.alias, type: item.placeholder }
     }).filter(w => w.type === 'FeRangeInput')
 
     entries.forEach((item) => {
-      selects.wrappers.filter(w => w.element.__vue__.$attrs.id === item.alias)
+      expect(wrapper.find(`${'#' + item.alias}.fe-rangeinput`).exists()).toBe(true)
     })
+  })
+  it('Render FeSelect by appropriate alias type settings', async () => {
+    createComponent({
+      calculatorConfig: {
+        getters: {
+          getDynamicMerged: () => [
+            ...dynamicOptionsParams
+          ],
+          getFormDynamic: () => ({
+            ...dynamiOptionsList
+          })
+        }
+      }
+    })
+    await wrapper.vm.$nextTick()
+    const entries = dynamicOptionsParams.map((item) => {
+      return { alias: item.alias, type: item.placeholder }
+    }).filter(w => w.type === 'FeSelect')
 
-    expect(selects).toHaveLength(entries.length)
+    entries.forEach((item) => {
+      expect(wrapper.find(`${'#' + item.alias}.fe-select`).exists()).toBe(true)
+    })
   })
 })
 
