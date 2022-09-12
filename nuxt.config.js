@@ -46,7 +46,6 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/svg-sprite',
     '@nuxtjs/google-fonts',
     '@nuxt/typescript-build'
 
@@ -57,19 +56,14 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/sentry',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/svg-sprite'
   ],
 
   proxy: {
     '/api/v1/catalogs/19': { target: process.env.BPIUM_URL, pathRewrite: { '^/api/v1/catalogs/19': '' } }
   },
 
-  sentry: {
-    dsn: '',
-    config: {
-    }
-  },
   publicRuntimeConfig: {
     homePage: process.env.HOME_PAGE
   },
@@ -95,7 +89,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vee-validate/dist/rules']
+    transpile: ['vee-validate/dist/rules'],
+    extend (config, ctx) {
+      // Extend only webpack config for client-bundle
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
   }
 
 }
