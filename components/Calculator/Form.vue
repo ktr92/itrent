@@ -85,7 +85,7 @@
                 <FeRangeInput
                   :id="dynamicOption.alias"
                   v-model="dynamicModel[dynamicOption.alias]"
-                  class="fe-rangeiput"
+                  class="fe-rangeinput"
                   :label="dynamicOption.name"
                   :min="dynamicOption.min"
                   :max="dynamicOption.max"
@@ -134,12 +134,14 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
 import FeAlert from '@/components/Fe/Alert.vue'
 import FeSelect from '@/components/Fe/Select.vue'
+import FeRangeInput from '@/components/Fe/RangeInput.vue'
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
     FeAlert,
-    FeSelect
+    FeSelect,
+    FeRangeInput
   },
   props: {
     allowToChange: {
