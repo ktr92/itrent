@@ -134,6 +134,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { orderBy } from 'lodash'
 import FeAlert from '@/components/Fe/Alert.vue'
 import FeSelect from '@/components/Fe/Select.vue'
+import CalculatorSkeleton from '@/components/Calculator/Skeleton.vue'
 import FeRangeInput from '@/components/Fe/RangeInput.vue'
 export default {
   components: {
@@ -141,7 +142,8 @@ export default {
     ValidationProvider,
     FeAlert,
     FeSelect,
-    FeRangeInput
+    FeRangeInput,
+    CalculatorSkeleton
   },
   props: {
     allowToChange: {

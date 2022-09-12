@@ -40,5 +40,7 @@
 </template>
 
 <script>
-
+export default {
+  name: 'CalculatorSkeleton'
+}
 </script>

@@ -4,8 +4,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import FakeValidationProvider from '../../../Fake/ValidationProvider.vue'
 import FeAlert from '@/components/Fe/Alert.vue'
-import FeRangeInput from '@/components/Fe/RangeInput.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
+import CalculatorSkeleton from '@/components/Calculator/Skeleton.vue'
 import { getStoreConfig } from '@/store/index.js'
 import { getCalculatorConfig } from '@/store/calculator/index.js'
 import { getResultStoreConfig } from '@/store/result/index.js'
@@ -63,8 +63,7 @@ describe('CalculatorForm', () => {
       },
       store,
       stubs: {
-        ValidationProvider: FakeValidationProvider,
-        CalculatorSkeleton: true
+        ValidationProvider: FakeValidationProvider
       },
       methods: {
         submit: jest.fn()
@@ -192,12 +191,18 @@ describe('CalculatorForm', () => {
       expect(wrapper.find(`${'#' + item.alias}.fe-select`).exists()).toBe(true)
     })
   })
-})
 
-it.todo('<div v-if="sortedDynamicOptions && sortedDynamicOptions.length" class="grid grid-cols-2 gap-4 pb-4">')
-it.todo('<template v-if="dynamicOption.type === FeSelect" >')
-it.todo('<template v-if="dynamicOption.type === FeRangeInput">')
-it.todo('<template v-if="dynamicOption.type === FeSwitch">')
+  it('Show skeleton when loading', () => {
+    createComponent({
+      calculatorConfig: {
+        getters: {
+          getFormDynamic: () => []
+        }
+      }
+    })
+    expect(wrapper.findComponent(CalculatorSkeleton).exists()).toBe(true)
+  })
+})
 
 it.todo('@change="handleSelectChange"')
 it.todo('@input="onInput"')
