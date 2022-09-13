@@ -1,7 +1,9 @@
 import { merge } from 'lodash'
-import { enableAutoDestroy, config, shallowMount } from '@vue/test-utils'
+import { enableAutoDestroy, config, mount, flushPromises } from '@vue/test-utils'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { extend } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
 import FakeValidationProvider from '../../../Fake/ValidationProvider.vue'
 import FeAlert from '@/components/Fe/Alert.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
@@ -9,9 +11,9 @@ import CalculatorSkeleton from '@/components/Calculator/Skeleton.vue'
 import { getStoreConfig } from '@/store/index.js'
 import { getCalculatorConfig } from '@/store/calculator/index.js'
 import { getResultStoreConfig } from '@/store/result/index.js'
-
 import { defaultOptions } from '@/tests/fixtures/defaultOptions.json'
 import { dynamicOptionsParams, dynamiOptionsList } from '@/tests/fixtures/dynamicOptions.json'
+extend('required', required)
 
 config.showDeprecationWarnings = false
 
@@ -22,16 +24,22 @@ describe('CalculatorForm', () => {
 
   let wrapper
   let mockedCalculatorActions
+  let mockedResultActions
 
   const DEFAULT_PROPS = {
     allowToChange: true
   }
   const defaultStore = getStoreConfig()
   const defaultCalculatorStore = getCalculatorConfig()
+  const defaultResultStore = getResultStoreConfig()
 
-  const createComponent = ({ props, storeConfig, calculatorConfig } = {}) => {
+  const createComponent = ({ props, storeConfig, calculatorConfig, resultConfig } = {}) => {
     mockedCalculatorActions = Object.fromEntries(
       Object.keys(defaultCalculatorStore.actions).map(key => [key, jest.fn()])
+    )
+
+    mockedResultActions = Object.fromEntries(
+      Object.keys(defaultResultStore.actions).map(key => [key, jest.fn()])
     )
 
     const store = new Vuex.Store({
@@ -52,25 +60,26 @@ describe('CalculatorForm', () => {
         },
         result: {
           namespaced: true,
-          getResultStoreConfig
+          ...merge(
+            {},
+            defaultResultStore,
+            { actions: mockedResultActions },
+            resultConfig
+          )
         }
       }
     })
-    wrapper = shallowMount(CalculatorForm, {
+    wrapper = mount(CalculatorForm, {
       propsData: {
         ...DEFAULT_PROPS,
         ...props
       },
       store,
       stubs: {
-        ValidationProvider: FakeValidationProvider
-      },
-      methods: {
-        submit: jest.fn()
+        FeSelect: true,
+        SvgIcon: true
       }
     })
-
-    wrapper.setMethods({ submit: jest.fn() })
   }
 
   it('Render message when error', () => {
@@ -202,10 +211,29 @@ describe('CalculatorForm', () => {
     })
     expect(wrapper.findComponent(CalculatorSkeleton).exists()).toBe(true)
   })
-})
 
-it.todo('@change="handleSelectChange"')
-it.todo('@input="onInput"')
+  it('Update results by changing any input', async () => {
+    createComponent({
+      calculatorConfig: {
+        getters: {
+          getDynamicMerged: () => [
+            ...dynamicOptionsParams
+          ],
+          getFormDynamic: () => ({
+            ...dynamiOptionsList
+          })
+        }
+      }
+    })
+
+    wrapper.find('#s input').setValue(100)
+    wrapper.find('#s input').trigger('blur')
+    await new Promise(resolve => requestAnimationFrame(resolve))
+    await wrapper.vm.$nextTick()
+
+    expect(mockedResultActions.getProducts).toHaveBeenCalled()
+  })
+})
 
 /* it('Should set valid input type', () => {})
 
