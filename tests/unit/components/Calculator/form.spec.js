@@ -4,8 +4,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { extend } from 'vee-validate'
 import { required } from 'vee-validate/dist/rules'
+import vClickOutside from 'v-click-outside'
 import FakeValidationProvider from '../../../Fake/ValidationProvider.vue'
 import FeAlert from '@/components/Fe/Alert.vue'
+import FeSelect from '@/components/Fe/Select.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
 import CalculatorSkeleton from '@/components/Calculator/Skeleton.vue'
 import { getStoreConfig } from '@/store/index.js'
@@ -14,7 +16,7 @@ import { getResultStoreConfig } from '@/store/result/index.js'
 import { defaultOptions } from '@/tests/fixtures/defaultOptions.json'
 import { dynamicOptionsParams, dynamiOptionsList } from '@/tests/fixtures/dynamicOptions.json'
 extend('required', required)
-
+Vue.use(vClickOutside)
 config.showDeprecationWarnings = false
 
 Vue.use(Vuex)
@@ -76,7 +78,6 @@ describe('CalculatorForm', () => {
       },
       store,
       stubs: {
-        FeSelect: true,
         SvgIcon: true
       }
     })
@@ -212,7 +213,7 @@ describe('CalculatorForm', () => {
     expect(wrapper.findComponent(CalculatorSkeleton).exists()).toBe(true)
   })
 
-  it('Update results by changing any input', async () => {
+  it('Update results when RangeInput changes', async () => {
     createComponent({
       calculatorConfig: {
         getters: {
@@ -225,13 +226,37 @@ describe('CalculatorForm', () => {
         }
       }
     })
+    await wrapper.vm.$nextTick()
+    expect(mockedResultActions.getProducts).toHaveBeenCalledTimes(0)
+    const input = wrapper.find('#s input')
 
-    wrapper.find('#s input').setValue(100)
-    wrapper.find('#s input').trigger('blur')
+    input.setValue(100)
+    input.trigger('blur')
     await new Promise(resolve => requestAnimationFrame(resolve))
     await wrapper.vm.$nextTick()
 
-    expect(mockedResultActions.getProducts).toHaveBeenCalled()
+    expect(mockedResultActions.getProducts).toHaveBeenCalledTimes(1)
+  })
+
+  it('Update results when Select changes', async () => {
+    createComponent({
+      calculatorConfig: {
+        getters: {
+          getDefaultOptions: () => [
+            { ...defaultOptions }
+          ]
+        }
+      }
+    })
+    await wrapper.vm.$nextTick()
+    expect(mockedResultActions.getProducts).toHaveBeenCalledTimes(0)
+    const input = wrapper.findComponent(FeSelect)
+
+    input.vm.$emit('onInput')
+    await new Promise(resolve => requestAnimationFrame(resolve))
+    await wrapper.vm.$nextTick()
+
+    expect(mockedResultActions.getProducts).toHaveBeenCalledTimes(1)
   })
 })
 

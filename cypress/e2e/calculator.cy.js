@@ -62,32 +62,6 @@ describe('Calculator test', () => {
     cy.get('#proposal-list').should('contain.text', 'По вашим параметрам ничего не найдено')
   })
 
-  it('Should update by input change', () => {
-    cy.visit('/calculator')
-    const testProp = 'quantity_of_parking'
-    cy.get(`#${testProp}`).find('input.input').clear().type('50')
-
-    cy.intercept({
-      method: 'GET',
-      url: '*api/v2/results/products/*'
-    }, {}).as('updateRequest')
-
-    cy.wait('@updateRequest').its('request.url').should('include', 'filters[properties][quantity_of_parking]=50')
-  })
-
-  it('Should show errors', () => {
-    cy.visit('/calculator')
-    const testProp = 'quantity_of_parking'
-    cy.get(`#${testProp}`).find('input.input').clear().type('50')
-
-    cy.intercept('GET', '*api/v2/results/products/*', (req) => {
-      req.headers.authorization = 'bearer my-bearer-auth-token'
-    }).as('updateRequest')
-    cy.get('#proposal-list').find('.alert').then(($alert) => {
-      expect($alert).to.contain('Unauthenticated')
-    })
-  })
-
   it('Should show skeleton while products loading', () => {
     cy.visit('/calculator')
     cy.intercept({
