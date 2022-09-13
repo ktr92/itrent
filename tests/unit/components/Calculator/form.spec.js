@@ -1,11 +1,10 @@
 import { merge } from 'lodash'
-import { enableAutoDestroy, config, mount, flushPromises } from '@vue/test-utils'
+import { enableAutoDestroy, config, mount } from '@vue/test-utils'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { extend } from 'vee-validate'
 import { required } from 'vee-validate/dist/rules'
 import vClickOutside from 'v-click-outside'
-import FakeValidationProvider from '../../../Fake/ValidationProvider.vue'
 import FeAlert from '@/components/Fe/Alert.vue'
 import FeSelect from '@/components/Fe/Select.vue'
 import CalculatorForm from '@/components/Calculator/Form.vue'
@@ -259,36 +258,3 @@ describe('CalculatorForm', () => {
     expect(mockedResultActions.getProducts).toHaveBeenCalledTimes(1)
   })
 })
-
-/* it('Should set valid input type', () => {})
-
-import { createLocalVue, mount } from '@vue/test-utils'
-import Vuex from 'vuex'
-import dynamicOptions from '@/tests/fixtures/dynamicOptions.json'
-import Form from '@/components/Calculator/Form.vue'
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
-
-it('Should set valid input type', () => {
-  // Arrange
-  const select = []
-  const rangeinput = []
-
-  dynamicOptions.forEach((item) => {
-    if (item.type === 'FeSelect') {
-      select.push(item)
-    }
-    if (item.type === 'FeRangeInput') {
-      rangeinput.push(item)
-    }
-  })
-  const wrapper = mount(Form, {
-    localVue,
-    stubs: ['FeAlert']
-  })
-  // Act
-
-  // Assert
-})
- */

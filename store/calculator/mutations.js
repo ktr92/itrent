@@ -8,10 +8,10 @@ export default {
   setOptionsReady (state, payload) {
     state.optionsIsReady = payload
   },
-  setDynamicOptions (state, payload) {
+  /*  setDynamicOptions (state, payload) {
     state.dynamicOptions = payload
   },
-
+ */
   updateLocation (state, payload) {
     state.form.location = payload
   },
@@ -31,7 +31,8 @@ export default {
     /*  state[field] = value */
     state.dynamicMerged.filter(item => item.alias === field)[0].items = [...value]
   },
-  mergeDynamicOptions (state) {
+  mergeDynamicOptions (state, payload) {
+    state.dynamicOptions = payload
     state.dynamicMerged = []
     for (let i = 0; i < state.dynamicOptions.length; i++) {
       state.dynamicMerged.push({

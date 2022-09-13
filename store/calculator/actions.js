@@ -29,8 +29,8 @@ export default {
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], aliases)
       // сохраняем список динамических свойств
-      commit('setDynamicOptions', [...dynamicList])
-      commit('mergeDynamicOptions')
+      // commit('setDynamicOptions', [...dynamicList])
+      commit('mergeDynamicOptions', [...dynamicList])
     } catch (error) {
       commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
