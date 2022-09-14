@@ -54,8 +54,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
-    '@nuxtjs/sentry'
+    '@nuxtjs/auth-next'
   ],
   sentry: {
     dsn: '',
