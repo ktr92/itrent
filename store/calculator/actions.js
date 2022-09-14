@@ -28,6 +28,7 @@ export default {
       const aliases = [...new Set(options.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], aliases)
+
       // сохраняем список динамических свойств
       // commit('setDynamicOptions', [...dynamicList])
       commit('mergeDynamicOptions', [...dynamicList])
@@ -38,23 +39,20 @@ export default {
   async setFormSelect ({ commit, rootGetters }) {
     try {
       // получаем список свойств типа Select
-      const optionsByAlias = rootGetters['calculator/getDynamicMerged'].filter(item => item.type === 'FeSelect')
-      // получаем список свойств для запроса
       const initials = rootGetters['calculator/getDynamicMerged']
-      // преобразуем свойства в формат "alias: начальное значение"
-      const params = initials.reduce((obj, item) => {
-        obj[item.alias] = item.initial
+      const optionsByAlias = initials.filter(item => item.type === 'FeSelect')
+
+      const fieldsQuery = optionsByAlias.reduce((obj, v) => {
+        obj[`${'fields[]'}${v.alias}`] = v.alias
         return obj
       }, {})
-      // формируем объект параметров для запроса значений полей типа Select
-      const fieldsQuery = Object.fromEntries(
-        Object.entries(params).map(([k, v]) => [`${'fields[]'}${k}`, `${k}`])
-      )
+
       const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery
         }
       })
+
       // Заполняем Select - свойства списком значений
       const getSelectOptions = (alias) => {
         const fields = options.data.fields || []
@@ -68,7 +66,6 @@ export default {
 
         return []
       }
-
       optionsByAlias.forEach((option) => {
         commit('updateState', [
           option.alias,
