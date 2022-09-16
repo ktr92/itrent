@@ -1,11 +1,9 @@
 
-import { createLocalVue } from '@vue/test-utils'
+import { createLocalVue, enableAutoDestroy } from '@vue/test-utils'
 import Vuex from 'vuex'
 import { intersection } from 'lodash'
 import { getCalculatorConfig } from '@/store/calculator/index'
-import calculatorState from '@/store/calculator/state'
-import calculatorMutations from '@/store/calculator/mutations'
-import calculatorGetters from '@/store/calculator/getters'
+
 import Fields from '@/tests/fixtures/fields.json'
 import defaultOptionsFixture from '@/tests/fixtures/defaultOptions.json'
 import dynamicOptionsFixture from '@/tests/fixtures/dynamicOptions.json'
@@ -13,18 +11,21 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('store/calculator/mutations', () => {
-  test('mergeOptions', () => {
+  enableAutoDestroy(beforeEach)
+  const defaultStoreConfig = getCalculatorConfig()
+
+  test('mergeOptions should add default options values to config', () => {
     const state = {
       defaultOptions: [{ ...defaultOptionsFixture }]
     }
     expect(state.defaultOptions[0]).not.toHaveProperty('items')
 
-    calculatorMutations.mergeOptions(state, calculatorState.locationOptions)
+    defaultStoreConfig.mutations.mergeOptions(state, defaultStoreConfig.state.locationOptions)
 
     expect(state.defaultOptions[0]).toHaveProperty('items')
   })
 
-  test('mergeDynamicOptions', () => {
+  test('mergeDynamicOptions should add dynamic options values to config', () => {
     const options = ['level', 'none', 'mdu_part', 'quantity_of_parking']
     const state = {
       dynamicOptions: [],
@@ -36,12 +37,12 @@ describe('store/calculator/mutations', () => {
     const dynamicList = intersection(
       state.dynamicOptionsParams.map(item => item.alias), options
     )
-    calculatorMutations.mergeDynamicOptions(state, dynamicList)
+    defaultStoreConfig.mutations.mergeDynamicOptions(state, dynamicList)
 
     expect(state.dynamicOptions.filter(item => item === 'level')).toHaveLength(1)
   })
 
-  test('Dynamic selects must be filled by respective values', () => {
+  test('updateState - Dynamic selects must be filled by respective values', () => {
     const options = ['level']
     const fields = Fields
     const obj = fields.filter(item => item.alias === options[0])
@@ -54,9 +55,25 @@ describe('store/calculator/mutations', () => {
       ]
     }
 
-    calculatorMutations.updateState(state, [options[0], obj])
+    defaultStoreConfig.mutations.updateState(state, [options[0], obj])
 
-    expect(calculatorGetters.getDynamicMerged(state)[0]).toHaveProperty('items')
-    expect(calculatorGetters.getDynamicMerged(state)[0].items[0].values.filter(i => i.title === val)).toHaveLength(1)
+    expect(defaultStoreConfig.getters.getDynamicMerged(state)[0]).toHaveProperty('items')
+    expect(defaultStoreConfig.getters.getDynamicMerged(state)[0].items[0].values.filter(i => i.title === val)).toHaveLength(1)
+  })
+
+  test('setDynamicForm - Should initialize form first values', () => {
+    const state = {
+      dynamicMerged: [
+        ...dynamicOptionsFixture.dynamicOptionsParams
+      ],
+      formDynamic: {}
+    }
+    const check = state.dynamicMerged.filter(item => item.type === 'FeRangeInput')[0].alias
+
+    defaultStoreConfig.mutations.setDynamicForm(state)
+
+    expect(
+      state.formDynamic[check]
+    ).toBe(state.dynamicMerged.filter(item => item.alias === check)[0].initial)
   })
 })

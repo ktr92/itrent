@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 export default {
-
   setOptionsJSON (state, payload) {
     state.dynamicOptionsParams = payload
   },
@@ -14,12 +13,6 @@ export default {
  */
   updateLocation (state, payload) {
     state.form.location = payload
-  },
-  updateObjectRoofH (state, payload) {
-    state.form.objectRoofH = payload
-  },
-  updateObjectArea (state, payload) {
-    state.form.objectArea = payload
   },
   updateDynamic (state, payload) {
     state.formDynamic = payload
@@ -45,7 +38,7 @@ export default {
       Vue.set(
         state.formDynamic,
         state.dynamicMerged[i].alias,
-        state.dynamicOptionsParams.filter(item => item.alias === state.dynamicMerged[i].alias)[0].initial)
+        state.dynamicMerged[i].initial)
     }
   }
 }
