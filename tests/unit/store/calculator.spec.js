@@ -2,11 +2,14 @@
 import { createLocalVue, enableAutoDestroy } from '@vue/test-utils'
 import Vuex from 'vuex'
 import { intersection } from 'lodash'
+import MockAdapter from 'axios-mock-adapter'
+import axios from 'axios'
+import testAction from '../../helpers/vuex_action_helper'
 import { getCalculatorConfig } from '@/store/calculator/index'
-
 import Fields from '@/tests/fixtures/fields.json'
 import defaultOptionsFixture from '@/tests/fixtures/defaultOptions.json'
 import dynamicOptionsFixture from '@/tests/fixtures/dynamicOptions.json'
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
@@ -75,5 +78,40 @@ describe('store/calculator/mutations', () => {
     expect(
       state.formDynamic[check]
     ).toBe(state.dynamicMerged.filter(item => item.alias === check)[0].initial)
+  })
+})
+
+describe('store/calculator/actions', () => {
+  const defaultStoreConfig = getCalculatorConfig()
+  let mock
+  beforeEach(() => {
+    mock = new MockAdapter(axios)
+  })
+
+  afterEach(() => mock.restore())
+
+  test('initDefault must call mergeOptions ,utation', async () => {
+    await testAction({
+      action: defaultStoreConfig.actions.initDefault,
+      payload: null,
+      state: {},
+      expectedMutations: [
+        { type: 'mergeOptions' }
+      ],
+      expectedActions: []
+    })
+  })
+  test('initDynamic must call setDynamicForm mutation', async () => {
+    await testAction({
+      action: defaultStoreConfig.actions.initDynamic,
+      payload: null,
+      state: {},
+      expectedMutations: [
+        { type: 'setDynamicForm' }
+      ],
+      expectedActions: [
+        { type: 'setFormOptions' },
+        { type: 'setFormSelect' }]
+    })
   })
 })
