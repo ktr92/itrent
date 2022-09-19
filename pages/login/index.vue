@@ -1,9 +1,10 @@
 <template>
-  <fe-auth-form
+  <FeAuthForm
     :logo-url="require('~/assets/images/logo.svg')"
-    :auth-interface="getAuthInterface"
     :restore-password-path="`/restore-password`"
+    :create-account-path="`/create-account`"
     class="login-form"
+    title="Войти с помощью Email"
     @on-success="handleSuccess"
   />
 </template>
