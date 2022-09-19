@@ -42,24 +42,16 @@
           type="submit"
           class="button-sm w-full mb-4"
         >
-          Войти
+          Регистрация
         </fe-button>
       </form>
     </validation-observer>
-    <div v-if="restorePasswordPath" class="flex flex-col items-center mb-2">
+    <div class="flex flex-col items-center mb-2">
       <nuxt-link
-        :to="restorePasswordPath"
+        to="/login"
         class="inline-block text-sm text-black text-opacity-50 hover:text-opacity-100"
       >
-        Восстановить пароль
-      </nuxt-link>
-    </div>
-    <div v-if="createAccountPath" class="flex flex-col items-center">
-      <nuxt-link
-        :to="createAccountPath"
-        class="inline-block text-sm text-black text-opacity-50 hover:text-opacity-100"
-      >
-        Создать аккаунт
+        Я уже зарегистрирован - войти
       </nuxt-link>
     </div>
   </div>
@@ -82,8 +74,8 @@ extend('required-password', {
   ...required,
   message: 'Введите пароль'
 })
-const FeAuthForm = Vue.extend({
-  name: 'FeAuthForm',
+const UserRegistration = Vue.extend({
+  name: 'UserRegistration',
   components: { ValidationObserver, ValidationProvider },
   props: {
     logoUrl: {
@@ -189,5 +181,5 @@ const FeAuthForm = Vue.extend({
     }
   }
 })
-export default FeAuthForm
+export default UserRegistration
 </script>

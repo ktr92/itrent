@@ -1,9 +1,7 @@
 <template>
-  <FeAuthForm
-    :restore-password-path="`/login/restore-password`"
-    :create-account-path="`/login/create-account`"
+  <UserRegistration
     class="login-form"
-    title="Войти с помощью Email"
+    title="Регистрация"
     @on-success="handleSuccess"
   />
 </template>

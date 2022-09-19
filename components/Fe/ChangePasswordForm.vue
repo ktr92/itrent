@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-2sm w-full bg-white rounded border shadow-lg p-8">
-    <div class="leading-snug text-2xl text-bold text-black text-opacity-80 mb-6">
+  <div class="max-w-2sm w-full bg-white rounded border shadow py-8 px-4 md:p-8 mx-4 md:mx-0">
+    <div class="leading-snug text-md md:text-2xl font-bold text-black text-opacity-80 mb-6">
       {{ title }}
     </div>
     <ValidationObserver ref="validator">
