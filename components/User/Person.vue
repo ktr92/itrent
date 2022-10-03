@@ -52,16 +52,16 @@
       </div>
       <div>
         <div v-if="index === 0">
-          1
+          <LazyUserData />
         </div>
         <div v-if="index === 1">
-          2
+          <LazyUserContacts />
         </div>
         <div v-if="index === 2">
-          3
+          <LazyUserPlan />
         </div>
         <div v-if="index === 2">
-          4
+          <LazyUserPassword />
         </div>
       </div>
     </div>
