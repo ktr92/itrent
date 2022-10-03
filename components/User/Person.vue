@@ -4,7 +4,8 @@
       <h1
         class="
           text-2xl text-black text-opacity-85
-          mb-6
+          mb-2
+          text-bold
           flex
           items-center
           cursor-default
@@ -13,12 +14,12 @@
         Ваш профиль
       </h1>
 
-      <div class="leading-normal text-2sm text-black text-opacity-45 my-2">
-        Вы будете перенаправлены на сайт платёжной системы
+      <div class="leading-normal text-2sm text-black text-opacity-45 my-4">
+        Вы можете изменить контакты, после их увидит арендатор
       </div>
 
       <div>
-        <ul class="border-b w-1/2 flex justify-between">
+        <ul class="border-b w-full flex justify-between">
           <li class="inline-block">
             <a
               class="nav-button"
