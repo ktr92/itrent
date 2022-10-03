@@ -5,7 +5,7 @@
         class="
           text-2xl text-black text-opacity-85
           mb-2
-          text-bold
+          font-bold
           flex
           items-center
           cursor-default
@@ -18,30 +18,30 @@
         Вы можете изменить контакты, после их увидит арендатор
       </div>
 
-      <div>
-        <ul class="border-b w-full flex justify-between">
-          <li class="inline-block">
+      <div class="mb-4">
+        <ul class="border-b w-full flex">
+          <li class="inline-block mr-2">
             <a
               class="nav-button"
               :class="getClass(0)"
               @click="onTab(0)"
             >Общее</a>
           </li>
-          <li class="inline-block">
+          <li class="inline-block mr-2">
             <a
               class="nav-button"
               :class="getClass(1)"
               @click="onTab(1)"
             >Контакты</a>
           </li>
-          <li class="inline-block">
+          <li class="inline-block mr-2">
             <a
               class="nav-button"
               :class="getClass(2)"
               @click="onTab(2)"
             >Тарифный план</a>
           </li>
-          <li class="inline-block">
+          <li class="inline-block mr-2">
             <a
               class="nav-button"
               :class="getClass(3)"
