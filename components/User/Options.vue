@@ -36,15 +36,17 @@
         "
       />
       <li class="py-2 border-b last:border-b-0">
-        <a
-          href=""
+        <nuxt-link
+          to="/profile"
           class="
             leading-normal
             text-2sm text-black text-opacity-85
             transition-colors
             hover:text-elm
           "
-        >Профиль</a>
+        >
+          Профиль
+        </nuxt-link>
       </li>
       <li class="py-2 border-b last:border-b-0">
         <a
