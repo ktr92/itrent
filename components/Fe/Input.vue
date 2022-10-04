@@ -43,7 +43,8 @@
           class="m-auto w-3 h-3 fill-current text-black text-opacity-25"
         />
       </div>
-      <!-- <div
+      <div
+        v-if="topPlaceholder"
         class="
           absolute
           z-0
@@ -62,7 +63,7 @@
         ]"
       >
         {{ placeholder }}
-      </div> -->
+      </div>
     </div>
     <div
       v-if="description || errors.length"
@@ -102,6 +103,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    topPlaceholder: {
+      type: Boolean,
+      default: false
     },
     icon: {
       type: String,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="mt-8 mb-4">
+    <h2 class="mt-8 mb-6  text-xl">
       Персональная информация
     </h2>
     <div class="my-4 w-full md:w-64">
@@ -17,8 +17,8 @@
             <FeInput
               v-model="formData.firstname"
               :errors="errors"
-              label="Фамилия"
-              placeholder="Иванов Иван Иванович"
+              placeholder="Фамилия"
+              :top-placeholder="true"
             />
           </ValidationProvider>
         </div>
@@ -35,17 +35,17 @@
             <FeInput
               v-model="formData.lastname"
               :errors="errors"
-              label="Имя"
-              placeholder="Иванов Иван Иванович"
+              placeholder="Имя"
+              :top-placeholder="true"
             />
           </ValidationProvider>
         </div>
 
         <button
-          class="button button-sm w-full"
-          :class="{ 'button-disabled': invalid || !signApplication }"
-          :disabled="invalid || !signApplication"
-          @click="checkSign"
+          class="button button-sm w-full mt-4"
+          :class="{ 'button-disabled': invalid }"
+          :disabled="invalid"
+          @click="submitForm"
         >
           Обновить
         </button>
@@ -81,6 +81,11 @@ export default {
   },
   computed: {
     ...mapGetters(['message', 'getMessageBlock'])
+  },
+  methods: {
+    submitForm () {
+
+    }
   }
 }
 </script>

@@ -19,7 +19,7 @@
 }
 
 .nav-button {
-  @apply inline-block border-t-3 border-transparent p-2 leading-normal text-2sm text-black text-opacity-45 hover:text-opacity-85;
+  @apply inline-block border-t-3 border-transparent p-2 leading-normal text-black text-opacity-45 hover:text-opacity-85;
   &.nuxt-link-exact-active {
     @apply relative font-medium border-elm text-opacity-85;
    
