@@ -1,4 +1,5 @@
 import { intersection } from 'lodash'
+import optionsFile from '../../tests/fixtures/options.json'
 
 const MESSAGEBLOCK = 'Calculator'
 
@@ -14,9 +15,10 @@ export default {
     // инициализация начальных данных формы динамических свойств
     commit('setDynamicForm')
   },
-  async getOptionsJSON ({ commit }) {
+  getOptionsJSON ({ commit }) {
     try {
-      const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`)
+      /*  const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`) */
+      const options = optionsFile
       commit('setOptionsJSON', [...options.dynamicOptionsParams])
     } catch (error) {
       commit('setMessageBlock', MESSAGEBLOCK, { root: true })

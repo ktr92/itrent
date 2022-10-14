@@ -1,0 +1,238 @@
+{
+  "dynamicOptionsParams": [
+    {
+      "alias": "level",
+      "name": "Этаж",
+      "type": "FeSelect",
+      "sort": 52,
+      "smallSize": true,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "heating_system",
+      "name": "Отопление",
+      "type": "FeSelect",
+      "sort": 143,
+      "smallSize": false,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "mdu_part",
+      "name": "Часть МКД",
+      "type": "FeSelect",
+      "sort": 72,
+      "smallSize": false,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "loading_area",
+      "name": "Зона разгрузки",
+      "type": "FeSelect",
+      "sort": 53,
+      "smallSize": true,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "entrance_near_mdu_entrance",
+      "name": "Вход в помещение расположен рядом со входом в подъезд жилого дома",
+      "type": "FeSelect",
+      "sort": 279,
+      "smallSize": false,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "floor_drop",
+      "name": "Наличие перепадов пола свыше 30см",
+      "type": "FeSelect",
+      "sort": 142,
+      "smallSize": false,
+      "limit": 35,
+      "initial": ""
+    },
+    {
+      "alias": "pwr",
+      "name": "Заведенная электрическая мощность",
+      "max": 9999,
+      "min": 1,
+      "initial": 20,
+      "sort": 14,
+      "step": 1,
+      "units": "Киловатты",
+      "caption": "кВт",
+      "type": "FeRangeInput",
+      "offers": [
+        {
+          "label": "10 кВт",
+          "value": 10
+        },
+        {
+          "label": "30 кВт",
+          "value": 30
+        },
+        {
+          "label": "50 кВт",
+          "value": 50
+        },
+        {
+          "label": "100 кВт",
+          "value": 100
+        }
+      ]
+    },
+   
+    {
+      "alias": "within_40_meters",
+      "name": "В радиусе 40м мед. или учеб. учреждения",
+      "type": "FeSelect",
+      "sort": 260,
+      "smallSize": false,
+      "limit": 3,
+      "initial": "",
+      "bordered": true
+    },
+    {
+      "alias": "population",
+      "name": "Населенность",
+      "type": "FeSelect",
+      "sort": 132,
+      "smallSize": false,
+      "bordered": true,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "pedestrian_traffic",
+      "name": "Пешеходный трафик",
+      "type": "FeSelect",
+      "sort": 133,
+      "smallSize": false,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "place",
+      "name": "Расположение",
+      "type": "FeSelect",
+      "sort": 131,
+      "smallSize": false,
+      "limit": null,
+      "initial": ""
+    },
+    {
+      "alias": "quantity_of_parking",
+      "name": "Количество парковочных мест",
+      "max": 3000,
+      "min": 0,
+      "initial": 0,
+      "sort": 45,
+      "step": 1,
+      "units": "Парковочные места",
+      "caption": "",
+      "type": "FeRangeInput",
+      "offers": [
+        {
+          "label": "нет мест",
+          "value": 0
+        },
+        {
+          "label": "5 мест",
+          "value": 5
+        },
+        
+        {
+          "label": "20 мест",
+          "value": 20
+        },
+        {
+          "label": "50 мест",
+          "value": 50
+        },
+        {
+          "label": "200 мест",
+          "value": 200
+        }
+      ]
+    },
+    {
+      "alias": "restricted_area",
+      "name": "Закрытая территория",
+      "type": "FeSelect",
+      "sort": 265,
+      "smallSize": false,
+      "limit": 3,
+      "initial": ""
+    },
+    {
+      "alias": "s",
+      "name": "Площадь помещения",
+      "rules": "required",
+      "bordered": true,
+      "max": 9999,
+      "min": 1,
+      "initial": 300,
+      "sort": 5,
+      "step": 1,
+      "units": "Квадратные метры",
+      "caption": "кв.м",
+      "type": "FeRangeInput",
+      "offers": [
+        {
+          "label": "50 кв.м",
+          "value": 50
+        },
+        {
+          "label": "100 кв.м",
+          "value": 100
+        },
+        {
+          "label": "300 кв.м",
+          "value": 300
+        },
+        {
+          "label": "700 кв.м",
+          "value": 700
+        },
+        {
+          "label": "1500 кв.м",
+          "value": 1500
+        }
+      ]
+    },
+    {
+      "alias": "h",
+      "name": "Высота потолков",
+      "rules": "required",
+      "max": 1500,
+      "min": 150,
+      "initial": 300,
+      "sort": 10,
+      "step": 1,
+      "units": "Сантиметры",
+      "caption": "см",
+      "type": "FeRangeInput",
+      "offers": [
+        {
+          "label": "250 см",
+          "value": 250
+        },
+        {
+          "label": "300 см",
+          "value": 300
+        },
+        {
+          "label": "400 см",
+          "value": 400
+        },
+        {
+          "label": "500 см",
+          "value": 500
+        }
+      ]
+    }
+  ]
+}
