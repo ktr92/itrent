@@ -19,7 +19,6 @@ export default {
       const options = await this.$axios.$get(`${process.env.OPTIONS_JSON}`)
       commit('setOptionsJSON', [...options.dynamicOptionsParams])
     } catch (error) {
-      debugger
       commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   },
