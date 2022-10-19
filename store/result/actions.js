@@ -1,26 +1,29 @@
+import resultsJSON from '@/static/results.json'
+
 const MESSAGEBLOCK = 'Result'
 
 export default {
 
-  async getProducts ({ commit, dispatch, rootGetters, getters }) {
+  getProducts ({ commit, dispatch, rootGetters, getters }) {
     commit('setReady', false)
     commit('clearSelected')
     // получаем список Арендаторов
     // const formDefault = rootGetters['calculator/getForm']
-    const formDynamic = rootGetters['calculator/getFormDynamic']
+    /*  const formDynamic = rootGetters['calculator/getFormDynamic']
     const fieldsQuery = Object.fromEntries(
       Object.entries(formDynamic).map(([k, v]) => [`${'filters[properties]['}${k}]`, `${v}`])
     )
-
+ */
     try {
-      const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
+      /* const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery,
           sort_by: 'title',
           per_page: getters.getPagesize,
           sort_desc: '0'
         }
-      })
+      }) */
+      const response = resultsJSON
       if (response.data) {
         commit('setReady', true)
         commit('setPage', 1)

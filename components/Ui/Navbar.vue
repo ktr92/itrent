@@ -1,5 +1,5 @@
 <template>
-  <nav class="mr-auto md:py-0 md:border-0 px-3.5 md:px-0 md:pt-0 mt-3.5 md:mt-0 w-auto md:w-auto">
+  <nav class="mr-auto ml-auto md:py-0 md:border-0 px-3.5 md:px-0 md:pt-0 mt-3.5 md:mt-0 w-auto md:w-auto">
     <ul class="flex flex-wrap">
       <li class="inline-block mr-4">
         <nuxt-link

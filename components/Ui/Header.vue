@@ -1,9 +1,9 @@
 <template>
   <header class="py-3.5 md:py-0 border-0 md:border-b">
     <div class="px-0 md:px-6 flex-wrap md:flex-nowrap block md:flex items-center">
-      <nuxt-link to="/" class="block mr-24 px-3.5 border-b md:border-none pb-3.5 w-full md:pb-0 md:w-auto md:inline-block">
-        <img src="@/assets/images/logo.svg" alt="" class="w-40">
-      </nuxt-link>
+      <!-- <nuxt-link to="/" class="block mr-24 px-3.5 border-b md:border-none pb-3.5 w-full md:pb-0 md:w-auto md:inline-block">
+       <span class="nologo">NO LOGO</span>
+      </nuxt-link> -->
       <UiNavbar class="hidden md:block" :user="user" />
       <UserOptions class="hidden md:block" :user="user" />
     </div>
@@ -26,4 +26,5 @@ export default {
 .nuxt-link-exact-active {
   @apply text-black;
 }
+
 </style>

@@ -1,5 +1,7 @@
 import { intersection } from 'lodash'
 import optionsFile from '../../tests/fixtures/options.json'
+import optionsJSON from '@/static/options.json'
+import selectsJSON from '@/static/selects.json'
 
 const MESSAGEBLOCK = 'Calculator'
 
@@ -24,9 +26,10 @@ export default {
       commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   },
-  async setFormOptions ({ commit, dispatch, rootGetters }) {
+  setFormOptions ({ commit, dispatch, rootGetters }) {
     try {
-      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`)
+      // const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`)
+      const options = optionsJSON
       const aliases = [...new Set(options.data.items.map(item => item.properties.map(i => i.alias)).flat(1))]
       // берем только общие из продуктов и параметров
       const dynamicList = intersection(rootGetters['calculator/getDynamicList'], aliases)
@@ -38,22 +41,23 @@ export default {
       commit('setMessageBlock', MESSAGEBLOCK, { root: true })
     }
   },
-  async setFormSelect ({ commit, rootGetters }) {
+  setFormSelect ({ commit, rootGetters }) {
     try {
       // получаем список свойств типа Select
       const initials = rootGetters['calculator/getDynamicMerged']
       const optionsByAlias = initials.filter(item => item.type === 'FeSelect')
 
-      const fieldsQuery = optionsByAlias.reduce((obj, v) => {
+      /* const fieldsQuery = optionsByAlias.reduce((obj, v) => {
         obj[`${'fields[]'}${v.alias}`] = v.alias
         return obj
       }, {})
 
-      const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
+        const options = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery
         }
-      })
+      }) */
+      const options = selectsJSON
 
       // Заполняем Select - свойства списком значений
       const getSelectOptions = (alias) => {
