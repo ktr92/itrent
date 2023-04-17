@@ -1,26 +1,28 @@
+import responseFile from '../../tests/fixtures/response.json'
 const MESSAGEBLOCK = 'Result'
 
 export default {
 
-  async getProducts ({ commit, dispatch, rootGetters, getters }) {
+  getProducts ({ commit, dispatch, rootGetters, getters }) {
     commit('setReady', false)
     commit('clearSelected')
     // получаем список Арендаторов
     // const formDefault = rootGetters['calculator/getForm']
-    const formDynamic = rootGetters['calculator/getFormDynamic']
-    const fieldsQuery = Object.fromEntries(
+    // const formDynamic = rootGetters['calculator/getFormDynamic']
+    /*  const fieldsQuery = Object.fromEntries(
       Object.entries(formDynamic).map(([k, v]) => [`${'filters[properties]['}${k}]`, `${v}`])
     )
-
+ */
     try {
-      const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
+      /*  const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/products/rent`, {
         params: {
           ...fieldsQuery,
           sort_by: 'title',
           per_page: getters.getPagesize,
           sort_desc: '0'
         }
-      })
+      }) */
+      const response = responseFile
       if (response.data) {
         commit('setReady', true)
         commit('setPage', 1)
@@ -41,15 +43,16 @@ export default {
       }
     }
   },
-  async fetchMoreProducts ({ getters, commit }, payload) {
+  fetchMoreProducts ({ getters, commit }, payload) {
     try {
       commit('setMoreLoading', true)
-      const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/${getters.getSearchId}`, {
+      /*   const response = await this.$axios.$get(`${process.env.API_URL}/api/v2/results/${getters.getSearchId}`, {
         params: {
           page: payload,
           per_page: getters.getPagesize
         }
-      })
+      }) */
+      const response = responseFile
       commit('addResult', [...response.data])
       commit('setMoreLoading', false)
     } catch (error) {
