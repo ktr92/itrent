@@ -18,6 +18,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/svg-sprite": "^0.5.2",
+    "@nuxtjs/vercel-builder": "^0.24.0",
     "autoprefixer": "^10.4.7",
     "base-64": "^1.0.0",
     "core-js": "^3.15.1",
