@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "declaration": true,
     "lib": [
       "ESNext",
       "ESNext.AsyncIterable",
@@ -16,6 +13,7 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -26,13 +24,15 @@
       ]
     },
     "types": [
-      "@types/node",
       "@nuxt/types",
-      "@nuxtjs/sentry",
-      "@nuxtjs/auth-next"
-    ],
+      "@nuxtjs/axios",
+      "@types/node",
+      "@nuxtjs/dayjs",
+    ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".nuxt",
+    "dist"
   ]
 }
